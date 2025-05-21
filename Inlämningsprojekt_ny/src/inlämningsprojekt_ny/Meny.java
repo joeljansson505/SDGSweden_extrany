@@ -23,6 +23,7 @@ private String inloggadAnvandare;
         this.inloggadAnvandare=inloggadAnvandare;
              initComponents();
              inloggadAnvandareLabel.setText(inloggadAnvandare);
+             //hej
             
     }
 
