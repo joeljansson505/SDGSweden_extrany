@@ -211,7 +211,7 @@ public class Inloggning extends javax.swing.JFrame {
         String losen=losenordField.getText();
         
         if (!Validering.faltInteTomt(epost)) {
-            lblFelMeddelande.setText ("Eposten får inte vara tomt");
+            felmeddelandeLabel.setText ("Eposten får inte vara tomt");
         }
         
         

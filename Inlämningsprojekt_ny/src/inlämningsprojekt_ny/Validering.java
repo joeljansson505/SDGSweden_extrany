@@ -42,7 +42,7 @@ public class Validering extends javax.swing.JFrame {
             String resultat = idb.fetchSingle(fraga);
             return resultat != null;
             
-        } catch (infException e) {
+        } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Vänligen försök senare");
             return false;
         }
