@@ -124,7 +124,7 @@ public class SamhallutvecklingAvd extends javax.swing.JFrame {
                 try {
     String sql = "SELECT fornamn, efternamn FROM anstalld " + 
                  "JOIN avdelning ON anstalld.avdelning = avdelning.avdid " + 
-                 "WHERE avdelning.namn = 'Avdelning för Samhällsutveckling och Klimatförändringar'";
+                 "WHERE avdelning.namn = 'Avdelning för Samhällsutveckling och Utbildning'";
 
     var resultat = idb.fetchRows(sql);
 
@@ -158,7 +158,7 @@ public class SamhallutvecklingAvd extends javax.swing.JFrame {
                     "JOIN proj_hallbarhet ph ON p.pid = ph.pid " + 
                     "JOIN avd_hallbarhet ah ON ph.hid = ah.hid " + 
                     "JOIN avdelning a ON ah.avdid = a.avdid " +
-                    "WHERE a.namn = 'Avdelning för Samhällutveckling och Klimatförändringar'";
+                    "WHERE a.namn = 'Avdelning för Samhällsutveckling och Utbildning'";
             
             var resultat = idb.fetchRows(sql);
             
