@@ -211,7 +211,33 @@ public class Inloggning extends javax.swing.JFrame {
         String losen=losenordField.getText();
         
         if (!Validering.faltInteTomt(epost)) {
-            felmeddelandeLabel.setText ("Eposten får inte vara tomt");
+            felmeddelandeLabel.setText ("Eposten får inte vara tom");
+            felmeddelandeLabel.setVisible(true);
+            return;
+        }
+        
+        if (!Validering.faltInteTomt(losen)) {
+            felmeddelandeLabel.setText("Lösenord får inte vara tom");
+            felmeddelandeLabel.setVisible(true);
+            return;
+        }
+        
+        if (!Validering.arMailKorrekt(epost)) {
+            felmeddelandeLabel.setText("Eposten måste vara korrekt");
+            felmeddelandeLabel.setVisible(true);
+            return;
+        }
+        
+        if (!Validering.losenordKrav(losen)) {
+            felmeddelandeLabel.setText("Lösenordet uppfyller inte kraven");
+            felmeddelandeLabel.setVisible(true);
+            return;
+        }
+        
+        if (!Validering.arAnvandarnamnOchLosenordKorrekt(epost, losen, idb)) {
+            felmeddelandeLabel.setText("Fel epost eller lösenord");
+            felmeddelandeLabel.setVisible(true);
+            return;
         }
         
         
