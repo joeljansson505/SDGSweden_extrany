@@ -18,7 +18,7 @@ public class Validering extends javax.swing.JFrame {
      * Creates new form Validering
      */
     public static boolean arMailKorrekt(String epost) {
-        String valideraEpost = "^[a-zA-Z0-9._+-%]+@[a-zA-Z0-9.-]+?\\.[a-zA-Z]{2,}$"; 
+        String valideraEpost = "^[a-zA-Z0-9._+%-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"; 
         return epost != null && epost.matches(valideraEpost);
     }
     
