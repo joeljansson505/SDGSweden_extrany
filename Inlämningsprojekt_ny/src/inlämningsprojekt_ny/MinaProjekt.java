@@ -149,9 +149,14 @@ public class MinaProjekt extends javax.swing.JFrame {
 
 private void fyllProjektTabell() {
     try {
-        String sql = "SELECT projektnamn, startdatum, slutdatum, status FROM Projekt "
-                   + "JOIN Handläggare_Projekt ON Projekt.id = Handläggare_Projekt.projekt_id "
-                   + "WHERE Handläggare_Projekt.handläggare_id = " + aid + ";";
+        String pid;
+        pid = idb.fetchSingle("Select pid from ans_proj where aid = "+ aid +";");
+        
+        String sql = "SELECT projektnamn, startdatum, slutdatum, status FROM Projekt where pid = " + pid + ";";
+        
+//        String sql = "SELECT projektnamn, startdatum, slutdatum, status FROM Projekt "
+//                   + "JOIN Handläggare_Projekt ON Projekt.id = Handläggare_Projekt.projekt_id "
+//                   + "WHERE Handläggare_Projekt.handläggare_id = " + aid + ";";
 
         var resultat = idb.fetchRows(sql);
 
