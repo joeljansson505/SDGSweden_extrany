@@ -4,17 +4,23 @@ package inlämningsprojekt_ny;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
+import oru.inf.InfDB;
 /**
  *
  * @author paulu
  */
 public class TeknologiskInnovationavd extends javax.swing.JFrame {
 
+    private InfDB idb;
+    private String InloggadAnvandare;
+    private int aid;
     /**
      * Creates new form TeknologiskInnovationavd
      */
-    public TeknologiskInnovationavd() {
+    public TeknologiskInnovationavd(InfDB idb, String InloggadAnvandare, int aid) {
+        this.idb = idb;
+        this.InloggadAnvandare = InloggadAnvandare;
+        this.aid = aid;
         initComponents();
     }
 
@@ -27,21 +33,143 @@ public class TeknologiskInnovationavd extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        TekAvdTillbakaButton = new javax.swing.JButton();
+        TekAvdPersonalButton = new javax.swing.JButton();
+        TekAvdProjektButton = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TekAvdProjektField = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        TekAvdPersonalField = new javax.swing.JTextArea();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        TekAvdTillbakaButton.setText("Tillbaka");
+        TekAvdTillbakaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TekAvdTillbakaButtonActionPerformed(evt);
+            }
+        });
+
+        TekAvdPersonalButton.setText("Personal Lista");
+        TekAvdPersonalButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TekAvdPersonalButtonActionPerformed(evt);
+            }
+        });
+
+        TekAvdProjektButton.setText("Projekt Lista");
+        TekAvdProjektButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TekAvdProjektButtonActionPerformed(evt);
+            }
+        });
+
+        TekAvdProjektField.setColumns(20);
+        TekAvdProjektField.setRows(5);
+        jScrollPane2.setViewportView(TekAvdProjektField);
+
+        TekAvdPersonalField.setColumns(20);
+        TekAvdPersonalField.setRows(5);
+        jScrollPane3.setViewportView(TekAvdPersonalField);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(TekAvdTillbakaButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TekAvdPersonalButton)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TekAvdProjektButton)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(TekAvdTillbakaButton)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TekAvdPersonalButton)
+                    .addComponent(TekAvdProjektButton))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void TekAvdTillbakaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TekAvdTillbakaButtonActionPerformed
+        // TODO add your handling code here:
+        new Avdelning(idb, InloggadAnvandare, aid).setVisible(true);
+        this.dispose();        
+    }//GEN-LAST:event_TekAvdTillbakaButtonActionPerformed
+
+    private void TekAvdPersonalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TekAvdPersonalButtonActionPerformed
+        // TODO add your handling code here:
+                        try {
+    String sql = "SELECT fornamn, efternamn FROM anstalld " + 
+                 "JOIN avdelning ON anstalld.avdelning = avdelning.avdid " + 
+                 "WHERE avdelning.namn = 'Avdelning för Teknologisk Innovation och Entreprenörskap'";
+
+    var resultat = idb.fetchRows(sql);
+
+    if (resultat != null && !resultat.isEmpty()) {
+        StringBuilder sb = new StringBuilder();
+        for (var rad : resultat) {
+            sb.append(rad.get("fornamn")).append(" ").append(rad.get("efternamn")).append("\n");
+        }
+        TekAvdPersonalField.setText(sb.toString());
+ 
+    } else {
+        TekAvdPersonalField.setText("Inga personer hittades.");
+  
+    }
+} catch (Exception e) {
+    TekAvdPersonalField.setText("Fel: " + e.getMessage());
+
+}
+    }//GEN-LAST:event_TekAvdPersonalButtonActionPerformed
+
+    private void TekAvdProjektButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TekAvdProjektButtonActionPerformed
+        // TODO add your handling code here:
+               try {
+            String sql = "SELECT DISTINCT p.projektnamn FROM projekt p " + 
+                    "JOIN proj_hallbarhet ph ON p.pid = ph.pid " + 
+                    "JOIN avd_hallbarhet ah ON ph.hid = ah.hid " + 
+                    "JOIN avdelning a ON ah.avdid = a.avdid " +
+                    "WHERE a.namn = 'Avdelning för Teknologisk Innovation och Entreprenörskap'";
+            
+            var resultat = idb.fetchRows(sql);
+            
+            if (resultat != null && !resultat.isEmpty()) {
+                StringBuilder sb = new StringBuilder();
+                for (var rad : resultat) {
+                    sb.append(rad.get("projektnamn")).append("\n");
+                }
+                TekAvdProjektField.setText(sb.toString());
+                jScrollPane2.setVisible(true);
+            } else {
+                TekAvdProjektField.setText("Inga projekt hittades.");
+                jScrollPane2.setVisible(true);
+            }
+      } catch (Exception e) {
+          TekAvdProjektField.setText("Fel: " + e.getMessage());
+          jScrollPane2.setVisible(true);
+      }
+    }//GEN-LAST:event_TekAvdProjektButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -73,11 +201,18 @@ public class TeknologiskInnovationavd extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TeknologiskInnovationavd().setVisible(true);
+                //new TeknologiskInnovationavd().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton TekAvdPersonalButton;
+    private javax.swing.JTextArea TekAvdPersonalField;
+    private javax.swing.JButton TekAvdProjektButton;
+    private javax.swing.JTextArea TekAvdProjektField;
+    private javax.swing.JButton TekAvdTillbakaButton;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
 }

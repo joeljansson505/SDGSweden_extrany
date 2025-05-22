@@ -64,6 +64,11 @@ public class Avdelning extends javax.swing.JFrame {
         });
 
         avdButton3.setText("Teknologisk innovation");
+        avdButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                avdButton3ActionPerformed(evt);
+            }
+        });
 
         avdTillbakaButton.setText("Tillbaka");
         avdTillbakaButton.addActionListener(new java.awt.event.ActionListener() {
@@ -127,6 +132,12 @@ public class Avdelning extends javax.swing.JFrame {
         new SamhallutvecklingAvd(idb, inloggadAnvandare, aid).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_avdbutton2ActionPerformed
+
+    private void avdButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avdButton3ActionPerformed
+        // TODO add your handling code here:
+        new TeknologiskInnovationavd(idb, inloggadAnvandare, aid).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_avdButton3ActionPerformed
 
     /**
      * @param args the command line arguments
