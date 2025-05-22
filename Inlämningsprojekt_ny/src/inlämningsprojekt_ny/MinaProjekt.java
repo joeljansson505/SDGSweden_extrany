@@ -175,14 +175,14 @@ private void fyllProjektTabell() {
         javax.swing.JOptionPane.showMessageDialog(this, "Kunde inte hämta projekt: " + e.getMessage());
         e.printStackTrace();
     }
-}
 
-        }
 
-    } catch (InfException e) {
-        javax.swing.JOptionPane.showMessageDialog(MinaProjekt.this, "Kunde inte hämta projekt: " + e.getMessage());
+        //}
 
-}
+    // catch (InfException e) {
+        //javax.swing.JOptionPane.showMessageDialog(MinaProjekt.this, "Kunde inte hämta projekt: " + e.getMessage());
+
+//}}
 
 }
     
