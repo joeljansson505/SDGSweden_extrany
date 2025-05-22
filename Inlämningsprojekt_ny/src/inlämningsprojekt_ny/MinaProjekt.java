@@ -201,14 +201,14 @@ private void fyllProjektTabell() {
 private void fyllPartnerTabell() {
     try {
         String sql = "SELECT partner.namn, partner.kontaktperson, partner.kontaktepost, partner.telefon " +
-                     "FROM partner " +
-                     "JOIN projekt_partner ON partner.pid = projekt_partner.partner_pid " +
-                     "WHERE projekt_partner.pid IN (SELECT pid FROM ans_proj WHERE aid = " + aid + ");";
+             "FROM partner " +
+             "JOIN projekt_partner ON partner.partner_id = projekt_partner.partner_pid " +
+             "WHERE projekt_partner.pid IN (SELECT pid FROM ans_proj WHERE aid = " + aid + ");";
 
         var resultat = idb.fetchRows(sql);
 
         // Hämta modellen från partner-tabellen
-        var modell = (javax.swing.table.DefaultTableModel) projektPartnerTabell.getModel();
+        var modell = (javax.swing.table.DefaultTableModel) projektPartnerTabel.getModel();
         modell.setRowCount(0); // Töm gamla rader
 
         // Lägg till varje partner som en ny rad
