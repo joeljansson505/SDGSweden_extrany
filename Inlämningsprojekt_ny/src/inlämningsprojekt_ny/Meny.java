@@ -6,6 +6,7 @@ package inlämningsprojekt_ny;
  */
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 /**
@@ -184,11 +185,19 @@ private int aid;
         String userId;
     try {
         userId = idb.fetchSingle(sqlFraga);
+        System.out.println("Hämtat userId från databasen: " + userId);
+        if(userId == null || userId.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Användare hittades inte i databasen.");
+            return;
+        }
           int aid = Integer.parseInt(userId);
+          System.out.println("Öppnar Personuppgifter med aid: " + aid);
+          
         new Personuppgifter(idb, aid, inloggadAnvandare).setVisible(true);
         this.dispose();
     } catch (InfException ex) {
         Logger.getLogger(Meny.class.getName()).log(Level.SEVERE, null, ex);
+        JOptionPane.showMessageDialog(this, "Fel vid hämtning av anställnings-ID: " + ex.getMessage());
     }
     }//GEN-LAST:event_minProfilButtonActionPerformed
 
