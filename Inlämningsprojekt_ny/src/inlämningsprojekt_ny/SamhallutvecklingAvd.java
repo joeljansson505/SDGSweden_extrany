@@ -36,6 +36,12 @@ public class SamhallutvecklingAvd extends javax.swing.JFrame {
     private void initComponents() {
 
         samhallutvAvdTillbakaButton = new javax.swing.JButton();
+        samhallutvecklingAvdPersonalButton = new javax.swing.JButton();
+        samhallutvecklingAvdProjektButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        samhallutvecklingAvdProjektField = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        samhallutvecklingAvdPersonalField = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,21 +52,62 @@ public class SamhallutvecklingAvd extends javax.swing.JFrame {
             }
         });
 
+        samhallutvecklingAvdPersonalButton.setText("Personal Lista");
+        samhallutvecklingAvdPersonalButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                samhallutvecklingAvdPersonalButtonActionPerformed(evt);
+            }
+        });
+
+        samhallutvecklingAvdProjektButton.setText("Projekt Lista");
+        samhallutvecklingAvdProjektButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                samhallutvecklingAvdProjektButtonActionPerformed(evt);
+            }
+        });
+
+        samhallutvecklingAvdProjektField.setColumns(20);
+        samhallutvecklingAvdProjektField.setRows(5);
+        jScrollPane1.setViewportView(samhallutvecklingAvdProjektField);
+
+        samhallutvecklingAvdPersonalField.setColumns(20);
+        samhallutvecklingAvdPersonalField.setRows(5);
+        jScrollPane2.setViewportView(samhallutvecklingAvdPersonalField);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(samhallutvAvdTillbakaButton)
-                .addContainerGap(322, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(samhallutvAvdTillbakaButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(samhallutvecklingAvdPersonalButton))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(samhallutvecklingAvdProjektButton)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(samhallutvAvdTillbakaButton)
-                .addContainerGap(271, Short.MAX_VALUE))
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(samhallutvecklingAvdPersonalButton)
+                    .addComponent(samhallutvecklingAvdProjektButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
+                .addGap(24, 24, 24))
         );
 
         pack();
@@ -71,6 +118,66 @@ public class SamhallutvecklingAvd extends javax.swing.JFrame {
         new Avdelning(idb, InloggadAnvandare, aid).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_samhallutvAvdTillbakaButtonActionPerformed
+
+    private void samhallutvecklingAvdPersonalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_samhallutvecklingAvdPersonalButtonActionPerformed
+        // TODO add your handling code here:
+                try {
+    String sql = "SELECT fornamn, efternamn FROM anstalld " + 
+                 "JOIN avdelning ON anstalld.avdelning = avdelning.avdid " + 
+                 "WHERE avdelning.namn = 'Avdelning för Samhällsutveckling och Klimatförändringar'";
+
+    var resultat = idb.fetchRows(sql);
+
+    if (resultat != null && !resultat.isEmpty()) {
+        StringBuilder sb = new StringBuilder();
+        for (var rad : resultat) {
+            sb.append(rad.get("fornamn")).append(" ").append(rad.get("efternamn")).append("\n");
+        }
+        samhallutvecklingAvdPersonalField.setText(sb.toString());
+        jScrollPane1.setVisible(true);
+        jScrollPane1.revalidate();
+        jScrollPane1.repaint();
+    } else {
+        samhallutvecklingAvdPersonalField.setText("Inga personer hittades.");
+        jScrollPane1.setVisible(true);
+        jScrollPane1.revalidate();
+        jScrollPane1.repaint();
+    }
+} catch (Exception e) {
+    samhallutvecklingAvdPersonalField.setText("Fel: " + e.getMessage());
+    jScrollPane1.setVisible(true);
+    jScrollPane1.revalidate();
+    jScrollPane1.repaint();
+}
+    }//GEN-LAST:event_samhallutvecklingAvdPersonalButtonActionPerformed
+
+    private void samhallutvecklingAvdProjektButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_samhallutvecklingAvdProjektButtonActionPerformed
+        // TODO add your handling code here:
+                try {
+            String sql = "SELECT DISTINCT p.projektnamn FROM projekt p " + 
+                    "JOIN proj_hallbarhet ph ON p.pid = ph.pid " + 
+                    "JOIN avd_hallbarhet ah ON ph.hid = ah.hid " + 
+                    "JOIN avdelning a ON ah.avdid = a.avdid " +
+                    "WHERE a.namn = 'Avdelning för Samhällutveckling och Klimatförändringar'";
+            
+            var resultat = idb.fetchRows(sql);
+            
+            if (resultat != null && !resultat.isEmpty()) {
+                StringBuilder sb = new StringBuilder();
+                for (var rad : resultat) {
+                    sb.append(rad.get("projektnamn")).append("\n");
+                }
+                samhallutvecklingAvdProjektField.setText(sb.toString());
+                jScrollPane2.setVisible(true);
+            } else {
+                samhallutvecklingAvdProjektField.setText("Inga projekt hittades.");
+                jScrollPane2.setVisible(true);
+            }
+      } catch (Exception e) {
+          samhallutvecklingAvdProjektField.setText("Fel: " + e.getMessage());
+          jScrollPane2.setVisible(true);
+      }
+    }//GEN-LAST:event_samhallutvecklingAvdProjektButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -108,6 +215,12 @@ public class SamhallutvecklingAvd extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton samhallutvAvdTillbakaButton;
+    private javax.swing.JButton samhallutvecklingAvdPersonalButton;
+    private javax.swing.JTextArea samhallutvecklingAvdPersonalField;
+    private javax.swing.JButton samhallutvecklingAvdProjektButton;
+    private javax.swing.JTextArea samhallutvecklingAvdProjektField;
     // End of variables declaration//GEN-END:variables
 }
