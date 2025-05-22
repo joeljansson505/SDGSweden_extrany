@@ -14,13 +14,15 @@ public class SamhallutvecklingAvd extends javax.swing.JFrame {
     
     private InfDB idb;
     private String InloggadAnvandare;
+    private int aid;
 
     /**
      * Creates new form SamhallutvecklingAvd
      */
-    public SamhallutvecklingAvd(InfDB idb, String InloggadAnvandare) {
+    public SamhallutvecklingAvd(InfDB idb, String InloggadAnvandare, int aid) {
         this.idb = idb;
         this.InloggadAnvandare = InloggadAnvandare;
+        this.aid = aid;
         initComponents();
     }
 
@@ -66,7 +68,7 @@ public class SamhallutvecklingAvd extends javax.swing.JFrame {
 
     private void samhallutvAvdTillbakaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_samhallutvAvdTillbakaButtonActionPerformed
         // TODO add your handling code here:
-        new Avdelning(idb, InloggadAnvandare).setVisible(true);
+        new Avdelning(idb, InloggadAnvandare, aid).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_samhallutvAvdTillbakaButtonActionPerformed
 

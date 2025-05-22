@@ -13,13 +13,15 @@ import oru.inf.InfException;
 public class Hallbarhetsmal extends javax.swing.JFrame {
     private InfDB idb;
     private String inloggadAnvandare;
+    private int aid;
 
     /**
      * Creates new form Hallbarhetsmal
      */
-    public Hallbarhetsmal(InfDB idb, String inloggadAnvandare) {
+    public Hallbarhetsmal(InfDB idb, String inloggadAnvandare, int aid) {
         this.idb=idb;
         this.inloggadAnvandare=inloggadAnvandare;
+        this.aid = aid;
         initComponents();
         hamtaHallbarhetsmal();
         hallbarhetsmalText.setEditable(false);
@@ -109,7 +111,7 @@ public class Hallbarhetsmal extends javax.swing.JFrame {
     
     private void hallbarhetsmalTillbakaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hallbarhetsmalTillbakaButtonActionPerformed
         // TODO add your handling code here:
-        new Meny(idb, inloggadAnvandare).setVisible(true);
+        new Meny(idb, inloggadAnvandare, aid).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_hallbarhetsmalTillbakaButtonActionPerformed
 

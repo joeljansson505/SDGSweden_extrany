@@ -14,13 +14,15 @@ public class Hallbarhetavd extends javax.swing.JFrame {
     
     private InfDB idb;
     private String inloggadAnvandare;
+    private int aid;
 
     /**
      * Creates new form Hallbarhetavd
      */
-    public Hallbarhetavd(InfDB idb, String inloggadAnvandare) {
+    public Hallbarhetavd(InfDB idb, String inloggadAnvandare, int aid) {
         this.idb = idb;
         this.inloggadAnvandare = inloggadAnvandare;
+        this.aid = aid;
         initComponents();
         jScrollPane1.setVisible(true);
         
@@ -118,7 +120,7 @@ public class Hallbarhetavd extends javax.swing.JFrame {
 
     private void HallbarhetavdTillbakaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HallbarhetavdTillbakaButtonActionPerformed
         // TODO add your handling code here:
-        new Avdelning(idb, inloggadAnvandare).setVisible(true);
+        new Avdelning(idb, inloggadAnvandare, aid).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_HallbarhetavdTillbakaButtonActionPerformed
 

@@ -15,13 +15,15 @@ import oru.inf.InfException;
 public class MinaProjekt extends javax.swing.JFrame {
 
     private InfDB idb;
-    private String handläggarID;
+    private String inloggadAnvandare;
+    private int aid;
     /**
      * Creates new form NewJFrame
      */
-    public MinaProjekt(InfDB idb, String id) {
+    public MinaProjekt(InfDB idb, String inloggadAnvandare, int aid) {
        this.idb = idb;
-       this.handläggarID = id;
+       this.inloggadAnvandare = inloggadAnvandare;
+       this.aid = aid;
         initComponents();
         fyllProjektTabell();
         
@@ -54,7 +56,7 @@ public class MinaProjekt extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Projekt", "Startdatum", "Slutdatum", "Status"
+                "projekt", "startdatum", "slutdatum", "status"
             }
         ) {
             Class[] types = new Class [] {
@@ -68,8 +70,9 @@ public class MinaProjekt extends javax.swing.JFrame {
         tabellProjektTabel.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tabellProjektTabel);
 
-        stängFönsterButton.setBackground(new java.awt.Color(255, 102, 102));
-        stängFönsterButton.setText("Stäng");
+        stängFönsterButton.setBackground(new java.awt.Color(204, 204, 204));
+        stängFönsterButton.setForeground(new java.awt.Color(0, 0, 0));
+        stängFönsterButton.setText("Tillbaka");
         stängFönsterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 stängFönsterButtonActionPerformed(evt);
@@ -80,9 +83,6 @@ public class MinaProjekt extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(stängFönsterButton))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -93,16 +93,22 @@ public class MinaProjekt extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(241, 241, 241)
+                        .addContainerGap()
+                        .addComponent(stängFönsterButton)
+                        .addGap(163, 163, 163)
                         .addComponent(etikettRubrikLabel)))
                 .addContainerGap(55, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(stängFönsterButton)
-                .addGap(5, 5, 5)
-                .addComponent(etikettRubrikLabel)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(etikettRubrikLabel))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(stängFönsterButton)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -116,7 +122,8 @@ public class MinaProjekt extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void stängFönsterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stängFönsterButtonActionPerformed
-       this.dispose();
+       new Meny(idb, inloggadAnvandare, aid).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_stängFönsterButtonActionPerformed
 
     /**
@@ -128,11 +135,11 @@ public class MinaProjekt extends javax.swing.JFrame {
         InfDB idb = new InfDB("SDGSweden.fdb"); // Du måste ha denna fil i rätt mapp
 
         // Ange ett handläggar-ID som finns i databasen, t.ex. 1
-        String handläggarID = "1";
+        String inloggadAnvandare = "1";
 
         // Starta fönstret i UI-tråden
         java.awt.EventQueue.invokeLater(() -> {
-            new MinaProjekt(idb, handläggarID).setVisible(true);
+            //new MinaProjekt(idb, handläggarID).setVisible(true);
         });
 
     } catch (InfException e) {
@@ -140,15 +147,14 @@ public class MinaProjekt extends javax.swing.JFrame {
     }
 }
 
-    private void fyllProjektTabell() {
+private void fyllProjektTabell() {
     try {
         String sql = "SELECT projektnamn, startdatum, slutdatum, status FROM Projekt "
                    + "JOIN Handläggare_Projekt ON Projekt.id = Handläggare_Projekt.projekt_id "
-                   + "WHERE Handläggare_Projekt.handläggare_id = '" + handläggarID + "';";
+                   + "WHERE Handläggare_Projekt.handläggare_id = " + aid + ";";
 
         var resultat = idb.fetchRows(sql);
 
-        // Hämta modellen för tabellen
         var modell = (javax.swing.table.DefaultTableModel) tabellProjektTabel.getModel();
         modell.setRowCount(0); // töm tabellen
 
@@ -161,9 +167,23 @@ public class MinaProjekt extends javax.swing.JFrame {
             });
         }
 
+        if (resultat.isEmpty()) {
+            System.out.println("Inga projekt hittades för handläggare med ID: " + aid);
+        }
+
     } catch (InfException e) {
         javax.swing.JOptionPane.showMessageDialog(this, "Kunde inte hämta projekt: " + e.getMessage());
+        e.printStackTrace();
     }
+}
+
+        }
+
+    } catch (InfException e) {
+        javax.swing.JOptionPane.showMessageDialog(MinaProjekt.this, "Kunde inte hämta projekt: " + e.getMessage());
+
+}
+
 }
     
     

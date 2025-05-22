@@ -15,14 +15,22 @@ import oru.inf.InfException;
 public class Meny extends javax.swing.JFrame {
 private InfDB idb;
 private String inloggadAnvandare;
+private int aid;
     /**
      * Creates new form Meny
      */
-    public Meny(InfDB idb,String inloggadAnvandare) {
-        this.idb=idb;
-        this.inloggadAnvandare=inloggadAnvandare;
-             initComponents();
-             inloggadAnvandareLabel.setText(inloggadAnvandare);
+    public Meny(InfDB idb,String inloggadAnvandare, int aid) {
+      this.idb= idb;
+        this.aid = aid;
+        this.inloggadAnvandare = inloggadAnvandare;
+        try{
+        initComponents();
+        inloggadAnvandareLabel.setText(inloggadAnvandare);
+        //hej
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+             
              //hej
             
     }
@@ -147,7 +155,7 @@ private String inloggadAnvandare;
 
     private void avdelningButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avdelningButtonActionPerformed
     // TODO add your handling code here:
-    new Avdelning(idb, inloggadAnvandare).setVisible(true);
+    new Avdelning(idb, inloggadAnvandare, aid).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_avdelningButtonActionPerformed
 
@@ -160,10 +168,14 @@ private String inloggadAnvandare;
 
     private void minaProjektButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minaProjektButtonActionPerformed
         // TODO add your handling code here:
+        new MinaProjekt(idb, inloggadAnvandare, aid).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_minaProjektButtonActionPerformed
 
     private void hallbarhetsmalenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hallbarhetsmalenButtonActionPerformed
         // TODO add your handling code here:
+        new Hallbarhetsmal(idb, inloggadAnvandare, aid).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_hallbarhetsmalenButtonActionPerformed
 
     private void minProfilButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minProfilButtonActionPerformed
@@ -173,7 +185,7 @@ private String inloggadAnvandare;
     try {
         userId = idb.fetchSingle(sqlFraga);
           int aid = Integer.parseInt(userId);
-        new Personuppgifter(idb, aid).setVisible(true);
+        new Personuppgifter(idb, aid, inloggadAnvandare).setVisible(true);
         this.dispose();
     } catch (InfException ex) {
         Logger.getLogger(Meny.class.getName()).log(Level.SEVERE, null, ex);

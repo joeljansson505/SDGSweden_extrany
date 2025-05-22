@@ -214,7 +214,11 @@ public class Inloggning extends javax.swing.JFrame {
            System.out.println(sqlFraga);
            String dbLosen = idb.fetchSingle(sqlFraga);
            if (losen.equals(dbLosen)){
-               new Meny(idb,epost).setVisible(true);
+               String sqlAid = "SELECT aid FROM anstalld WHERE epost = '" + epost + "';";
+               String aidString = idb.fetchSingle(sqlAid);
+               int aid = Integer.parseInt(aidString);
+               
+               new Meny(idb,epost, aid).setVisible(true);
                this.setVisible(false);
         }
            else{

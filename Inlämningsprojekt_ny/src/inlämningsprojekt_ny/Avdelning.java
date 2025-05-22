@@ -15,13 +15,15 @@ public class Avdelning extends javax.swing.JFrame {
     
     private InfDB idb;
     private String inloggadAnvandare;
+    private int aid;
 
     /**
      * Creates new form Avdelning
      */
-    public Avdelning(InfDB idb, String inloggadAnvandare) {
+    public Avdelning(InfDB idb, String inloggadAnvandare, int aid) {
         this.idb = idb;
         this.inloggadAnvandare = inloggadAnvandare;
+        this.aid = aid;
         initComponents();
 
  
@@ -109,20 +111,20 @@ public class Avdelning extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void avdButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avdButton1ActionPerformed
-      new Hallbarhetavd(idb, inloggadAnvandare).setVisible(true);
+      new Hallbarhetavd(idb, inloggadAnvandare,aid).setVisible(true);
       this.dispose();
       
     }//GEN-LAST:event_avdButton1ActionPerformed
 
     private void avdTillbakaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avdTillbakaButtonActionPerformed
         // TODO add your handling code here:
-        new Meny(idb, inloggadAnvandare).setVisible(true);
+        new Meny(idb, inloggadAnvandare, aid).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_avdTillbakaButtonActionPerformed
 
     private void avdbutton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avdbutton2ActionPerformed
         // TODO add your handling code here:
-        new SamhallutvecklingAvd(idb, inloggadAnvandare).setVisible(true);
+        new SamhallutvecklingAvd(idb, inloggadAnvandare, aid).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_avdbutton2ActionPerformed
 

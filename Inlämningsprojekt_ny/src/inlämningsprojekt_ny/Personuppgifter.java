@@ -19,10 +19,12 @@ public class Personuppgifter extends javax.swing.JFrame {
      */
     private InfDB idb;
     private int aid;
+    private String inloggadAnvandare;
     
-    public Personuppgifter(InfDB idb, int aid) {
+    public Personuppgifter(InfDB idb, int aid, String inloggadAnvandare) {
         this.idb = idb;
         this.aid = aid;
+        this.inloggadAnvandare = inloggadAnvandare;
         initComponents();
         visaPersonuppgifter();
     }
@@ -65,6 +67,7 @@ public class Personuppgifter extends javax.swing.JFrame {
         epostField = new javax.swing.JTextField();
         telefonField = new javax.swing.JTextField();
         adressField = new javax.swing.JTextField();
+        persUppgifterTillbakaButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,6 +104,13 @@ public class Personuppgifter extends javax.swing.JFrame {
 
         adressField.setColumns(5);
 
+        persUppgifterTillbakaButton.setText("Tillbaka");
+        persUppgifterTillbakaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                persUppgifterTillbakaButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -119,39 +129,46 @@ public class Personuppgifter extends javax.swing.JFrame {
                                     .addComponent(epostField)
                                     .addComponent(losenordField)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(andraadressLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(andratelefonLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(21, 21, 21)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(telefonField)
-                                    .addComponent(adressField))))
-                        .addGap(229, 229, 229))
+                                .addComponent(andratelefonLabel)
+                                .addGap(18, 18, 18)
+                                .addComponent(telefonField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(sparaButton)
-                        .addGap(6, 6, 6))))
+                        .addGap(6, 6, 6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(andraadressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(adressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(persUppgifterTillbakaButton)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addContainerGap()
+                .addComponent(persUppgifterTillbakaButton)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(andralosenordLabel)
-                    .addComponent(losenordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(losenordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(andralosenordLabel))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(epostField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(andraepostLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(andraepostLabel)
-                    .addComponent(epostField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(andratelefonLabel)
-                    .addComponent(telefonField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(andraadressLabel)
-                    .addComponent(adressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(andraadressLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(telefonField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(andratelefonLabel))
+                        .addGap(18, 18, 18)
+                        .addComponent(adressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addComponent(sparaButton)
                 .addContainerGap())
         );
@@ -191,6 +208,12 @@ public class Personuppgifter extends javax.swing.JFrame {
     private void epostFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_epostFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_epostFieldActionPerformed
+
+    private void persUppgifterTillbakaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_persUppgifterTillbakaButtonActionPerformed
+        // TODO add your handling code here:
+        new Meny(idb, inloggadAnvandare, aid).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_persUppgifterTillbakaButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -233,6 +256,7 @@ public class Personuppgifter extends javax.swing.JFrame {
     private javax.swing.JLabel andratelefonLabel;
     private javax.swing.JTextField epostField;
     private javax.swing.JPasswordField losenordField;
+    private javax.swing.JButton persUppgifterTillbakaButton;
     private javax.swing.JButton sparaButton;
     private javax.swing.JTextField telefonField;
     // End of variables declaration//GEN-END:variables
