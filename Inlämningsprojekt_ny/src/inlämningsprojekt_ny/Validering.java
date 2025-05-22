@@ -1,8 +1,12 @@
+package inlämningsprojekt_ny;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package inlämningsprojekt_ny;
+import javax.swing.JOptionPane;
+import oru.inf.InfDB;
+import oru.inf.InfException;
 
 /**
  *
@@ -13,8 +17,35 @@ public class Validering extends javax.swing.JFrame {
     /**
      * Creates new form Validering
      */
-    public Validering() {
-        initComponents();
+    public static boolean arMailKorrekt(String epost) {
+        String valideraEpost = "^[a-zA-Z0-9._+-%]+@[a-zA-Z0-9.-]+?\\.[a-zA-Z]{2,}$"; 
+        return epost != null && epost.matches(valideraEpost);
+    }
+    
+    public static boolean losenordKrav(String losen) {
+        String losenRegex = "^[a-zA-Z0-9]{11}$"; 
+        return losen != null && losen.matches(losenRegex);
+    }
+    
+    public static boolean kollaDatum(String datum) {
+        String kollaDatumRegex = "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])$"; 
+        return datum != null && datum.matches(kollaDatumRegex);
+    }
+    
+    public static boolean faltInteTomt(String input) {
+        return input != null && !input.trim().isEmpty();
+    }
+    
+    public static boolean arAnvandarnamnOchLosenordKorrekt(String epost, String losen, InfDB idb) {
+        try {
+            String fraga = "SELECT epost FROM anstalld WHERE epost = '" + epost + "' AND losenord = '" + losen + "';";
+            String resultat = idb.fetchSingle(fraga);
+            return resultat != null;
+            
+        } catch (infException e) {
+            JOptionPane.showMessageDialog(null, "Vänligen försök senare");
+            return false;
+        }
     }
 
     /**
@@ -72,7 +103,8 @@ public class Validering extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Validering().setVisible(true);
+                
+                //new Validering().setVisible(true);
             }
         });
     }

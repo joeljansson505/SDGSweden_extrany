@@ -26,6 +26,7 @@ public class MinaProjekt extends javax.swing.JFrame {
        this.aid = aid;
         initComponents();
         fyllProjektTabell();
+        fyllPartnerTabell();
         
     }
 
@@ -44,6 +45,8 @@ public class MinaProjekt extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane3 = new javax.swing.JScrollPane();
         stängFönsterButton = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        projektPartnerTabel = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,7 +74,6 @@ public class MinaProjekt extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tabellProjektTabel);
 
         stängFönsterButton.setBackground(new java.awt.Color(204, 204, 204));
-        stängFönsterButton.setForeground(new java.awt.Color(0, 0, 0));
         stängFönsterButton.setText("Tillbaka");
         stängFönsterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,43 +81,61 @@ public class MinaProjekt extends javax.swing.JFrame {
             }
         });
 
+        projektPartnerTabel.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "namn", "kontaktperson", "kontakt Epost", "telefon"
+            }
+        ));
+        jScrollPane4.setViewportView(projektPartnerTabel);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(stängFönsterButton)
-                        .addGap(163, 163, 163)
-                        .addComponent(etikettRubrikLabel)))
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(stängFönsterButton)
+                            .addGap(163, 163, 163)
+                            .addComponent(etikettRubrikLabel))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(69, 69, 69)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
+                                .addComponent(jScrollPane4)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(etikettRubrikLabel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(stängFönsterButton)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(etikettRubrikLabel))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(stängFönsterButton)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(107, 107, 107)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -154,9 +174,6 @@ private void fyllProjektTabell() {
         
         String sql = "SELECT projektnamn, startdatum, slutdatum, status FROM Projekt where pid = " + pid + ";";
         
-//        String sql = "SELECT projektnamn, startdatum, slutdatum, status FROM Projekt "
-//                   + "JOIN Handläggare_Projekt ON Projekt.id = Handläggare_Projekt.projekt_id "
-//                   + "WHERE Handläggare_Projekt.handläggare_id = " + aid + ";";
 
         var resultat = idb.fetchRows(sql);
 
@@ -180,16 +197,42 @@ private void fyllProjektTabell() {
         javax.swing.JOptionPane.showMessageDialog(this, "Kunde inte hämta projekt: " + e.getMessage());
         e.printStackTrace();
     }
-
-
-        //}
-
-    // catch (InfException e) {
-        //javax.swing.JOptionPane.showMessageDialog(MinaProjekt.this, "Kunde inte hämta projekt: " + e.getMessage());
-
-//}}
-
 }
+private void fyllPartnerTabell() {
+    try {
+        String sql = "SELECT partner.namn, partner.kontaktperson, partner.kontaktepost, partner.telefon " +
+             "FROM partner " +
+             "JOIN projekt_partner ON partner.partner_id = projekt_partner.partner_pid " +
+             "WHERE projekt_partner.pid IN (SELECT pid FROM ans_proj WHERE aid = " + aid + ");";
+
+        var resultat = idb.fetchRows(sql);
+
+        // Hämta modellen från partner-tabellen
+        var modell = (javax.swing.table.DefaultTableModel) projektPartnerTabel.getModel();
+        modell.setRowCount(0); // Töm gamla rader
+
+        // Lägg till varje partner som en ny rad
+        for (var rad : resultat) {
+            modell.addRow(new Object[] {
+                rad.get("namn"),
+                rad.get("kontaktperson"),
+                rad.get("kontaktepost"),
+                rad.get("telefon")
+            });
+        }
+
+        if (resultat.isEmpty()) {
+            System.out.println("Inga partners kopplade till användare med ID: " + aid);
+        }
+
+    } catch (InfException e) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Kunde inte hämta partnerdata: " + e.getMessage());
+        e.printStackTrace();
+    }
+}
+    
+
+
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -197,6 +240,8 @@ private void fyllProjektTabell() {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTable projektPartnerTabel;
     private javax.swing.JButton stängFönsterButton;
     private javax.swing.JTable tabellProjektTabel;
     // End of variables declaration//GEN-END:variables

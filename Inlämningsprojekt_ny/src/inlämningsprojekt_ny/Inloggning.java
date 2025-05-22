@@ -4,10 +4,11 @@ package inlämningsprojekt_ny;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-import java.util.HashSet;
-import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+import javax.swing.JOptionPane;
 /**
  *
  * @author svanteskold
@@ -208,6 +209,11 @@ public class Inloggning extends javax.swing.JFrame {
     private void logInKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInKnappActionPerformed
     String epost=epostField.getText();
         String losen=losenordField.getText();
+        
+        if (!Validering.faltInteTomt(epost)) {
+            lblFelMeddelande.setText ("Eposten får inte vara tomt");
+        }
+        
         
         try{
            String sqlFraga="SELECT losenord FROM anstalld WHERE epost = '" + epost+"';";
