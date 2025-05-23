@@ -241,26 +241,48 @@ public class Inloggning extends javax.swing.JFrame {
         }
         
         
-        try{
-           String sqlFraga="SELECT losenord FROM anstalld WHERE epost = '" + epost+"';";
-           System.out.println(sqlFraga);
-           String dbLosen = idb.fetchSingle(sqlFraga);
-           if (losen.equals(dbLosen)){
-               String sqlAid = "SELECT aid FROM anstalld WHERE epost = '" + epost + "';";
-               String aidString = idb.fetchSingle(sqlAid);
-               int aid = Integer.parseInt(aidString);
-               
-               new Meny(idb,epost, aid).setVisible(true);
-               this.setVisible(false);
-        }
-           else{
-                   felmeddelandeLabel.setVisible(true);
+        try {
+           String fragaAdmin = "SELECT anstalld.aid, epost, losenord, admin.behorighetsniva FROM anstalld "
+                   + "JOIN admin ON anstalld.aid = admin.aid "
+                   + "WHERE epost = '" + epost + "' AND losenord = '" + losen + "' AND (admin.behorighetsniva = 1 or admin.behorighetsniva = 2);";
+           var databassvarAdmin = idb.fetchRow(fragaAdmin);
+           felmeddelandeLabel.setVisible(false);
+           
+           if (databassvarAdmin != null && databassvarAdmin.get("aid") !=null) {
+               int aid = Integer.parseInt(databassvarAdmin.get("aid"));
+               new AdminMeny(idb, epost, aid).setVisible(true);
+               this.dispose();
+               return;
            }
            
-               } catch (InfException ex){ 
-               System.out.println(ex.getMessage());
+           String fragaProjektchef = "SELECT anstalld.epost, anstalld.losenord, anstalld.aid FROM anstalld "
+                   + "JOIN projekt ON anstalld.aid = projekt.projektchef WHERE anstalld.epost = '" + epost + "' AND anstalld.losenord = '" + losen + "';";
+           
+           var databassvarProjektchef = idb.fetchRow(fragaProjektchef);
+           if (databassvarProjektchef != null && databassvarProjektchef.get("aid") !=null) {
+               int aid = Integer.parseInt(databassvarProjektchef.get("aid"));
+               new ProjektchefMeny(idb, epost, aid).setVisible(true);
+               this.dispose();
+               return;
+           }
+  
+           
+           String fragaHandlaggare = "SELECT epost, losenord, aid FROM anstalld WHERE epost = '" + epost + "' and losenord = '" + losen + "';";
+           var databassvarHandlaggare = idb.fetchRow(fragaHandlaggare);
+           
+           if (databassvarHandlaggare !=null && databassvarHandlaggare.get("aid") != null) {
+               int aid = Integer.parseInt(databassvarHandlaggare.get("aid"));
+               new Meny(idb, epost, aid).setVisible(true);
+               this.dispose();
+               return;
+           }
+          
+               felmeddelandeLabel.setText("Fel lösenord eller epost!");
+           
+        } catch (InfException e) {
+            System.out.println(e.getMessage());
         }
-        
+                  
     }//GEN-LAST:event_logInKnappActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
