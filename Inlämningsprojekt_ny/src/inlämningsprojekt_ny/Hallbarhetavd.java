@@ -39,6 +39,7 @@ public class Hallbarhetavd extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        jTextField1 = new javax.swing.JTextField();
         HallbarhetavdTillbakaButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         hallbarhetPersonalField = new javax.swing.JTextArea();
@@ -49,6 +50,15 @@ public class Hallbarhetavd extends javax.swing.JFrame {
         pAvdHallbarhetButton = new javax.swing.JToggleButton();
         aAvdHallbarhetButton = new javax.swing.JToggleButton();
         plaAvdHallbarhetButton = new javax.swing.JToggleButton();
+        sokHandlaggarField = new javax.swing.JTextField();
+        sokHandlaggareButton = new javax.swing.JButton();
+        sokProjektField = new javax.swing.JTextField();
+        sokProjektField2 = new javax.swing.JTextField();
+        sokProjektLabel = new javax.swing.JLabel();
+        sokProjektLabel2 = new javax.swing.JLabel();
+        sokProjektDatumButton = new javax.swing.JButton();
+
+        jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,6 +116,44 @@ public class Hallbarhetavd extends javax.swing.JFrame {
             }
         });
 
+        sokHandlaggarField.setColumns(12);
+        sokHandlaggarField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sokHandlaggarFieldActionPerformed(evt);
+            }
+        });
+
+        sokHandlaggareButton.setBackground(new java.awt.Color(204, 204, 204));
+        sokHandlaggareButton.setText("Sök Handläggare");
+        sokHandlaggareButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sokHandlaggareButtonActionPerformed(evt);
+            }
+        });
+
+        sokProjektField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sokProjektFieldActionPerformed(evt);
+            }
+        });
+
+        sokProjektField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sokProjektField2ActionPerformed(evt);
+            }
+        });
+
+        sokProjektLabel.setText("Från:");
+
+        sokProjektLabel2.setText("Till:");
+
+        sokProjektDatumButton.setText("Sök Projekt");
+        sokProjektDatumButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sokProjektDatumButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -113,23 +161,46 @@ public class Hallbarhetavd extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(hallbarhetAvdPersonalButton)
-                    .addComponent(HallbarhetavdTillbakaButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(sokHandlaggarField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(sokHandlaggareButton)
+                        .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(hallbarhetAvdProjektButton)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(19, 19, 19))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(plaAvdHallbarhetButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pAvdHallbarhetButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(aAvdHallbarhetButton)
-                        .addContainerGap())))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addComponent(sokProjektLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(sokProjektField2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(sokProjektLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(sokProjektField, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(sokProjektDatumButton)
+                        .addGap(0, 27, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(HallbarhetavdTillbakaButton))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(plaAvdHallbarhetButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(pAvdHallbarhetButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(aAvdHallbarhetButton)
+                                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(22, 22, 22))))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addComponent(hallbarhetAvdPersonalButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(hallbarhetAvdProjektButton)
+                .addGap(55, 55, 55))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,15 +211,29 @@ public class Hallbarhetavd extends javax.swing.JFrame {
                     .addComponent(pAvdHallbarhetButton)
                     .addComponent(aAvdHallbarhetButton)
                     .addComponent(plaAvdHallbarhetButton))
-                .addGap(45, 45, 45)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sokProjektField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sokProjektLabel)
+                    .addComponent(sokProjektDatumButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(sokHandlaggarField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(sokHandlaggareButton))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(sokProjektField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(sokProjektLabel2)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(hallbarhetAvdPersonalButton)
                     .addComponent(hallbarhetAvdProjektButton))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2))
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())))
         );
 
         pack();
@@ -317,6 +402,67 @@ public class Hallbarhetavd extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_plaAvdHallbarhetButtonActionPerformed
 
+    private void sokHandlaggareButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokHandlaggareButtonActionPerformed
+        // TODO add your handling code here:
+        String sokterm = sokHandlaggarField.getText().trim();
+
+    if (sokterm.isEmpty()) {
+        hallbarhetPersonalField.setText("Ange namn eller e-post att söka efter.");
+        return;
+    }
+
+    try {
+       
+        String avdidSql = "SELECT avdelning FROM anstalld WHERE aid = " + aid;
+        String avdid = idb.fetchSingle(avdidSql);
+
+        
+        String sql = "SELECT fornamn, efternamn, epost, telefon, adress FROM anstalld " +
+                     "JOIN handlaggare ON anstalld.aid = handlaggare.aid " +
+                     "WHERE anstalld.avdelning = " + avdid + " " +
+                     "AND (fornamn LIKE '%" + sokterm + "%' " +
+                     "OR efternamn LIKE '%" + sokterm + "%' " +
+                     "OR epost LIKE '%" + sokterm + "%')";
+
+        var resultat = idb.fetchRows(sql);
+
+        if (resultat != null && !resultat.isEmpty()) {
+            StringBuilder sb = new StringBuilder();
+            for (var rad : resultat) {
+                sb.append("Namn: ").append(rad.get("fornamn")).append(" ").append(rad.get("efternamn")).append("\n")
+                  .append("E-post: ").append(rad.get("epost")).append("\n")
+                  .append("Telefon: ").append(rad.get("telefon")).append("\n")
+                  .append("Adress: ").append(rad.get("adress")).append("\n")
+                  .append("--------------------------\n");
+                
+            }
+            hallbarhetPersonalField.setText(sb.toString());
+        } else {
+            hallbarhetPersonalField.setText("Ingen handläggare hittades med termen: " + sokterm);
+        }
+
+    } catch (Exception e) {
+        hallbarhetPersonalField.setText("Fel vid sökning: " + e.getMessage());
+    }
+
+    }//GEN-LAST:event_sokHandlaggareButtonActionPerformed
+
+    private void sokProjektDatumButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokProjektDatumButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sokProjektDatumButtonActionPerformed
+
+    private void sokHandlaggarFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokHandlaggarFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sokHandlaggarFieldActionPerformed
+
+    private void sokProjektFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokProjektFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sokProjektFieldActionPerformed
+
+    private void sokProjektField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokProjektField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sokProjektField2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -362,7 +508,15 @@ public class Hallbarhetavd extends javax.swing.JFrame {
     private javax.swing.JTextArea hallbarhetPersonalField;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JToggleButton pAvdHallbarhetButton;
     private javax.swing.JToggleButton plaAvdHallbarhetButton;
+    private javax.swing.JTextField sokHandlaggarField;
+    private javax.swing.JButton sokHandlaggareButton;
+    private javax.swing.JButton sokProjektDatumButton;
+    private javax.swing.JTextField sokProjektField;
+    private javax.swing.JTextField sokProjektField2;
+    private javax.swing.JLabel sokProjektLabel;
+    private javax.swing.JLabel sokProjektLabel2;
     // End of variables declaration//GEN-END:variables
 }
