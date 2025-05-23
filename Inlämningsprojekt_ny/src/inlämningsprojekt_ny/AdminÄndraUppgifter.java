@@ -5,6 +5,10 @@
 package inlämningsprojekt_ny;
 
 import oru.inf.InfDB;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -36,6 +40,11 @@ public class AdminÄndraUppgifter extends javax.swing.JFrame {
     private void initComponents() {
 
         AdminUppgifterTillbakaButton = new javax.swing.JButton();
+        AndraUppgifterComboBox = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TableInfoUppgifter = new javax.swing.JTable();
+        laggTillButton = new javax.swing.JButton();
+        AndraButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,21 +55,71 @@ public class AdminÄndraUppgifter extends javax.swing.JFrame {
             }
         });
 
+        AndraUppgifterComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Avdelning", "Projekt", "Land", "Partner" }));
+        AndraUppgifterComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AndraUppgifterComboBoxActionPerformed(evt);
+            }
+        });
+
+        TableInfoUppgifter.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(TableInfoUppgifter);
+
+        laggTillButton.setText("Lägg till");
+        laggTillButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                laggTillButtonActionPerformed(evt);
+            }
+        });
+
+        AndraButton.setText("Spara ändring");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(AdminUppgifterTillbakaButton)
-                .addContainerGap(322, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(AdminUppgifterTillbakaButton)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(AndraUppgifterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(156, 156, 156)
+                .addComponent(laggTillButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 410, Short.MAX_VALUE)
+                .addComponent(AndraButton, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(224, 224, 224))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(AdminUppgifterTillbakaButton)
-                .addContainerGap(271, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(AndraUppgifterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(laggTillButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AndraButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         pack();
@@ -71,6 +130,56 @@ public class AdminÄndraUppgifter extends javax.swing.JFrame {
         new AdminMeny(idb, inloggadAnvandare, aid).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_AdminUppgifterTillbakaButtonActionPerformed
+
+    private void AndraUppgifterComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AndraUppgifterComboBoxActionPerformed
+        // TODO add your handling code here:
+        String selected = AndraUppgifterComboBox.getSelectedItem().toString();
+        DefaultTableModel model = new DefaultTableModel();
+        
+        try {
+            switch (selected) {
+                case "Avdelning":
+                    model.setColumnIdentifiers(new String[] { "Namn", "Adress", "Epost", "Telefon", "Stad", "Chef", "Beskrivning" });
+                    var rows1 = idb.fetchRows("SELECT namn, adress, epost, telefon, stad, chef, beskrivning FROM avdelning");
+                    for (var rad : rows1) {
+                        model.addRow(new Object[] {
+                            rad.get("namn"),
+                            rad.get("adress"),
+                            rad.get("epost"),
+                            rad.get("telefon"),
+                            rad.get("stad"),
+                            rad.get("chef"),
+                            rad.get("beskrivning")
+                        });
+                    }
+                    break;
+            }
+            
+            TableInfoUppgifter.setModel(model);
+} catch (Exception e) {
+    javax.swing.JOptionPane.showMessageDialog(this, "Fel vid hämtning: " + e.getMessage());
+        }
+    }//GEN-LAST:event_AndraUppgifterComboBoxActionPerformed
+
+    private void laggTillButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laggTillButtonActionPerformed
+        // TODO add your handling code here:
+        try {
+            String namn = JOptionPane.showInputDialog(this, "Ange avdelningens namn:");
+            String adress = JOptionPane.showInputDialog(this, "Ange adress");
+            String epost = JOptionPane.showInputDialog(this, "Ange Epost");
+            String telefon = JOptionPane.showInputDialog(this, "Ange telefon");
+            
+            String sql = "INSERT INTO avdelning (namn, adress, epost, telefon) VALUES ('" 
+                    + namn + "', '" + adress + "', '" + epost + "', '" + telefon + "')";
+            
+            idb.insert(sql);
+            JOptionPane.showMessageDialog(this, "Information tillagd!");
+            
+            AndraUppgifterComboBoxActionPerformed(null);
+            
+} catch (Exception e) {
+        }
+    }//GEN-LAST:event_laggTillButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -109,5 +218,10 @@ public class AdminÄndraUppgifter extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AdminUppgifterTillbakaButton;
+    private javax.swing.JButton AndraButton;
+    private javax.swing.JComboBox<String> AndraUppgifterComboBox;
+    private javax.swing.JTable TableInfoUppgifter;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton laggTillButton;
     // End of variables declaration//GEN-END:variables
 }
