@@ -4,6 +4,7 @@ package inlämningsprojekt_ny;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
+import inlämningsprojekt_ny.Validering;
 import java.awt.event.ActionEvent;
 import oru.inf.InfDB;
 /**
@@ -37,6 +38,7 @@ public class Hallbarhetavd extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         HallbarhetavdTillbakaButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         hallbarhetPersonalField = new javax.swing.JTextArea();
@@ -44,6 +46,9 @@ public class Hallbarhetavd extends javax.swing.JFrame {
         hallbarhetAvdProjektButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         hallbarhetAvdProjektField = new javax.swing.JTextArea();
+        pAvdHallbarhetButton = new javax.swing.JToggleButton();
+        aAvdHallbarhetButton = new javax.swing.JToggleButton();
+        plaAvdHallbarhetButton = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,6 +81,31 @@ public class Hallbarhetavd extends javax.swing.JFrame {
         hallbarhetAvdProjektField.setRows(5);
         jScrollPane2.setViewportView(hallbarhetAvdProjektField);
 
+        buttonGroup1.add(pAvdHallbarhetButton);
+        pAvdHallbarhetButton.setText("Pågående");
+        pAvdHallbarhetButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pAvdHallbarhetButtonActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(aAvdHallbarhetButton);
+        aAvdHallbarhetButton.setText("Avslutande");
+        aAvdHallbarhetButton.setBorderPainted(false);
+        aAvdHallbarhetButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aAvdHallbarhetButtonActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(plaAvdHallbarhetButton);
+        plaAvdHallbarhetButton.setText("Planerat");
+        plaAvdHallbarhetButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                plaAvdHallbarhetButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -83,25 +113,33 @@ public class Hallbarhetavd extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(HallbarhetavdTillbakaButton)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(hallbarhetAvdPersonalButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(hallbarhetAvdProjektButton)
-                        .addGap(67, 67, 67))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hallbarhetAvdPersonalButton)
+                    .addComponent(HallbarhetavdTillbakaButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(hallbarhetAvdProjektButton)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(plaAvdHallbarhetButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pAvdHallbarhetButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(aAvdHallbarhetButton)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(HallbarhetavdTillbakaButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(HallbarhetavdTillbakaButton)
+                    .addComponent(pAvdHallbarhetButton)
+                    .addComponent(aAvdHallbarhetButton)
+                    .addComponent(plaAvdHallbarhetButton))
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(hallbarhetAvdPersonalButton)
@@ -109,9 +147,7 @@ public class Hallbarhetavd extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(jScrollPane2)))
+                    .addComponent(jScrollPane2))
                 .addContainerGap())
         );
 
@@ -164,7 +200,7 @@ public class Hallbarhetavd extends javax.swing.JFrame {
                     "JOIN proj_hallbarhet ph ON p.pid = ph.pid " + 
                     "JOIN avd_hallbarhet ah ON ph.hid = ah.hid " + 
                     "JOIN avdelning a ON ah.avdid = a.avdid " +
-                    "WHERE a.namn = 'Avdelning för Hållbar Energi och Klimatförändringar'";
+                    "WHERE a.namn = 'Avdelning för Hållbar Energi och Klimatförändringar' ";
             
             var resultat = idb.fetchRows(sql);
             
@@ -184,6 +220,102 @@ public class Hallbarhetavd extends javax.swing.JFrame {
           jScrollPane2.setVisible(true);
       }
     }//GEN-LAST:event_hallbarhetAvdProjektButtonActionPerformed
+
+    private void pAvdHallbarhetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pAvdHallbarhetButtonActionPerformed
+        // TODO add your handling code here:
+        String status = "Pågående";
+        
+        if(Validering.kollaStatus(status)){
+            try{
+                String sql ="SELECT DISTINCT p.projektnamn FROM projekt p " +
+                        "JOIN proj_hallbarhet ph ON p.pid = ph.pid " +
+                        "JOIN avd_hallbarhet ah ON ph.hid = ah.hid " +
+                        "JOIN avdelning a ON ah.avdid = a.avdid " +
+                        "WHERE a.namn = 'Avdelning för Hållbar Energi och Klimatförändringar' " +
+                        "AND p.status = '" + status + "'";
+                
+               var resultat = idb.fetchRows(sql);
+               StringBuilder sb = new StringBuilder();
+               
+               if(resultat != null && !resultat.isEmpty()){
+                   for(var rad : resultat){
+                       sb.append(rad.get("projektnamn")).append("\n");
+                   }
+                   hallbarhetAvdProjektField.setText(sb.toString());
+               }else{
+                   hallbarhetAvdProjektField.setText("Inga projekt med status '" + status + "'hittades.");
+               }
+            }catch (Exception e){
+                hallbarhetAvdProjektField.setText("Fel: " + e.getMessage());
+            }
+        }else{
+            hallbarhetAvdProjektField.setText("Ogiltig status:" + status);
+        }
+    }//GEN-LAST:event_pAvdHallbarhetButtonActionPerformed
+
+    private void aAvdHallbarhetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aAvdHallbarhetButtonActionPerformed
+        // TODO add your handling code here:
+        String status = "Avslutat";
+        
+        if(Validering.kollaStatus(status)){
+            try{
+                String sql = "SELECT DISTINCT p.projektnamn FROM projekt p " +
+                        "JOIN proj_hallbarhet ph ON p.pid = ph.pid " +
+                        "JOIN avd_hallbarhet ah ON ph.hid = ah.hid " +
+                        "JOIN avdelning a ON ah.avdid = a.avdid " +
+                        "WHERE a.namn = 'Avdelning för Hållbar Energi och Klimatförändringar' "+
+                        "AND p.status = '" + status + "'";
+                
+               var resultat = idb.fetchRows(sql);
+               StringBuilder sb = new StringBuilder();
+               
+               if(resultat != null && !resultat.isEmpty()){
+                   for(var rad : resultat){
+                       sb.append(rad.get("projektnamn")).append("\n");
+                   }
+                   hallbarhetAvdProjektField.setText(sb.toString());
+               }else{
+                   hallbarhetAvdProjektField.setText("Inga projekt med status '" + status + "'hittades.");
+               }
+            }catch (Exception e){
+                hallbarhetAvdProjektField.setText("Fel: " + e.getMessage());
+            }
+        }else {
+            hallbarhetAvdProjektField.setText("Ogiltig status: " + status);
+        }
+    }//GEN-LAST:event_aAvdHallbarhetButtonActionPerformed
+
+    private void plaAvdHallbarhetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plaAvdHallbarhetButtonActionPerformed
+        // TODO add your handling code here:
+                String status = "Planerat";
+        
+        if(Validering.kollaStatus(status)){
+            try{
+                String sql = "SELECT DISTINCT p.projektnamn FROM projekt p " +
+                        "JOIN proj_hallbarhet ph ON p.pid = ph.pid " +
+                        "JOIN avd_hallbarhet ah ON ph.hid = ah.hid " +
+                        "JOIN avdelning a ON ah.avdid = a.avdid " +
+                        "WHERE a.namn = 'Avdelning för Hållbar Energi och Klimatförändringar' "+
+                        "AND p.status = '" + status + "'";
+                
+               var resultat = idb.fetchRows(sql);
+               StringBuilder sb = new StringBuilder();
+               
+               if(resultat != null && !resultat.isEmpty()){
+                   for(var rad : resultat){
+                       sb.append(rad.get("projektnamn")).append("\n");
+                   }
+                   hallbarhetAvdProjektField.setText(sb.toString());
+               }else{
+                   hallbarhetAvdProjektField.setText("Inga projekt med status '" + status + "' hittades.");
+               }
+            }catch (Exception e){
+                hallbarhetAvdProjektField.setText("Fel: " + e.getMessage());
+            }
+        }else {
+            hallbarhetAvdProjektField.setText("Ogiltig status: " + status);
+        }
+    }//GEN-LAST:event_plaAvdHallbarhetButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -222,11 +354,15 @@ public class Hallbarhetavd extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton HallbarhetavdTillbakaButton;
+    private javax.swing.JToggleButton aAvdHallbarhetButton;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton hallbarhetAvdPersonalButton;
     private javax.swing.JButton hallbarhetAvdProjektButton;
     private javax.swing.JTextArea hallbarhetAvdProjektField;
     private javax.swing.JTextArea hallbarhetPersonalField;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JToggleButton pAvdHallbarhetButton;
+    private javax.swing.JToggleButton plaAvdHallbarhetButton;
     // End of variables declaration//GEN-END:variables
 }

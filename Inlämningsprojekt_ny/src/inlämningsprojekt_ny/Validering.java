@@ -54,7 +54,7 @@ public class Validering extends javax.swing.JFrame {
     }
     
     public static boolean kollaStatus(String status) {
-        String kollaStatusRegex = "^(Planerat|Pågående|Avslutat$";
+        String kollaStatusRegex = "^(Planerat|Pågående|Avslutat)$";
         return status != null && status.matches(kollaStatusRegex);
     }
 

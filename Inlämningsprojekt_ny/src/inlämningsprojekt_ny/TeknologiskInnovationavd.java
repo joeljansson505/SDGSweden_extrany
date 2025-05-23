@@ -33,6 +33,8 @@ public class TeknologiskInnovationavd extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         TekAvdTillbakaButton = new javax.swing.JButton();
         TekAvdPersonalButton = new javax.swing.JButton();
         TekAvdProjektButton = new javax.swing.JButton();
@@ -40,6 +42,9 @@ public class TeknologiskInnovationavd extends javax.swing.JFrame {
         TekAvdProjektField = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
         TekAvdPersonalField = new javax.swing.JTextArea();
+        plaAvdTekInnovationButton = new javax.swing.JToggleButton();
+        pAvdTekInnovationButton = new javax.swing.JToggleButton();
+        aAvdTekInnovationButton = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,31 +77,64 @@ public class TeknologiskInnovationavd extends javax.swing.JFrame {
         TekAvdPersonalField.setRows(5);
         jScrollPane3.setViewportView(TekAvdPersonalField);
 
+        buttonGroup2.add(plaAvdTekInnovationButton);
+        plaAvdTekInnovationButton.setText("Planerat");
+        plaAvdTekInnovationButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                plaAvdTekInnovationButtonActionPerformed(evt);
+            }
+        });
+
+        buttonGroup2.add(pAvdTekInnovationButton);
+        pAvdTekInnovationButton.setText("Pågående");
+        pAvdTekInnovationButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pAvdTekInnovationButtonActionPerformed(evt);
+            }
+        });
+
+        buttonGroup2.add(aAvdTekInnovationButton);
+        aAvdTekInnovationButton.setText("Avslutat");
+        aAvdTekInnovationButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aAvdTekInnovationButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(TekAvdTillbakaButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TekAvdPersonalButton)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                    .addComponent(TekAvdPersonalButton)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(TekAvdProjektButton)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(TekAvdTillbakaButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(plaAvdTekInnovationButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pAvdTekInnovationButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(aAvdTekInnovationButton)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(TekAvdTillbakaButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TekAvdTillbakaButton)
+                    .addComponent(plaAvdTekInnovationButton)
+                    .addComponent(pAvdTekInnovationButton)
+                    .addComponent(aAvdTekInnovationButton))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TekAvdPersonalButton)
@@ -171,6 +209,102 @@ public class TeknologiskInnovationavd extends javax.swing.JFrame {
       }
     }//GEN-LAST:event_TekAvdProjektButtonActionPerformed
 
+    private void plaAvdTekInnovationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plaAvdTekInnovationButtonActionPerformed
+        // TODO add your handling code here:
+                        String status = "Planerat";
+        
+        if(Validering.kollaStatus(status)){
+            try{
+                String sql = "SELECT DISTINCT p.projektnamn FROM projekt p " +
+                        "JOIN proj_hallbarhet ph ON p.pid = ph.pid " +
+                        "JOIN avd_hallbarhet ah ON ph.hid = ah.hid " +
+                        "JOIN avdelning a ON ah.avdid = a.avdid " +
+                        "WHERE a.namn = 'Avdelning för Teknologisk Innovation och Entreprenörskap' "+
+                        "AND p.status = '" + status + "'";
+                
+               var resultat = idb.fetchRows(sql);
+               StringBuilder sb = new StringBuilder();
+               
+               if(resultat != null && !resultat.isEmpty()){
+                   for(var rad : resultat){
+                       sb.append(rad.get("projektnamn")).append("\n");
+                   }
+                   TekAvdProjektField.setText(sb.toString());
+               }else{
+                   TekAvdProjektField.setText("Inga projekt med status '" + status + "' hittades.");
+               }
+            }catch (Exception e){
+                TekAvdProjektField.setText("Fel: " + e.getMessage());
+            }
+        }else {
+            TekAvdProjektField.setText("Ogiltig status: " + status);
+        }   
+    }//GEN-LAST:event_plaAvdTekInnovationButtonActionPerformed
+
+    private void pAvdTekInnovationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pAvdTekInnovationButtonActionPerformed
+        // TODO add your handling code here:
+                                String status = "Pågående";
+        
+        if(Validering.kollaStatus(status)){
+            try{
+                String sql = "SELECT DISTINCT p.projektnamn FROM projekt p " +
+                        "JOIN proj_hallbarhet ph ON p.pid = ph.pid " +
+                        "JOIN avd_hallbarhet ah ON ph.hid = ah.hid " +
+                        "JOIN avdelning a ON ah.avdid = a.avdid " +
+                        "WHERE a.namn = 'Avdelning för Teknologisk Innovation och Entreprenörskap' "+
+                        "AND p.status = '" + status + "'";
+                
+               var resultat = idb.fetchRows(sql);
+               StringBuilder sb = new StringBuilder();
+               
+               if(resultat != null && !resultat.isEmpty()){
+                   for(var rad : resultat){
+                       sb.append(rad.get("projektnamn")).append("\n");
+                   }
+                   TekAvdProjektField.setText(sb.toString());
+               }else{
+                   TekAvdProjektField.setText("Inga projekt med status '" + status + "' hittades.");
+               }
+            }catch (Exception e){
+                TekAvdProjektField.setText("Fel: " + e.getMessage());
+            }
+        }else {
+            TekAvdProjektField.setText("Ogiltig status: " + status);
+        }   
+    }//GEN-LAST:event_pAvdTekInnovationButtonActionPerformed
+
+    private void aAvdTekInnovationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aAvdTekInnovationButtonActionPerformed
+        // TODO add your handling code here:
+                                String status = "Avslutat";
+        
+        if(Validering.kollaStatus(status)){
+            try{
+                String sql = "SELECT DISTINCT p.projektnamn FROM projekt p " +
+                        "JOIN proj_hallbarhet ph ON p.pid = ph.pid " +
+                        "JOIN avd_hallbarhet ah ON ph.hid = ah.hid " +
+                        "JOIN avdelning a ON ah.avdid = a.avdid " +
+                        "WHERE a.namn = 'Avdelning för Teknologisk Innovation och Entreprenörskap' "+
+                        "AND p.status = '" + status + "'";
+                
+               var resultat = idb.fetchRows(sql);
+               StringBuilder sb = new StringBuilder();
+               
+               if(resultat != null && !resultat.isEmpty()){
+                   for(var rad : resultat){
+                       sb.append(rad.get("projektnamn")).append("\n");
+                   }
+                   TekAvdProjektField.setText(sb.toString());
+               }else{
+                   TekAvdProjektField.setText("Inga projekt med status '" + status + "' hittades.");
+               }
+            }catch (Exception e){
+                TekAvdProjektField.setText("Fel: " + e.getMessage());
+            }
+        }else {
+            TekAvdProjektField.setText("Ogiltig status: " + status);
+        }   
+    }//GEN-LAST:event_aAvdTekInnovationButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -212,7 +346,12 @@ public class TeknologiskInnovationavd extends javax.swing.JFrame {
     private javax.swing.JButton TekAvdProjektButton;
     private javax.swing.JTextArea TekAvdProjektField;
     private javax.swing.JButton TekAvdTillbakaButton;
+    private javax.swing.JToggleButton aAvdTekInnovationButton;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JToggleButton pAvdTekInnovationButton;
+    private javax.swing.JToggleButton plaAvdTekInnovationButton;
     // End of variables declaration//GEN-END:variables
 }

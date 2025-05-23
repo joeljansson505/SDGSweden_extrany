@@ -35,6 +35,7 @@ public class SamhallutvecklingAvd extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         samhallutvAvdTillbakaButton = new javax.swing.JButton();
         samhallutvecklingAvdPersonalButton = new javax.swing.JButton();
         samhallutvecklingAvdProjektButton = new javax.swing.JButton();
@@ -42,6 +43,9 @@ public class SamhallutvecklingAvd extends javax.swing.JFrame {
         samhallutvecklingAvdProjektField = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         samhallutvecklingAvdPersonalField = new javax.swing.JTextArea();
+        plaAvdSamhallutvecklingButton = new javax.swing.JToggleButton();
+        pAvdSamhallutvecklingButton = new javax.swing.JToggleButton();
+        aAvdSamhallutvecklingButton = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,6 +78,30 @@ public class SamhallutvecklingAvd extends javax.swing.JFrame {
         samhallutvecklingAvdPersonalField.setRows(5);
         jScrollPane2.setViewportView(samhallutvecklingAvdPersonalField);
 
+        buttonGroup1.add(plaAvdSamhallutvecklingButton);
+        plaAvdSamhallutvecklingButton.setText("Planerat");
+        plaAvdSamhallutvecklingButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                plaAvdSamhallutvecklingButtonActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(pAvdSamhallutvecklingButton);
+        pAvdSamhallutvecklingButton.setText("Pågående");
+        pAvdSamhallutvecklingButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pAvdSamhallutvecklingButtonActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(aAvdSamhallutvecklingButton);
+        aAvdSamhallutvecklingButton.setText("Avslutat");
+        aAvdSamhallutvecklingButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aAvdSamhallutvecklingButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -82,7 +110,13 @@ public class SamhallutvecklingAvd extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(samhallutvAvdTillbakaButton))
+                        .addComponent(samhallutvAvdTillbakaButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(plaAvdSamhallutvecklingButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pAvdSamhallutvecklingButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(aAvdSamhallutvecklingButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,14 +125,19 @@ public class SamhallutvecklingAvd extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(samhallutvecklingAvdProjektButton)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(32, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 76, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(samhallutvAvdTillbakaButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(samhallutvAvdTillbakaButton)
+                    .addComponent(plaAvdSamhallutvecklingButton)
+                    .addComponent(pAvdSamhallutvecklingButton)
+                    .addComponent(aAvdSamhallutvecklingButton))
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(samhallutvecklingAvdPersonalButton)
@@ -179,6 +218,102 @@ public class SamhallutvecklingAvd extends javax.swing.JFrame {
       }
     }//GEN-LAST:event_samhallutvecklingAvdProjektButtonActionPerformed
 
+    private void plaAvdSamhallutvecklingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plaAvdSamhallutvecklingButtonActionPerformed
+        // TODO add your handling code here:
+                                                String status = "Planerat";
+        
+        if(Validering.kollaStatus(status)){
+            try{
+                String sql = "SELECT DISTINCT p.projektnamn FROM projekt p " +
+                        "JOIN proj_hallbarhet ph ON p.pid = ph.pid " +
+                        "JOIN avd_hallbarhet ah ON ph.hid = ah.hid " +
+                        "JOIN avdelning a ON ah.avdid = a.avdid " +
+                        "WHERE a.namn = 'Avdelning för Samhällsutveckling och Utbildning' "+
+                        "AND p.status = '" + status + "'";
+                
+               var resultat = idb.fetchRows(sql);
+               StringBuilder sb = new StringBuilder();
+               
+               if(resultat != null && !resultat.isEmpty()){
+                   for(var rad : resultat){
+                       sb.append(rad.get("projektnamn")).append("\n");
+                   }
+                   samhallutvecklingAvdProjektField.setText(sb.toString());
+               }else{
+                   samhallutvecklingAvdProjektField.setText("Inga projekt med status '" + status + "' hittades.");
+               }
+            }catch (Exception e){
+                samhallutvecklingAvdProjektField.setText("Fel: " + e.getMessage());
+            }
+        }else {
+            samhallutvecklingAvdProjektField.setText("Ogiltig status: " + status);
+        }   
+    }//GEN-LAST:event_plaAvdSamhallutvecklingButtonActionPerformed
+
+    private void pAvdSamhallutvecklingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pAvdSamhallutvecklingButtonActionPerformed
+        // TODO add your handling code here:
+                                        String status = "Pågående";
+        
+        if(Validering.kollaStatus(status)){
+            try{
+                String sql = "SELECT DISTINCT p.projektnamn FROM projekt p " +
+                        "JOIN proj_hallbarhet ph ON p.pid = ph.pid " +
+                        "JOIN avd_hallbarhet ah ON ph.hid = ah.hid " +
+                        "JOIN avdelning a ON ah.avdid = a.avdid " +
+                        "WHERE a.namn = 'Avdelning för Samhällsutveckling och Utbildning' "+
+                        "AND p.status = '" + status + "'";
+                
+               var resultat = idb.fetchRows(sql);
+               StringBuilder sb = new StringBuilder();
+               
+               if(resultat != null && !resultat.isEmpty()){
+                   for(var rad : resultat){
+                       sb.append(rad.get("projektnamn")).append("\n");
+                   }
+                   samhallutvecklingAvdProjektField.setText(sb.toString());
+               }else{
+                   samhallutvecklingAvdProjektField.setText("Inga projekt med status '" + status + "' hittades.");
+               }
+            }catch (Exception e){
+                samhallutvecklingAvdProjektField.setText("Fel: " + e.getMessage());
+            }
+        }else {
+            samhallutvecklingAvdProjektField.setText("Ogiltig status: " + status);
+        }   
+    }//GEN-LAST:event_pAvdSamhallutvecklingButtonActionPerformed
+
+    private void aAvdSamhallutvecklingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aAvdSamhallutvecklingButtonActionPerformed
+        // TODO add your handling code here:
+                                                String status = "Avslutat";
+        
+        if(Validering.kollaStatus(status)){
+            try{
+                String sql = "SELECT DISTINCT p.projektnamn FROM projekt p " +
+                        "JOIN proj_hallbarhet ph ON p.pid = ph.pid " +
+                        "JOIN avd_hallbarhet ah ON ph.hid = ah.hid " +
+                        "JOIN avdelning a ON ah.avdid = a.avdid " +
+                        "WHERE a.namn = 'Avdelning för Samhällsutveckling och Utbildning' "+
+                        "AND p.status = '" + status + "'";
+                
+               var resultat = idb.fetchRows(sql);
+               StringBuilder sb = new StringBuilder();
+               
+               if(resultat != null && !resultat.isEmpty()){
+                   for(var rad : resultat){
+                       sb.append(rad.get("projektnamn")).append("\n");
+                   }
+                   samhallutvecklingAvdProjektField.setText(sb.toString());
+               }else{
+                   samhallutvecklingAvdProjektField.setText("Inga projekt med status '" + status + "' hittades.");
+               }
+            }catch (Exception e){
+                samhallutvecklingAvdProjektField.setText("Fel: " + e.getMessage());
+            }
+        }else {
+            samhallutvecklingAvdProjektField.setText("Ogiltig status: " + status);
+        }   
+    }//GEN-LAST:event_aAvdSamhallutvecklingButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -215,8 +350,12 @@ public class SamhallutvecklingAvd extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton aAvdSamhallutvecklingButton;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JToggleButton pAvdSamhallutvecklingButton;
+    private javax.swing.JToggleButton plaAvdSamhallutvecklingButton;
     private javax.swing.JButton samhallutvAvdTillbakaButton;
     private javax.swing.JButton samhallutvecklingAvdPersonalButton;
     private javax.swing.JTextArea samhallutvecklingAvdPersonalField;
