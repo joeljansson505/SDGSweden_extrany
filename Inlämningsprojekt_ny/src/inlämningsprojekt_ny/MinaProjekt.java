@@ -43,8 +43,6 @@ public class MinaProjekt extends javax.swing.JFrame {
         etikettRubrikLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabellProjektTabel = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jScrollPane3 = new javax.swing.JScrollPane();
         stängFönsterButton = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         projektPartnerTabel = new javax.swing.JTable();
@@ -109,25 +107,19 @@ public class MinaProjekt extends javax.swing.JFrame {
                 .addGap(384, 384, 384)
                 .addComponent(lPartnerLabel)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(stängFönsterButton)
-                        .addGap(233, 233, 233)
-                        .addComponent(etikettRubrikLabel)
-                        .addGap(97, 225, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane4)
-                            .addComponent(jScrollPane1))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(stängFönsterButton)
+                    .addGap(233, 233, 233)
+                    .addComponent(etikettRubrikLabel)
+                    .addGap(196, 324, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(69, 69, 69)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane4)
+                        .addComponent(jScrollPane1))
+                    .addGap(99, 99, 99)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,15 +136,8 @@ public class MinaProjekt extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(lPartnerLabel)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(90, 90, 90))))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
         );
 
         pack();
@@ -258,8 +243,6 @@ private void fyllPartnerTabell() {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel etikettRubrikLabel;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lPartnerLabel;
