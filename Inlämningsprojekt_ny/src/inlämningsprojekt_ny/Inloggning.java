@@ -234,6 +234,7 @@ public class Inloggning extends javax.swing.JFrame {
             return;
         }
         
+        
         if (!Validering.arAnvandarnamnOchLosenordKorrekt(epost, losen, idb)) {
             felmeddelandeLabel.setText("Fel epost eller lösenord");
             felmeddelandeLabel.setVisible(true);

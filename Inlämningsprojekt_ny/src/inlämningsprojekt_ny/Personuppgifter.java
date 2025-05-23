@@ -32,9 +32,10 @@ public class Personuppgifter extends javax.swing.JFrame {
     private Personuppgifter() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
     private void visaPersonuppgifter(){
         try{
-            String sql  = "SELECT epost, telefon, adress, losenord FROM anstalld WHERE anstalld_id = "+aid;
+            String sql  = "SELECT epost, telefon, adress, losenord FROM anstalld WHERE aid = " + aid;
             HashMap<String, String> data = idb.fetchRow(sql);
             
             if(data != null){
@@ -120,31 +121,28 @@ public class Personuppgifter extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(andralosenordLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(andraepostLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(epostField)
-                                    .addComponent(losenordField))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(andratelefonLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(telefonField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(sparaButton)
                         .addGap(6, 6, 6))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(andraadressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(adressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(andraadressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27)
+                                .addComponent(adressField, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(andralosenordLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(andraepostLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(andratelefonLabel))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(epostField, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(telefonField)
+                                    .addComponent(losenordField))))
+                        .addGap(21, 21, 21))))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(persUppgifterTillbakaButton)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -192,12 +190,13 @@ public class Personuppgifter extends javax.swing.JFrame {
         }
         try{
             String sql = "UPDATE  anstalld SET "
-                    +"epost ='"+epost+"',"
-                    +"telefon = '"+telefon+"',"
-                    +"adress='"+adress+"',"
-                    +"losenord='"+losenord+"'"
-                    +"WHERE anstalld_id ="+aid;
+                    + "epost = '" + epost + "', "
+                    + "telefon = '" + telefon + "', "
+                    + "adress = '" + adress + "', "
+                    + "losenord = '" + losenord + "' "
+                    + "WHERE aid = " + aid;
             
+            System.out.println("Kör SQL: " + sql);
             idb.update(sql);
             JOptionPane.showMessageDialog(this, "Uppgift har sparats!");
         }catch(InfException e){
@@ -248,7 +247,12 @@ public class Personuppgifter extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new Personuppgifter().setVisible(true);
+            try{
+                InfDB idb = new InfDB("databas.fil");
+                new Personuppgifter(idb, 1, "admin").setVisible(true);
+            }catch (InfException e){
+                e.printStackTrace();
+            }
         });
     }
 
