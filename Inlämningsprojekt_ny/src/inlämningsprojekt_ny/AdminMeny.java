@@ -27,7 +27,6 @@ private int aid;
         try{
         initComponents();
         inloggadAnvandareLabel.setText(inloggadAnvandare);
-        //hej
         }catch (Exception e) {
             e.printStackTrace();
         }
@@ -52,6 +51,7 @@ private int aid;
         minProfilButton = new javax.swing.JButton();
         huvudmenyLabel = new javax.swing.JLabel();
         loggaUtButton = new javax.swing.JButton();
+        AdminMenyUppgifterButton = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,6 +101,13 @@ private int aid;
             }
         });
 
+        AdminMenyUppgifterButton.setText("Ändra Uppgifter");
+        AdminMenyUppgifterButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AdminMenyUppgifterButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -119,15 +126,17 @@ private int aid;
                                 .addGap(18, 18, 18)
                                 .addComponent(avdelningButton, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(28, 28, 28)))
-                        .addComponent(hallbarhetsmalenButton)
-                        .addGap(53, 53, 53))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(hallbarhetsmalenButton)
+                            .addComponent(AdminMenyUppgifterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(44, 44, 44))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(loggaUtButton)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(inloggadAnvandareLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(145, 145, 145)
-                                .addComponent(huvudmenyLabel))
-                            .addComponent(loggaUtButton))
+                                .addComponent(huvudmenyLabel)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -140,7 +149,9 @@ private int aid;
                         .addComponent(inloggadAnvandareLabel)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(minProfilButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(minProfilButton)
+                    .addComponent(AdminMenyUppgifterButton))
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(hallbarhetsmalenButton, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
@@ -201,6 +212,12 @@ private int aid;
     }
     }//GEN-LAST:event_minProfilButtonActionPerformed
 
+    private void AdminMenyUppgifterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminMenyUppgifterButtonActionPerformed
+        // TODO add your handling code here:
+        new AdminÄndraUppgifter(idb, inloggadAnvandare, aid).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_AdminMenyUppgifterButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -239,6 +256,7 @@ private int aid;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton AdminMenyUppgifterButton;
     private javax.swing.JButton avdelningButton;
     private javax.swing.JButton hallbarhetsmalenButton;
     private javax.swing.JLabel huvudmenyLabel;
