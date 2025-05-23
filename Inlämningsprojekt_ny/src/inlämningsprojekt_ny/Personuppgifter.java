@@ -26,6 +26,7 @@ public class Personuppgifter extends javax.swing.JFrame {
         this.aid = aid;
         this.inloggadAnvandare = inloggadAnvandare;
         initComponents();
+        personuppgifterLosenordKravLabel.setVisible(false);
         visaPersonuppgifter();
     }
 
@@ -71,6 +72,7 @@ public class Personuppgifter extends javax.swing.JFrame {
         telefonField = new javax.swing.JTextField();
         adressField = new javax.swing.JTextField();
         persUppgifterTillbakaButton = new javax.swing.JButton();
+        personuppgifterLosenordKravLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -114,6 +116,18 @@ public class Personuppgifter extends javax.swing.JFrame {
             }
         });
 
+        personuppgifterLosenordKravLabel.setForeground(new java.awt.Color(255, 0, 0));
+        personuppgifterLosenordKravLabel.setText("Felaktiga krav på lösenord (minst 11 tecken)");
+        personuppgifterLosenordKravLabel.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                personuppgifterLosenordKravLabelAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -122,16 +136,12 @@ public class Personuppgifter extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(sparaButton)
-                        .addGap(6, 6, 6))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(andraadressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(27, 27, 27)
-                                .addComponent(adressField, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(adressField, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(andralosenordLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -141,18 +151,25 @@ public class Personuppgifter extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(epostField, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(telefonField)
-                                    .addComponent(losenordField))))
-                        .addGap(21, 21, 21))))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(persUppgifterTillbakaButton)
-                .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(losenordField)
+                                    .addComponent(personuppgifterLosenordKravLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(sparaButton)
+                        .addGap(6, 6, 6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(persUppgifterTillbakaButton)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(persUppgifterTillbakaButton)
-                .addGap(29, 29, 29)
+                .addGap(1, 1, 1)
+                .addComponent(personuppgifterLosenordKravLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(losenordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(andralosenordLabel))
@@ -188,6 +205,13 @@ public class Personuppgifter extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Alla fält måste vara ifyllda!");
             return;
         }
+        
+        if(losenord.length() < 11 || !losenord.matches(".*\\d.")){
+            personuppgifterLosenordKravLabel.setVisible(true);
+            return;
+        }else{
+            personuppgifterLosenordKravLabel.setVisible(false);
+        }
         try{
             String sql = "UPDATE  anstalld SET "
                     + "epost = '" + epost + "', "
@@ -217,6 +241,10 @@ public class Personuppgifter extends javax.swing.JFrame {
         new Meny(idb, inloggadAnvandare, aid).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_persUppgifterTillbakaButtonActionPerformed
+
+    private void personuppgifterLosenordKravLabelAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_personuppgifterLosenordKravLabelAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_personuppgifterLosenordKravLabelAncestorAdded
 
     /**
      * @param args the command line arguments
@@ -265,6 +293,7 @@ public class Personuppgifter extends javax.swing.JFrame {
     private javax.swing.JTextField epostField;
     private javax.swing.JPasswordField losenordField;
     private javax.swing.JButton persUppgifterTillbakaButton;
+    private javax.swing.JLabel personuppgifterLosenordKravLabel;
     private javax.swing.JButton sparaButton;
     private javax.swing.JTextField telefonField;
     // End of variables declaration//GEN-END:variables
