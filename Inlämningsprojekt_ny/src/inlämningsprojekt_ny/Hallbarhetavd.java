@@ -423,7 +423,7 @@ public class Hallbarhetavd extends javax.swing.JFrame {
                      "FROM anstalld a " +
                      "JOIN handlaggare h ON a.aid = h.aid " +
                      "JOIN avdelning av ON a.avdelning = av.avdid " +
-                     "WHERE av.namn = 'Avdelning för Teknologisk Innovation och Entreprenörskap' " +
+                     "WHERE av.namn = 'Avdelning för Hållbar Energi och Klimatförändringar' " +
                      "AND (a.fornamn LIKE '%" + sokterm + "%' " +
                      "OR a.efternamn LIKE '%" + sokterm + "%' " +
                      "OR a.epost LIKE '%" + sokterm + "%')";

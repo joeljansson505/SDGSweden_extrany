@@ -411,12 +411,12 @@ public class TeknologiskInnovationavd extends javax.swing.JFrame {
     }
 
     try {
-       
+        
         String avdidSql = "SELECT avdelning FROM anstalld WHERE aid = " + aid;
         String avdid = idb.fetchSingle(avdidSql);
 
-        
-        String sql = "SELECT a.fornamn, a.efternamn, a.epost, a.telefon, a.adress " +
+       
+       String sql = "SELECT a.fornamn, a.efternamn, a.epost, a.telefon, a.adress " +
                      "FROM anstalld a " +
                      "JOIN handlaggare h ON a.aid = h.aid " +
                      "JOIN avdelning av ON a.avdelning = av.avdid " +
@@ -444,7 +444,7 @@ public class TeknologiskInnovationavd extends javax.swing.JFrame {
 
     } catch (Exception e) {
         TekAvdPersonalField.setText("Fel vid sökning: " + e.getMessage());
-    }
+    }                                                               
     }//GEN-LAST:event_sokHandlaggareTekButtonActionPerformed
 
     private void sokProjektTekFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokProjektTekFieldActionPerformed
