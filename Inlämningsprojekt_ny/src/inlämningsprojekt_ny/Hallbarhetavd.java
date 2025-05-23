@@ -212,19 +212,23 @@ public class Hallbarhetavd extends javax.swing.JFrame {
                     .addComponent(aAvdHallbarhetButton)
                     .addComponent(plaAvdHallbarhetButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(sokProjektField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sokProjektLabel)
-                    .addComponent(sokProjektDatumButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(sokHandlaggarField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(sokHandlaggareButton))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(sokProjektField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(sokProjektLabel2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(sokProjektField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sokProjektLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(sokHandlaggarField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(sokHandlaggareButton))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(sokProjektField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(sokProjektLabel2)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(sokProjektDatumButton)
+                        .addGap(20, 20, 20)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(hallbarhetAvdPersonalButton)
                     .addComponent(hallbarhetAvdProjektButton))
@@ -404,25 +408,25 @@ public class Hallbarhetavd extends javax.swing.JFrame {
 
     private void sokHandlaggareButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokHandlaggareButtonActionPerformed
         // TODO add your handling code here:
-        String sokterm = sokHandlaggarField.getText().trim();
+     String sokterm = sokHandlaggarField.getText().trim();
 
     if (sokterm.isEmpty()) {
         hallbarhetPersonalField.setText("Ange namn eller e-post att söka efter.");
         return;
     }
 
-    try {
-       
+    try {  
         String avdidSql = "SELECT avdelning FROM anstalld WHERE aid = " + aid;
         String avdid = idb.fetchSingle(avdidSql);
 
-        
-        String sql = "SELECT fornamn, efternamn, epost, telefon, adress FROM anstalld " +
-                     "JOIN handlaggare ON anstalld.aid = handlaggare.aid " +
-                     "WHERE anstalld.avdelning = " + avdid + " " +
-                     "AND (fornamn LIKE '%" + sokterm + "%' " +
-                     "OR efternamn LIKE '%" + sokterm + "%' " +
-                     "OR epost LIKE '%" + sokterm + "%')";
+                     String sql = "SELECT a.fornamn, a.efternamn, a.epost, a.telefon, a.adress " +
+                     "FROM anstalld a " +
+                     "JOIN handlaggare h ON a.aid = h.aid " +
+                     "JOIN avdelning av ON a.avdelning = av.avdid " +
+                     "WHERE av.namn = 'Avdelning för Teknologisk Innovation och Entreprenörskap' " +
+                     "AND (a.fornamn LIKE '%" + sokterm + "%' " +
+                     "OR a.efternamn LIKE '%" + sokterm + "%' " +
+                     "OR a.epost LIKE '%" + sokterm + "%')";
 
         var resultat = idb.fetchRows(sql);
 
@@ -434,7 +438,6 @@ public class Hallbarhetavd extends javax.swing.JFrame {
                   .append("Telefon: ").append(rad.get("telefon")).append("\n")
                   .append("Adress: ").append(rad.get("adress")).append("\n")
                   .append("--------------------------\n");
-                
             }
             hallbarhetPersonalField.setText(sb.toString());
         } else {
@@ -444,7 +447,6 @@ public class Hallbarhetavd extends javax.swing.JFrame {
     } catch (Exception e) {
         hallbarhetPersonalField.setText("Fel vid sökning: " + e.getMessage());
     }
-
     }//GEN-LAST:event_sokHandlaggareButtonActionPerformed
 
     private void sokProjektDatumButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokProjektDatumButtonActionPerformed

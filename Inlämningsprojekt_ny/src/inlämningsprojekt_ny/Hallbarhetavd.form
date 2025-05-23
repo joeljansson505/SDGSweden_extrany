@@ -100,23 +100,30 @@
                   <Component id="plaAvdHallbarhetButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="34" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="sokProjektField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="sokProjektLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="sokProjektDatumButton" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                      <Component id="sokHandlaggarField" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="sokHandlaggareButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="sokProjektField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="sokProjektLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                              <Component id="sokHandlaggarField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="sokHandlaggareButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                              <Component id="sokProjektField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="sokProjektLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
-                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                      <Component id="sokProjektField2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="sokProjektLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="sokProjektDatumButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="hallbarhetAvdPersonalButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="hallbarhetAvdProjektButton" alignment="3" min="-2" max="-2" attributes="0"/>

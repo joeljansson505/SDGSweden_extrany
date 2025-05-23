@@ -46,6 +46,13 @@ public class SamhallutvecklingAvd extends javax.swing.JFrame {
         plaAvdSamhallutvecklingButton = new javax.swing.JToggleButton();
         pAvdSamhallutvecklingButton = new javax.swing.JToggleButton();
         aAvdSamhallutvecklingButton = new javax.swing.JToggleButton();
+        sokHandlaggarSamField = new javax.swing.JTextField();
+        sokHandlaggareSamButton = new javax.swing.JButton();
+        sokProjektSamLabel = new javax.swing.JLabel();
+        sokProjektSamLabel2 = new javax.swing.JLabel();
+        sokProjektSamField = new javax.swing.JTextField();
+        sokProjektSamField2 = new javax.swing.JTextField();
+        sokProjektSamDatumButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,50 +109,129 @@ public class SamhallutvecklingAvd extends javax.swing.JFrame {
             }
         });
 
+        sokHandlaggarSamField.setColumns(12);
+        sokHandlaggarSamField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sokHandlaggarSamFieldActionPerformed(evt);
+            }
+        });
+
+        sokHandlaggareSamButton.setText("Sök Handläggare");
+        sokHandlaggareSamButton.setActionCommand("Sök handläggare");
+        sokHandlaggareSamButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sokHandlaggareSamButtonActionPerformed(evt);
+            }
+        });
+
+        sokProjektSamLabel.setText("Från:");
+
+        sokProjektSamLabel2.setText("Till:");
+
+        sokProjektSamField.setColumns(1);
+        sokProjektSamField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sokProjektSamFieldActionPerformed(evt);
+            }
+        });
+
+        sokProjektSamField2.setColumns(1);
+        sokProjektSamField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sokProjektSamField2ActionPerformed(evt);
+            }
+        });
+
+        sokProjektSamDatumButton.setText("Sök Projekt");
+        sokProjektSamDatumButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sokProjektSamDatumButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(samhallutvAvdTillbakaButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(plaAvdSamhallutvecklingButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pAvdSamhallutvecklingButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(aAvdSamhallutvecklingButton))
+                        .addGap(21, 21, 21)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(samhallutvecklingAvdPersonalButton))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(samhallutvecklingAvdProjektButton)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 76, Short.MAX_VALUE)))
+                        .addGap(45, 45, 45)
+                        .addComponent(samhallutvecklingAvdPersonalButton)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(samhallutvecklingAvdProjektButton)
+                        .addGap(60, 60, 60))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(sokProjektSamLabel)
+                                    .addComponent(sokProjektSamLabel2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(sokProjektSamField)
+                                    .addComponent(sokProjektSamField2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(26, 26, 26)
+                                .addComponent(sokProjektSamDatumButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(19, 19, 19))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(samhallutvAvdTillbakaButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(plaAvdSamhallutvecklingButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pAvdSamhallutvecklingButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(aAvdSamhallutvecklingButton)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(sokHandlaggarSamField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sokHandlaggareSamButton)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(samhallutvAvdTillbakaButton)
-                    .addComponent(plaAvdSamhallutvecklingButton)
-                    .addComponent(pAvdSamhallutvecklingButton)
-                    .addComponent(aAvdSamhallutvecklingButton))
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(samhallutvecklingAvdPersonalButton)
-                    .addComponent(samhallutvecklingAvdProjektButton))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(sokProjektSamLabel)
+                            .addComponent(sokProjektSamField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(sokProjektSamLabel2)
+                            .addComponent(sokProjektSamField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(samhallutvAvdTillbakaButton)
+                            .addComponent(plaAvdSamhallutvecklingButton)
+                            .addComponent(pAvdSamhallutvecklingButton)
+                            .addComponent(aAvdSamhallutvecklingButton))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addComponent(sokProjektSamDatumButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(sokHandlaggarSamField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sokHandlaggareSamButton))
+                        .addGap(12, 12, 12)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(samhallutvecklingAvdProjektButton)
+                    .addComponent(samhallutvecklingAvdPersonalButton, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24))
         );
 
@@ -314,6 +400,68 @@ public class SamhallutvecklingAvd extends javax.swing.JFrame {
         }   
     }//GEN-LAST:event_aAvdSamhallutvecklingButtonActionPerformed
 
+    private void sokProjektSamFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokProjektSamFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sokProjektSamFieldActionPerformed
+
+    private void sokProjektSamField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokProjektSamField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sokProjektSamField2ActionPerformed
+
+    private void sokProjektSamDatumButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokProjektSamDatumButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sokProjektSamDatumButtonActionPerformed
+
+    private void sokHandlaggarSamFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokHandlaggarSamFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sokHandlaggarSamFieldActionPerformed
+
+    private void sokHandlaggareSamButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokHandlaggareSamButtonActionPerformed
+        // TODO add your handling code here:
+        String sokterm = sokHandlaggarSamField.getText().trim();
+
+    if (sokterm.isEmpty()) {
+        samhallutvecklingAvdPersonalField.setText("Ange namn eller e-post att söka efter.");
+        return;
+    }
+
+    try {
+        
+        String avdidSql = "SELECT avdelning FROM anstalld WHERE aid = " + aid;
+        String avdid = idb.fetchSingle(avdidSql);
+
+       
+       String sql = "SELECT a.fornamn, a.efternamn, a.epost, a.telefon, a.adress " +
+                     "FROM anstalld a " +
+                     "JOIN handlaggare h ON a.aid = h.aid " +
+                     "JOIN avdelning av ON a.avdelning = av.avdid " +
+                     "WHERE av.namn = 'Avdelning för Samhällsutveckling och Utbildning' " +
+                     "AND (a.fornamn LIKE '%" + sokterm + "%' " +
+                     "OR a.efternamn LIKE '%" + sokterm + "%' " +
+                     "OR a.epost LIKE '%" + sokterm + "%')";
+
+        var resultat = idb.fetchRows(sql);
+
+        if (resultat != null && !resultat.isEmpty()) {
+            StringBuilder sb = new StringBuilder();
+            for (var rad : resultat) {
+                sb.append("Namn: ").append(rad.get("fornamn")).append(" ").append(rad.get("efternamn")).append("\n")
+                  .append("E-post: ").append(rad.get("epost")).append("\n")
+                  .append("Telefon: ").append(rad.get("telefon")).append("\n")
+                  .append("Adress: ").append(rad.get("adress")).append("\n")
+                  .append("--------------------------\n");
+                
+            }
+            samhallutvecklingAvdPersonalField.setText(sb.toString());
+        } else {
+            samhallutvecklingAvdPersonalField.setText("Ingen handläggare hittades med termen: " + sokterm);
+        }
+
+    } catch (Exception e) {
+        samhallutvecklingAvdPersonalField.setText("Fel vid sökning: " + e.getMessage());
+    }                                   
+    }//GEN-LAST:event_sokHandlaggareSamButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -361,5 +509,12 @@ public class SamhallutvecklingAvd extends javax.swing.JFrame {
     private javax.swing.JTextArea samhallutvecklingAvdPersonalField;
     private javax.swing.JButton samhallutvecklingAvdProjektButton;
     private javax.swing.JTextArea samhallutvecklingAvdProjektField;
+    private javax.swing.JTextField sokHandlaggarSamField;
+    private javax.swing.JButton sokHandlaggareSamButton;
+    private javax.swing.JButton sokProjektSamDatumButton;
+    private javax.swing.JTextField sokProjektSamField;
+    private javax.swing.JTextField sokProjektSamField2;
+    private javax.swing.JLabel sokProjektSamLabel;
+    private javax.swing.JLabel sokProjektSamLabel2;
     // End of variables declaration//GEN-END:variables
 }

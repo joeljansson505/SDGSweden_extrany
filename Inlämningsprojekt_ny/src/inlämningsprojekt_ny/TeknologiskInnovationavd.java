@@ -45,6 +45,13 @@ public class TeknologiskInnovationavd extends javax.swing.JFrame {
         plaAvdTekInnovationButton = new javax.swing.JToggleButton();
         pAvdTekInnovationButton = new javax.swing.JToggleButton();
         aAvdTekInnovationButton = new javax.swing.JToggleButton();
+        sokHandlaggarTekField = new javax.swing.JTextField();
+        sokHandlaggareTekButton = new javax.swing.JButton();
+        sokProjektTekLabel = new javax.swing.JLabel();
+        sokProjektTekLabel2 = new javax.swing.JLabel();
+        sokProjektTekField = new javax.swing.JTextField();
+        sokProjektTekField2 = new javax.swing.JTextField();
+        sokProjektDatumTekButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,30 +108,98 @@ public class TeknologiskInnovationavd extends javax.swing.JFrame {
             }
         });
 
+        sokHandlaggarTekField.setColumns(12);
+        sokHandlaggarTekField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sokHandlaggarTekFieldActionPerformed(evt);
+            }
+        });
+
+        sokHandlaggareTekButton.setText("Sök Handläggare");
+        sokHandlaggareTekButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sokHandlaggareTekButtonActionPerformed(evt);
+            }
+        });
+
+        sokProjektTekLabel.setText("Från:");
+
+        sokProjektTekLabel2.setText("Till:");
+
+        sokProjektTekField.setColumns(5);
+        sokProjektTekField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sokProjektTekFieldActionPerformed(evt);
+            }
+        });
+
+        sokProjektTekField2.setColumns(5);
+        sokProjektTekField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sokProjektTekField2ActionPerformed(evt);
+            }
+        });
+
+        sokProjektDatumTekButton.setText("Sök Projekt");
+        sokProjektDatumTekButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sokProjektDatumTekButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TekAvdPersonalButton)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TekAvdProjektButton)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(TekAvdTillbakaButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 222, Short.MAX_VALUE)
                 .addComponent(plaAvdTekInnovationButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pAvdTekInnovationButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(aAvdTekInnovationButton)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(sokHandlaggarTekField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addComponent(TekAvdPersonalButton)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(TekAvdProjektButton)
+                                .addGap(47, 47, 47))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(sokHandlaggareTekButton)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(sokProjektTekLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(sokProjektTekField, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(sokProjektTekLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(sokProjektTekField2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addComponent(sokProjektDatumTekButton)
+                                .addGap(26, 26, 26))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(15, 15, 15))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,14 +210,31 @@ public class TeknologiskInnovationavd extends javax.swing.JFrame {
                     .addComponent(plaAvdTekInnovationButton)
                     .addComponent(pAvdTekInnovationButton)
                     .addComponent(aAvdTekInnovationButton))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(sokProjektTekLabel)
+                            .addComponent(sokProjektTekField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(sokProjektTekLabel2)
+                            .addComponent(sokProjektTekField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(14, 14, 14))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(sokProjektDatumTekButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(sokHandlaggarTekField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sokHandlaggareTekButton))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TekAvdPersonalButton)
                     .addComponent(TekAvdProjektButton))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3))
                 .addContainerGap())
         );
 
@@ -305,6 +397,68 @@ public class TeknologiskInnovationavd extends javax.swing.JFrame {
         }   
     }//GEN-LAST:event_aAvdTekInnovationButtonActionPerformed
 
+    private void sokHandlaggarTekFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokHandlaggarTekFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sokHandlaggarTekFieldActionPerformed
+
+    private void sokHandlaggareTekButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokHandlaggareTekButtonActionPerformed
+        // TODO add your handling code here:
+        String sokterm = sokHandlaggarTekField.getText().trim();
+
+    if (sokterm.isEmpty()) {
+        TekAvdPersonalField.setText("Ange namn eller e-post att söka efter.");
+        return;
+    }
+
+    try {
+       
+        String avdidSql = "SELECT avdelning FROM anstalld WHERE aid = " + aid;
+        String avdid = idb.fetchSingle(avdidSql);
+
+        
+        String sql = "SELECT a.fornamn, a.efternamn, a.epost, a.telefon, a.adress " +
+                     "FROM anstalld a " +
+                     "JOIN handlaggare h ON a.aid = h.aid " +
+                     "JOIN avdelning av ON a.avdelning = av.avdid " +
+                     "WHERE av.namn = 'Avdelning för Teknologisk Innovation och Entreprenörskap' " +
+                     "AND (a.fornamn LIKE '%" + sokterm + "%' " +
+                     "OR a.efternamn LIKE '%" + sokterm + "%' " +
+                     "OR a.epost LIKE '%" + sokterm + "%')";
+
+        var resultat = idb.fetchRows(sql);
+
+        if (resultat != null && !resultat.isEmpty()) {
+            StringBuilder sb = new StringBuilder();
+            for (var rad : resultat) {
+                sb.append("Namn: ").append(rad.get("fornamn")).append(" ").append(rad.get("efternamn")).append("\n")
+                  .append("E-post: ").append(rad.get("epost")).append("\n")
+                  .append("Telefon: ").append(rad.get("telefon")).append("\n")
+                  .append("Adress: ").append(rad.get("adress")).append("\n")
+                  .append("--------------------------\n");
+                
+            }
+            TekAvdPersonalField.setText(sb.toString());
+        } else {
+            TekAvdPersonalField.setText("Ingen handläggare hittades med termen: " + sokterm);
+        }
+
+    } catch (Exception e) {
+        TekAvdPersonalField.setText("Fel vid sökning: " + e.getMessage());
+    }
+    }//GEN-LAST:event_sokHandlaggareTekButtonActionPerformed
+
+    private void sokProjektTekFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokProjektTekFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sokProjektTekFieldActionPerformed
+
+    private void sokProjektDatumTekButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokProjektDatumTekButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sokProjektDatumTekButtonActionPerformed
+
+    private void sokProjektTekField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokProjektTekField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sokProjektTekField2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -353,5 +507,12 @@ public class TeknologiskInnovationavd extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JToggleButton pAvdTekInnovationButton;
     private javax.swing.JToggleButton plaAvdTekInnovationButton;
+    private javax.swing.JTextField sokHandlaggarTekField;
+    private javax.swing.JButton sokHandlaggareTekButton;
+    private javax.swing.JButton sokProjektDatumTekButton;
+    private javax.swing.JTextField sokProjektTekField;
+    private javax.swing.JTextField sokProjektTekField2;
+    private javax.swing.JLabel sokProjektTekLabel;
+    private javax.swing.JLabel sokProjektTekLabel2;
     // End of variables declaration//GEN-END:variables
 }
