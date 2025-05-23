@@ -47,6 +47,16 @@ public class Validering extends javax.swing.JFrame {
             return false;
         }
     }
+    
+    public static boolean kollaPrioritet(String prioritet) {
+        String kollaPrioritetRegex = "^(låg|Hög)$";
+        return prioritet != null && prioritet.matches(kollaPrioritetRegex);
+    }
+    
+    public static boolean kollaStatus(String status) {
+        String kollaStatusRegex = "^(Planerat|Pågående|Avslutat$";
+        return status != null && status.matches(kollaStatusRegex);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
