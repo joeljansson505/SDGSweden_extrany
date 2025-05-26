@@ -323,6 +323,70 @@ public class AdminÄndraUppgifter extends javax.swing.JFrame {
              AndraUppgifterComboBoxActionPerformed(null);
                      
          }
+         
+         if (selected.equals("Land")) {
+             String id = TableInfoUppgifter.getValueAt(rad, 0).toString();
+             String namn = TableInfoUppgifter.getValueAt(rad, 1).toString();
+             String sprak = TableInfoUppgifter.getValueAt(rad, 2).toString();
+             String valuta = TableInfoUppgifter.getValueAt(rad, 3).toString();
+             String tidszon = TableInfoUppgifter.getValueAt(rad, 4).toString();
+             String politisk_struktur = TableInfoUppgifter.getValueAt(rad, 5).toString();
+             String ekonomi = TableInfoUppgifter.getValueAt(rad, 6).toString();
+             
+             namn = namn.replace("'", "''");
+             sprak = sprak.replace("'", "''");
+             valuta = valuta.replace("'", "''");
+             tidszon = tidszon.replace("'", "''");
+             politisk_struktur = politisk_struktur.replace("'", "''");
+             ekonomi = ekonomi.replace("'", "''");
+             
+             String sql = "UPDATE land SET " + 
+                     "namn='" + namn + "'," + 
+                     "sprak'" + sprak + "'," + 
+                     "valuta'" + valuta + "'," + 
+                     "tidszon'" + tidszon + "'," + 
+                     "politisk_struktur'" + politisk_struktur + "'," + 
+                     "ekonomi'" + ekonomi + "'" + 
+                     "WHERE lid =" + id;
+             
+             idb.update(sql);
+             JOptionPane.showMessageDialog(this, "Land uppdaterat!");
+             AndraUppgifterComboBoxActionPerformed(null);
+             
+         }
+         
+         if (selected.equals("Partner")) {
+             String id = TableInfoUppgifter.getValueAt(rad, 0).toString();
+             String namn = TableInfoUppgifter.getValueAt(rad, 1).toString();
+             String kontaktperson = TableInfoUppgifter.getValueAt(rad, 2).toString();
+             String kontaktepost = TableInfoUppgifter.getValueAt(rad, 3).toString();
+             String telefon = TableInfoUppgifter.getValueAt(rad, 4).toString();
+             String adress = TableInfoUppgifter.getValueAt(rad, 5).toString();
+             String branch = TableInfoUppgifter.getValueAt(rad, 6).toString();
+             String stad = TableInfoUppgifter.getValueAt(rad, 7).toString();
+             
+             namn = namn.replace("'", "''");
+             kontaktperson = kontaktperson.replace("'", "''");
+             kontaktepost = kontaktepost.replace("'", "''");
+             telefon = telefon.replace("'", "''");
+             adress = adress.replace("'", "''");
+             branch = branch.replace("'", "''");
+             stad = stad.replace("'", "''");
+             
+             String sql = "UPDATE partner SET " +
+                     "namn'" + namn + "'," + 
+                     "kontaktperson'" + kontaktperson + "'," + 
+                     "kontaktepost'" + kontaktepost + "'," + 
+                     "telefon'" + telefon + "'," + 
+                     "adress'" + adress + "'," + 
+                     "branch'" + branch + "'," + 
+                     "stad'" + stad + "'" + 
+                     "WHERE pid =" + id;
+             
+             idb.update(sql);
+             JOptionPane.showMessageDialog(this, "Partner uppdaterat!");
+             AndraUppgifterComboBoxActionPerformed(null);
+         }
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Fel vid Uppdatering: " + e.getMessage());

@@ -23,7 +23,7 @@ public class Validering extends javax.swing.JFrame {
     }
     
     public static boolean losenordKrav(String losen) {
-        String losenRegex = "^[a-zA-Z0-9]{11}$"; 
+        String losenRegex = "^[a-zA-Z0-9]{11,99}$"; 
         return losen != null && losen.matches(losenRegex);
     }
     
