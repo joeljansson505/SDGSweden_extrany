@@ -144,22 +144,74 @@ public class AdminÄndraUppgifter extends javax.swing.JFrame {
         try {
             switch (selected) {
                 case "Avdelning":
-                    model.setColumnIdentifiers(new String[] { "ID", "Namn", "Adress", "Epost", "Telefon", "Stad", "Chef", "Beskrivning" });
-                    var rows1 = idb.fetchRows("SELECT avdid, namn, adress, epost, telefon, stad, chef, beskrivning FROM avdelning");
+                    model.setColumnIdentifiers(new String[] { "ID", "Namn", "Beskrivning", "Adress", "Epost", "Telefon", "Stad", "Chef" });
+                    var rows1 = idb.fetchRows("SELECT * FROM avdelning");
                     for (var rad : rows1) {
                         model.addRow(new Object[] {
                             rad.get("avdid"),
                             rad.get("namn"),
+                            rad.get("beskrivning"),
                             rad.get("adress"),
                             rad.get("epost"),
                             rad.get("telefon"),
                             rad.get("stad"),
-                            rad.get("chef"),
-                            rad.get("beskrivning")
+                            rad.get("chef")
                         });
                     }
-                    break;
-            }
+                        break;
+                        
+                        case "Projekt":
+                        model.setColumnIdentifiers(new String[] { "ID", "Projektnamn", "Beskrivning", "Startdatum", "Slutdatum", "Kostnad", "Status", "Prioritet", "Projektchef", "Land" });
+                        var rows2 = idb.fetchRows("SELECT * FROM projekt");
+                        for (var rad : rows2) {
+                             model.addRow(new Object[] {
+                                rad.get("pid"),
+                                rad.get("projektnamn"),
+                                rad.get("beskrivning"),
+                                rad.get("startdatum"),
+                                rad.get("slutdatum"),
+                                rad.get("kostnad"),
+                                rad.get("status"),
+                                rad.get("prioritet"),
+                                rad.get("projektchef"),
+                                rad.get("land")
+                            });
+                        }
+                           break;
+                    
+                        case "Land":
+                        model.setColumnIdentifiers(new String[] { "ID", "Namn", "Språk", "Valuta", "Tidszon", "Politisk Struktur", "Ekonomi" });
+                        var rows3 = idb.fetchRows("SELECT * FROM land");
+                        for (var rad : rows3) {
+                        model.addRow(new Object[] {
+                            rad.get("lid"),
+                            rad.get("namn"),
+                            rad.get("sprak"),
+                            rad.get("valuta"),
+                            rad.get("tidszon"),
+                            rad.get("politisk_struktur"),
+                            rad.get("ekonomi")
+                          });
+                       }
+                        break;
+                        
+                        case "Partner":
+                        model.setColumnIdentifiers(new String[] { "ID", "Namn", "Kontaktperson", "Kontaktepost", "Telefon", "Adress", "Branch", "Stad" });
+                        var rows4 = idb.fetchRows("SELECT * FROM partner");
+                        for (var rad : rows4) {
+                        model.addRow(new Object[] {
+                            rad.get("pid"),
+                            rad.get("namn"),
+                            rad.get("kontaktperson"),
+                            rad.get("kontaktepost"),
+                            rad.get("telefon"),
+                            rad.get("adress"),
+                            rad.get("branch"),
+                            rad.get("stad")
+                        });
+                        }
+                        break;
+                    }
             
             TableInfoUppgifter.setModel(model);
             TableInfoUppgifter.getColumnModel().getColumn(0).setMinWidth(0);
@@ -195,7 +247,7 @@ public class AdminÄndraUppgifter extends javax.swing.JFrame {
 
     private void SparaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SparaButtonActionPerformed
         // TODO add your handling code here:
-        if (TableInfoUppgifter.isEditing()); {
+        if (TableInfoUppgifter.isEditing()) {
             TableInfoUppgifter.getCellEditor().stopCellEditing();
             
     }
@@ -208,6 +260,9 @@ public class AdminÄndraUppgifter extends javax.swing.JFrame {
         }
         
         try {
+            String selected = AndraUppgifterComboBox.getSelectedItem().toString();
+            
+         if (selected.equals("Avdelning")) {
             String id = TableInfoUppgifter.getValueAt(rad, 0).toString();
             String namn = TableInfoUppgifter.getValueAt(rad, 1).toString();
             String adress = TableInfoUppgifter.getValueAt(rad, 2).toString();
@@ -230,6 +285,44 @@ public class AdminÄndraUppgifter extends javax.swing.JFrame {
             idb.update(sql);
             JOptionPane.showMessageDialog(this, "Uppgifter sparade!");
             AndraUppgifterComboBoxActionPerformed(null);
+         }
+         
+         if (selected.equals("Projekt")) {
+             String id = TableInfoUppgifter.getValueAt(rad, 0).toString();
+             String projektnamn = TableInfoUppgifter.getValueAt(rad, 1).toString();
+             String beskrivning = TableInfoUppgifter.getValueAt(rad, 2).toString();
+             String startdatum = TableInfoUppgifter.getValueAt(rad, 3).toString();
+             String slutdatum = TableInfoUppgifter.getValueAt(rad, 4).toString();
+             String kostnad = TableInfoUppgifter.getValueAt(rad, 5).toString();
+             String status = TableInfoUppgifter.getValueAt(rad, 6).toString();
+             String prioritet = TableInfoUppgifter.getValueAt(rad, 7).toString();
+             String projektchef = TableInfoUppgifter.getValueAt(rad, 8).toString();
+             String land = TableInfoUppgifter.getValueAt(rad, 9).toString();
+             
+             projektnamn = projektnamn.replace("'", "''");
+             beskrivning = beskrivning.replace("'", "''");
+             status = status.replace("'", "''");
+             prioritet = prioritet.replace("'", "''");
+             projektchef = projektchef.replace("'", "''");
+             land = land.replace("'", "''");
+             
+             String sql = "UPDATE projekt SET " + 
+                     "projektnamn='" + projektnamn + "'," + 
+                     "beskrivning='" + beskrivning + "'," +
+                     "startdatum='" + startdatum + "'," + 
+                     "slutdatum='" + slutdatum + "'," +
+                     "kostnad='" + kostnad + "'," + 
+                     "status='" + status + "'," + 
+                     "prioritet='" + prioritet + "'," + 
+                     "projektchef='" + projektchef + "'," + 
+                     "land='" + land + "'" + 
+                     "WHERE pid=" + id;
+             
+             idb.update(sql);
+             JOptionPane.showMessageDialog(this, "Projekt uppdaterat!");
+             AndraUppgifterComboBoxActionPerformed(null);
+                     
+         }
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Fel vid Uppdatering: " + e.getMessage());
