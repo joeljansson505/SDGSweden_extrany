@@ -161,25 +161,24 @@ public class SamhallutvecklingAvd extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(45, 45, 45)
                         .addComponent(samhallutvecklingAvdPersonalButton)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(samhallutvecklingAvdProjektButton)
                         .addGap(60, 60, 60))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(sokProjektSamLabel)
-                                    .addComponent(sokProjektSamLabel2))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(sokProjektSamField)
-                                    .addComponent(sokProjektSamField2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(26, 26, 26)
-                                .addComponent(sokProjektSamDatumButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(19, 19, 19))))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(sokProjektSamLabel)
+                            .addComponent(sokProjektSamLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(sokProjektSamField2, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+                            .addComponent(sokProjektSamField))
+                        .addGap(18, 18, 18)
+                        .addComponent(sokProjektSamDatumButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(samhallutvAvdTillbakaButton)
@@ -203,7 +202,7 @@ public class SamhallutvecklingAvd extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 58, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(sokProjektSamLabel)
                             .addComponent(sokProjektSamField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -218,13 +217,16 @@ public class SamhallutvecklingAvd extends javax.swing.JFrame {
                             .addComponent(plaAvdSamhallutvecklingButton)
                             .addComponent(pAvdSamhallutvecklingButton)
                             .addComponent(aAvdSamhallutvecklingButton))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                        .addComponent(sokProjektSamDatumButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(sokHandlaggarSamField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sokHandlaggareSamButton))
-                        .addGap(12, 12, 12)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(sokHandlaggarSamField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(sokHandlaggareSamButton))
+                                .addGap(12, 12, 12))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(sokProjektSamDatumButton)
+                                .addGap(32, 32, 32)))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(samhallutvecklingAvdProjektButton)
                     .addComponent(samhallutvecklingAvdPersonalButton, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -410,6 +412,51 @@ public class SamhallutvecklingAvd extends javax.swing.JFrame {
 
     private void sokProjektSamDatumButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokProjektSamDatumButtonActionPerformed
         // TODO add your handling code here:
+        String franDatum = sokProjektSamField.getText().trim();
+    String tillDatum = sokProjektSamField2.getText().trim();
+
+    if (franDatum.isEmpty() || tillDatum.isEmpty()) {
+        samhallutvecklingAvdProjektField.setText("Ange både från- och till-datum.");
+        return;
+    }
+
+    try {
+        java.sql.Date franDate = java.sql.Date.valueOf(franDatum);
+        java.sql.Date tillDate = java.sql.Date.valueOf(tillDatum);
+
+        String sql = "SELECT DISTINCT p.projektnamn, p.startdatum, p.slutdatum, p.beskrivning " +
+                     "FROM projekt p " +
+                     "JOIN proj_hallbarhet ph ON p.pid = ph.pid " +
+                     "JOIN avd_hallbarhet ah ON ph.hid = ah.hid " +
+                     "JOIN avdelning a ON ah.avdid = a.avdid " +
+                     "WHERE a.namn = 'Avdelning för Samhällsutveckling och Utbildning' " +
+                     "AND p.status = 'Pågående' " +
+                     "AND p.startdatum <= '" + tillDatum + "' " +
+                     "AND p.slutdatum >= '" + franDatum + "'";
+
+        System.out.println("SQL-fråga: " + sql);
+
+        var resultat = idb.fetchRows(sql);
+
+        if (resultat != null && !resultat.isEmpty()) {
+            StringBuilder sb = new StringBuilder();
+            for (var rad : resultat) {
+                sb.append("Projektnamn: ").append(rad.get("projektnamn")).append("\n")
+                  .append("Startdatum: ").append(rad.get("startdatum")).append("\n")
+                  .append("Slutdatum: ").append(rad.get("slutdatum")).append("\n")
+                  .append("Beskrivning: ").append(rad.get("beskrivning")).append("\n")
+                  .append("--------------------------\n");
+            }
+            samhallutvecklingAvdProjektField.setText(sb.toString());
+        } else {
+            samhallutvecklingAvdProjektField.setText("Inga aktiva projekt hittades mellan datumen.");
+        }
+
+    } catch (IllegalArgumentException e) {
+        samhallutvecklingAvdProjektField.setText("Fel format på datum. Använd YYYY-MM-DD.");
+    } catch (Exception e) {
+        samhallutvecklingAvdProjektField.setText("Fel vid sökning: " + e.getMessage());
+    }
     }//GEN-LAST:event_sokProjektSamDatumButtonActionPerformed
 
     private void sokHandlaggarSamFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokHandlaggarSamFieldActionPerformed
