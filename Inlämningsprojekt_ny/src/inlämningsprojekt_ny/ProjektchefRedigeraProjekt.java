@@ -68,7 +68,7 @@ public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
             }
         });
 
-        satusRedigeraMinaProjektComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        satusRedigeraMinaProjektComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pågående", "Planerad", "Avslutad" }));
         satusRedigeraMinaProjektComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 satusRedigeraMinaProjektComboBoxActionPerformed(evt);
@@ -229,18 +229,56 @@ public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
 
     private void redigerProjektFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redigerProjektFieldActionPerformed
         // TODO add your handling code here:
+        String nyttNamn = redigerProjektField.getText().trim();
+
+      if (nyttNamn.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Du måste skriva ett projektnamn.");
+    } else {
+        
+        javax.swing.JOptionPane.showMessageDialog(this, "Projektnamn uppdaterat (tillfälligt): " + nyttNamn);
+        
+     
+    }
     }//GEN-LAST:event_redigerProjektFieldActionPerformed
 
     private void satusRedigeraMinaProjektComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_satusRedigeraMinaProjektComboBoxActionPerformed
         // TODO add your handling code here:
+        String valdStatus = (String) satusRedigeraMinaProjektComboBox.getSelectedItem();
+
+    System.out.println("Vald status: " + valdStatus);
     }//GEN-LAST:event_satusRedigeraMinaProjektComboBoxActionPerformed
 
     private void startdatumRedigeraProjektFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startdatumRedigeraProjektFieldActionPerformed
         // TODO add your handling code here:
+        String nyttStartdatum = startdatumRedigeraProjektField.getText().trim();
+
+    System.out.println("Startdatum: " + nyttStartdatum);
+
+    if (!nyttStartdatum.matches("\\d{4}-\\d{2}-\\d{2}")) {
+        System.out.println("Fel format! Använd formatet YYYY-MM-DD");
+        
+        javax.swing.JOptionPane.showMessageDialog(this, "Startdatum måste ha formatet YYYY-MM-DD");
+    }
+
     }//GEN-LAST:event_startdatumRedigeraProjektFieldActionPerformed
 
     private void slutdatumRedigeraProjektFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_slutdatumRedigeraProjektFieldActionPerformed
         // TODO add your handling code here:
+        String nyttSlutdatum = slutdatumRedigeraProjektField.getText().trim();
+
+    if (!nyttSlutdatum.matches("\\d{4}-\\d{2}-\\d{2}")) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Ange slutdatum i formatet YYYY-MM-DD.");
+        return;
+    }
+
+    try {
+        String projektnamn = redigerProjektField.getText().trim(); 
+        String sql = "UPDATE projekt SET slutdatum = '" + nyttSlutdatum + "' WHERE projektnamn = '" + projektnamn + "'";
+        idb.update(sql);
+        javax.swing.JOptionPane.showMessageDialog(this, "Slutdatum uppdaterat till: " + nyttSlutdatum);
+    } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Fel vid uppdatering: " + e.getMessage());
+    }
     }//GEN-LAST:event_slutdatumRedigeraProjektFieldActionPerformed
 
     private void beskrivningProjektFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beskrivningProjektFieldActionPerformed
@@ -257,6 +295,65 @@ public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
 
     private void sparaAndringarRedigeraProjektButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sparaAndringarRedigeraProjektButtonActionPerformed
         // TODO add your handling code here:
+          try {
+        // Hämta projektets namn från fältet
+        String projektnamn = redigerProjektField.getText().trim();
+
+        // Hämta övriga uppgifter
+        String status = satusRedigeraMinaProjektComboBox.getSelectedItem().toString();
+        String startdatum = startdatumRedigeraProjektField.getText().trim();
+        String slutdatum = slutdatumRedigeraProjektField.getText().trim();
+        String beskrivning = beskrivningProjektField.getText().trim();
+        String partnerNamn = partnerRedigeraLabel.getText().trim();
+        String handlaggare = handläggareRedigeraField.getText().trim();
+
+        // Validera
+        if (projektnamn.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Fyll i projektets namn.");
+            return;
+        }
+
+        // Hämta projektets pid
+        String pid = idb.fetchSingle("SELECT pid FROM projekt WHERE projektnamn = '" + projektnamn + "'");
+
+        if (pid == null) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Kunde inte hitta projektet.");
+            return;
+        }
+
+        // Uppdatera själva projektet
+        String updateSql = "UPDATE projekt SET " +
+                           "status = '" + status + "', " +
+                           "startdatum = '" + startdatum + "', " +
+                           "slutdatum = '" + slutdatum + "', " +
+                           "beskrivning = '" + beskrivning + "' " +
+                           "WHERE pid = " + pid;
+
+        idb.update(updateSql);
+
+        // Om partnerNamn är ifyllt: koppla partner till projektet
+        if (!partnerNamn.isEmpty()) {
+            // Hämta partnerns ID
+            String partnerPid = idb.fetchSingle("SELECT partner_pid FROM partner WHERE namn = '" + partnerNamn + "'");
+
+            if (partnerPid != null) {
+                // Lägg in kopplingen om den inte redan finns
+                String check = idb.fetchSingle("SELECT * FROM projekt_partner WHERE pid = " + pid + " AND partner_pid = " + partnerPid);
+                if (check == null) {
+                    String kopplaSql = "INSERT INTO projekt_partner (pid, partner_pid) VALUES (" + pid + ", " + partnerPid + ")";
+                    idb.insert(kopplaSql);
+                }
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "Partnern hittades inte i databasen.");
+            }
+        }
+
+        // Visa klar
+        javax.swing.JOptionPane.showMessageDialog(this, "Projektet uppdaterades!");
+    } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Fel: " + e.getMessage());
+    }
+          
     }//GEN-LAST:event_sparaAndringarRedigeraProjektButtonActionPerformed
 
     /**
