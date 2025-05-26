@@ -167,7 +167,7 @@ private int aid;
 
     private void avdelningButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avdelningButtonActionPerformed
     // TODO add your handling code here:
-    new Avdelning(idb, inloggadAnvandare, aid).setVisible(true);
+    new AdminAvdelning(idb, inloggadAnvandare, aid).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_avdelningButtonActionPerformed
 

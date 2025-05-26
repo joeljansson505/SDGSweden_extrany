@@ -240,7 +240,7 @@ public class AdminSamhallutvecklingAvd extends javax.swing.JFrame {
 
     private void samhallutvAvdTillbakaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_samhallutvAvdTillbakaButtonActionPerformed
         // TODO add your handling code here:
-        new Avdelning(idb, InloggadAnvandare, aid).setVisible(true);
+        new AdminAvdelning(idb, InloggadAnvandare, aid).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_samhallutvAvdTillbakaButtonActionPerformed
 
