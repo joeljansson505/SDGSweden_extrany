@@ -47,6 +47,7 @@ public class ProjektchefMinaProjekt extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         projektPartnerTabel = new javax.swing.JTable();
         lPartnerLabel = new javax.swing.JLabel();
+        redigeraProjektButton = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -99,27 +100,32 @@ public class ProjektchefMinaProjekt extends javax.swing.JFrame {
         lPartnerLabel.setFont(new java.awt.Font(".AppleSystemUIFont", 1, 18)); // NOI18N
         lPartnerLabel.setText("Partner");
 
+        redigeraProjektButton.setBackground(new java.awt.Color(204, 204, 204));
+        redigeraProjektButton.setText("Redigera");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(384, 384, 384)
-                .addComponent(lPartnerLabel)
+                .addContainerGap()
+                .addComponent(stängFönsterButton)
+                .addGap(276, 276, 276)
+                .addComponent(etikettRubrikLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 331, Short.MAX_VALUE)
+                .addComponent(redigeraProjektButton)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(433, 433, 433)
+                        .addComponent(lPartnerLabel))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(stängFönsterButton)
-                    .addGap(233, 233, 233)
-                    .addComponent(etikettRubrikLabel)
-                    .addGap(196, 324, Short.MAX_VALUE))
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(69, 69, 69)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane4)
-                        .addComponent(jScrollPane1))
-                    .addGap(99, 99, 99)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,12 +136,14 @@ public class ProjektchefMinaProjekt extends javax.swing.JFrame {
                         .addComponent(etikettRubrikLabel))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(stängFönsterButton)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(stängFönsterButton)
+                            .addComponent(redigeraProjektButton))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lPartnerLabel)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
@@ -247,6 +255,7 @@ private void fyllPartnerTabell() {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lPartnerLabel;
     private javax.swing.JTable projektPartnerTabel;
+    private javax.swing.JButton redigeraProjektButton;
     private javax.swing.JButton stängFönsterButton;
     private javax.swing.JTable tabellProjektTabel;
     // End of variables declaration//GEN-END:variables

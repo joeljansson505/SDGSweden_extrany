@@ -3,17 +3,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package inlämningsprojekt_ny;
+import oru.inf.InfDB;
+import oru.inf.InfException;
 
 /**
  *
  * @author svanteskold
  */
 public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
-
+    private InfDB idb;
+    private String inloggadAnvandare;
+    private int aid;
     /**
      * Creates new form ProjektchefRedigeraProjekt
      */
-    public ProjektchefRedigeraProjekt() {
+    public ProjektchefRedigeraProjekt(InfDB idb, String inloggadAnvandare, int aid) {
+       this.idb = idb;
+       this.inloggadAnvandare = inloggadAnvandare;
+       this.aid = aid;
         initComponents();
     }
 
@@ -26,21 +33,231 @@ public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        projektchefTillbakaButton = new javax.swing.JButton();
+        redigeraProjektLabel = new javax.swing.JLabel();
+        redigerProjektField = new javax.swing.JTextField();
+        satusRedigeraMinaProjektComboBox = new javax.swing.JComboBox<>();
+        statusRedigeraProjektLabel = new javax.swing.JLabel();
+        startdatumRedigeraProjektLabel = new javax.swing.JLabel();
+        startdatumRedigeraProjektField = new javax.swing.JTextField();
+        slutdatumRedigeraProjektLabel = new javax.swing.JLabel();
+        slutdatumRedigeraProjektField = new javax.swing.JTextField();
+        beskrivningRedigeraProjektLabel = new javax.swing.JLabel();
+        beskrivningProjektField = new javax.swing.JTextField();
+        partnersRedigeraProjektLabel = new javax.swing.JLabel();
+        partnerRedigeraLabel = new javax.swing.JTextField();
+        handläggareRedigeraProjektLabel = new javax.swing.JLabel();
+        handläggareRedigeraField = new javax.swing.JTextField();
+        sparaAndringarRedigeraProjektButton = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        projektchefTillbakaButton.setText("Tillbaka");
+        projektchefTillbakaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                projektchefTillbakaButtonActionPerformed(evt);
+            }
+        });
+
+        redigeraProjektLabel.setText("Projekt Namn:");
+
+        redigerProjektField.setColumns(10);
+        redigerProjektField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                redigerProjektFieldActionPerformed(evt);
+            }
+        });
+
+        satusRedigeraMinaProjektComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        satusRedigeraMinaProjektComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                satusRedigeraMinaProjektComboBoxActionPerformed(evt);
+            }
+        });
+
+        statusRedigeraProjektLabel.setText("Status:");
+
+        startdatumRedigeraProjektLabel.setText("Startdatum:");
+
+        startdatumRedigeraProjektField.setColumns(8);
+        startdatumRedigeraProjektField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startdatumRedigeraProjektFieldActionPerformed(evt);
+            }
+        });
+
+        slutdatumRedigeraProjektLabel.setText("Slutdatum:");
+
+        slutdatumRedigeraProjektField.setColumns(8);
+        slutdatumRedigeraProjektField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                slutdatumRedigeraProjektFieldActionPerformed(evt);
+            }
+        });
+
+        beskrivningRedigeraProjektLabel.setText("Projektbeskrivning:");
+
+        beskrivningProjektField.setColumns(20);
+        beskrivningProjektField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                beskrivningProjektFieldActionPerformed(evt);
+            }
+        });
+
+        partnersRedigeraProjektLabel.setText("Partners:");
+
+        partnerRedigeraLabel.setColumns(20);
+        partnerRedigeraLabel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                partnerRedigeraLabelActionPerformed(evt);
+            }
+        });
+
+        handläggareRedigeraProjektLabel.setText("Handläggare:");
+
+        handläggareRedigeraField.setColumns(20);
+        handläggareRedigeraField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                handläggareRedigeraFieldActionPerformed(evt);
+            }
+        });
+
+        sparaAndringarRedigeraProjektButton.setText("Spara");
+        sparaAndringarRedigeraProjektButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sparaAndringarRedigeraProjektButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(startdatumRedigeraProjektLabel)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(startdatumRedigeraProjektField, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                                    .addComponent(slutdatumRedigeraProjektLabel)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(slutdatumRedigeraProjektField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(redigeraProjektLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(statusRedigeraProjektLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(satusRedigeraMinaProjektComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(redigerProjektField, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(beskrivningRedigeraProjektLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(beskrivningProjektField, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addComponent(partnerRedigeraLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(139, 139, 139)
+                        .addComponent(projektchefTillbakaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(sparaAndringarRedigeraProjektButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(47, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(handläggareRedigeraField, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(78, 78, 78))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(116, 116, 116)
+                .addComponent(partnersRedigeraProjektLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(handläggareRedigeraProjektLabel)
+                .addGap(109, 109, 109))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(redigeraProjektLabel)
+                    .addComponent(redigerProjektField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(satusRedigeraMinaProjektComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(statusRedigeraProjektLabel))
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(startdatumRedigeraProjektLabel)
+                            .addComponent(startdatumRedigeraProjektField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(slutdatumRedigeraProjektLabel)
+                            .addComponent(slutdatumRedigeraProjektField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(beskrivningRedigeraProjektLabel)
+                            .addComponent(beskrivningProjektField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                        .addComponent(partnersRedigeraProjektLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(partnerRedigeraLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(handläggareRedigeraProjektLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(handläggareRedigeraField, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(projektchefTillbakaButton)
+                    .addComponent(sparaAndringarRedigeraProjektButton))
+                .addGap(16, 16, 16))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void projektchefTillbakaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projektchefTillbakaButtonActionPerformed
+        // TODO add your handling code here:
+        new ProjektchefMinaProjekt(idb, inloggadAnvandare, aid).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_projektchefTillbakaButtonActionPerformed
+
+    private void redigerProjektFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redigerProjektFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_redigerProjektFieldActionPerformed
+
+    private void satusRedigeraMinaProjektComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_satusRedigeraMinaProjektComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_satusRedigeraMinaProjektComboBoxActionPerformed
+
+    private void startdatumRedigeraProjektFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startdatumRedigeraProjektFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_startdatumRedigeraProjektFieldActionPerformed
+
+    private void slutdatumRedigeraProjektFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_slutdatumRedigeraProjektFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_slutdatumRedigeraProjektFieldActionPerformed
+
+    private void beskrivningProjektFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beskrivningProjektFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_beskrivningProjektFieldActionPerformed
+
+    private void partnerRedigeraLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_partnerRedigeraLabelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_partnerRedigeraLabelActionPerformed
+
+    private void handläggareRedigeraFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_handläggareRedigeraFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_handläggareRedigeraFieldActionPerformed
+
+    private void sparaAndringarRedigeraProjektButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sparaAndringarRedigeraProjektButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sparaAndringarRedigeraProjektButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -72,11 +289,27 @@ public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ProjektchefRedigeraProjekt().setVisible(true);
+                //new ProjektchefRedigeraProjekt().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField beskrivningProjektField;
+    private javax.swing.JLabel beskrivningRedigeraProjektLabel;
+    private javax.swing.JTextField handläggareRedigeraField;
+    private javax.swing.JLabel handläggareRedigeraProjektLabel;
+    private javax.swing.JTextField partnerRedigeraLabel;
+    private javax.swing.JLabel partnersRedigeraProjektLabel;
+    private javax.swing.JButton projektchefTillbakaButton;
+    private javax.swing.JTextField redigerProjektField;
+    private javax.swing.JLabel redigeraProjektLabel;
+    private javax.swing.JComboBox<String> satusRedigeraMinaProjektComboBox;
+    private javax.swing.JTextField slutdatumRedigeraProjektField;
+    private javax.swing.JLabel slutdatumRedigeraProjektLabel;
+    private javax.swing.JButton sparaAndringarRedigeraProjektButton;
+    private javax.swing.JTextField startdatumRedigeraProjektField;
+    private javax.swing.JLabel startdatumRedigeraProjektLabel;
+    private javax.swing.JLabel statusRedigeraProjektLabel;
     // End of variables declaration//GEN-END:variables
 }

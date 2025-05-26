@@ -6,6 +6,7 @@ package inlämningsprojekt_ny;
  */
 import inlämningsprojekt_ny.Validering;
 import java.awt.event.ActionEvent;
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 /**
  *
@@ -57,6 +58,9 @@ public class AdminHallbarhetavd extends javax.swing.JFrame {
         sokProjektLabel = new javax.swing.JLabel();
         sokProjektLabel2 = new javax.swing.JLabel();
         sokProjektDatumButton = new javax.swing.JButton();
+        laggTillButton = new javax.swing.JButton();
+        raderaButton = new javax.swing.JButton();
+        namnField = new javax.swing.JTextField();
 
         jTextField1.setText("jTextField1");
 
@@ -154,6 +158,26 @@ public class AdminHallbarhetavd extends javax.swing.JFrame {
             }
         });
 
+        laggTillButton.setText("Lägg till");
+        laggTillButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                laggTillButtonActionPerformed(evt);
+            }
+        });
+
+        raderaButton.setText("Radera");
+        raderaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                raderaButtonActionPerformed(evt);
+            }
+        });
+
+        namnField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                namnFieldActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -162,45 +186,51 @@ public class AdminHallbarhetavd extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(sokHandlaggarField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(HallbarhetavdTillbakaButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 255, Short.MAX_VALUE)
+                        .addComponent(plaAvdHallbarhetButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sokHandlaggareButton)
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(sokProjektLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(sokProjektField2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(sokProjektLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(sokProjektField, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(sokProjektDatumButton)
-                        .addGap(0, 27, Short.MAX_VALUE))
+                        .addComponent(pAvdHallbarhetButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(aAvdHallbarhetButton)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(HallbarhetavdTillbakaButton))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(plaAvdHallbarhetButton)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(sokHandlaggarField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(pAvdHallbarhetButton)
+                                .addComponent(sokHandlaggareButton)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(32, 32, 32)
+                                                .addComponent(sokProjektLabel2)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(sokProjektField2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(sokProjektLabel)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(sokProjektField, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(hallbarhetAvdProjektButton)
+                                            .addComponent(sokProjektDatumButton)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(69, 69, 69)
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(aAvdHallbarhetButton)
-                                .addContainerGap())
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(22, 22, 22))))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(raderaButton)
+                                    .addComponent(laggTillButton)
+                                    .addComponent(namnField, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(53, 53, 53)
                 .addComponent(hallbarhetAvdPersonalButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(hallbarhetAvdProjektButton)
-                .addGap(55, 55, 55))
+                .addGap(55, 462, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,7 +266,14 @@ public class AdminHallbarhetavd extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(namnField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(raderaButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(laggTillButton)))
                         .addContainerGap())))
         );
 
@@ -245,7 +282,7 @@ public class AdminHallbarhetavd extends javax.swing.JFrame {
 
     private void HallbarhetavdTillbakaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HallbarhetavdTillbakaButtonActionPerformed
         // TODO add your handling code here:
-        new Avdelning(idb, inloggadAnvandare, aid).setVisible(true);
+        new AdminAvdelning(idb, inloggadAnvandare, aid).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_HallbarhetavdTillbakaButtonActionPerformed
 
@@ -465,6 +502,71 @@ public class AdminHallbarhetavd extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_sokProjektField2ActionPerformed
 
+    private void raderaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_raderaButtonActionPerformed
+        // TODO add your handling code here:
+        String namn = namnField.getText().trim();
+        
+        if(namn.isEmpty() || !namn.contains(" ")){
+            JOptionPane.showMessageDialog(null, "Skriv för- och efternamn.");
+            return;
+        }
+        
+        String fornamn = namn.substring(0, namn.indexOf(" "));
+        String efternamn = namn.substring(namn.indexOf(" ") + 1);
+        
+        try{
+            String sqlAid = "SELECT aid FROM anstalld WHERE fornamn = '" + fornamn.replace("'", "''") + "' AND efternamn = '" + efternamn.replace("'", "''") + "'";
+            String aid = idb.fetchSingle(sqlAid);
+            
+            if(aid == null){
+                JOptionPane.showMessageDialog(null, "Personen finns inte:" + namn);
+                return;
+            }
+            
+            String deleteAnsProj = "DELETE FROM ans_proj WHERE aid = " + aid;
+            idb.delete(deleteAnsProj);
+            
+            String deletePerson = "DELETE FROM ans_proj WHERE aid = " + aid;
+            idb.delete(deletePerson);
+            
+            JOptionPane.showMessageDialog(null, "Personen raderades: " + namn);
+            
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Fel vid radering: " + e.getMessage());
+        }
+    }//GEN-LAST:event_raderaButtonActionPerformed
+
+    private void laggTillButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laggTillButtonActionPerformed
+        // TODO add your handling code here:
+        String namn = namnField.getText().trim();
+        
+        if(namn.isEmpty() || !namn.contains(" ")){
+            JOptionPane.showMessageDialog(null, "Skriv för- och efternamn.");
+            return;
+        }
+        
+        String fornamn = namn.substring(0, namn.indexOf(" "));
+        String efternamn = namn.substring(namn.indexOf(" ") + 1);
+        
+        try{
+            String sql = "INSERT INTO anstalld (fornamn, efternamn, epost, telefon, adress, avdelning) VALUES (" +
+                    "'" + fornamn.replace("'", "''") + "', " +
+                    "'" + efternamn.replace("'", "''") + "'," +
+                    "'default@example.com', '-', '-', 'Handläggare', 1)";
+            
+            idb.insert(sql);
+            JOptionPane.showMessageDialog(null, "Person tillagd: " + namn);
+            
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Fel vid tillägg: " + e.getMessage());
+        }
+ 
+    }//GEN-LAST:event_laggTillButtonActionPerformed
+
+    private void namnFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namnFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_namnFieldActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -512,8 +614,11 @@ public class AdminHallbarhetavd extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton laggTillButton;
+    private javax.swing.JTextField namnField;
     private javax.swing.JToggleButton pAvdHallbarhetButton;
     private javax.swing.JToggleButton plaAvdHallbarhetButton;
+    private javax.swing.JButton raderaButton;
     private javax.swing.JTextField sokHandlaggarField;
     private javax.swing.JButton sokHandlaggareButton;
     private javax.swing.JButton sokProjektDatumButton;

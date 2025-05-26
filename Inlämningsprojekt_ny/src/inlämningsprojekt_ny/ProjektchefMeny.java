@@ -52,6 +52,7 @@ private int aid;
         minProfilButton = new javax.swing.JButton();
         huvudmenyLabel = new javax.swing.JLabel();
         loggaUtButton = new javax.swing.JButton();
+        projektchefStatistikButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,6 +102,13 @@ private int aid;
             }
         });
 
+        projektchefStatistikButton.setText("Statistik");
+        projektchefStatistikButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                projektchefStatistikButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -110,25 +118,23 @@ private int aid;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(minProfilButton, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 164, Short.MAX_VALUE)
-                                .addComponent(minaProjektButton, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(avdelningButton, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)))
-                        .addComponent(hallbarhetsmalenButton)
-                        .addGap(53, 53, 53))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(minProfilButton, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(inloggadAnvandareLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(145, 145, 145)
                                 .addComponent(huvudmenyLabel))
                             .addComponent(loggaUtButton))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 52, Short.MAX_VALUE)
+                        .addComponent(minaProjektButton, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(76, 76, 76)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(projektchefStatistikButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(avdelningButton, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
+                        .addGap(28, 28, 28)
+                        .addComponent(hallbarhetsmalenButton)
+                        .addGap(107, 107, 107))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,7 +152,9 @@ private int aid;
                     .addComponent(hallbarhetsmalenButton, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
                     .addComponent(avdelningButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(minaProjektButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 268, Short.MAX_VALUE)
+                .addGap(80, 80, 80)
+                .addComponent(projektchefStatistikButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
                 .addComponent(loggaUtButton)
                 .addGap(14, 14, 14))
         );
@@ -169,13 +177,13 @@ private int aid;
 
     private void minaProjektButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minaProjektButtonActionPerformed
         // TODO add your handling code here:
-        new MinaProjekt(idb, inloggadAnvandare, aid).setVisible(true);
+        new ProjektchefMinaProjekt(idb, inloggadAnvandare, aid).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_minaProjektButtonActionPerformed
 
     private void hallbarhetsmalenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hallbarhetsmalenButtonActionPerformed
         // TODO add your handling code here:
-        new Hallbarhetsmal(idb, inloggadAnvandare, aid).setVisible(true);
+        new ProjektchefHallbarhetsmal(idb, inloggadAnvandare, aid).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_hallbarhetsmalenButtonActionPerformed
 
@@ -200,6 +208,12 @@ private int aid;
         JOptionPane.showMessageDialog(this, "Fel vid hämtning av anställnings-ID: " + ex.getMessage());
     }
     }//GEN-LAST:event_minProfilButtonActionPerformed
+
+    private void projektchefStatistikButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projektchefStatistikButtonActionPerformed
+        // TODO add your handling code here:
+        new ProjektchefStatistik(idb, inloggadAnvandare, aid).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_projektchefStatistikButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -246,5 +260,6 @@ private int aid;
     private javax.swing.JButton loggaUtButton;
     private javax.swing.JButton minProfilButton;
     private javax.swing.JButton minaProjektButton;
+    private javax.swing.JButton projektchefStatistikButton;
     // End of variables declaration//GEN-END:variables
 }
