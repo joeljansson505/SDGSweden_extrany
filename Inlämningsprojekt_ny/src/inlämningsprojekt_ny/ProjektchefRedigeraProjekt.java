@@ -3,17 +3,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package inlämningsprojekt_ny;
+import oru.inf.InfDB;
+import oru.inf.InfException;
 
 /**
  *
  * @author svanteskold
  */
 public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
-
+    private InfDB idb;
+    private String inloggadAnvandare;
+    private int aid;
     /**
      * Creates new form ProjektchefRedigeraProjekt
      */
-    public ProjektchefRedigeraProjekt() {
+    public ProjektchefRedigeraProjekt(InfDB idb, String inloggadAnvandare, int aid) {
+       this.idb = idb;
+       this.inloggadAnvandare = inloggadAnvandare;
+       this.aid = aid;
         initComponents();
     }
 
@@ -282,7 +289,7 @@ public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ProjektchefRedigeraProjekt().setVisible(true);
+                //new ProjektchefRedigeraProjekt().setVisible(true);
             }
         });
     }
