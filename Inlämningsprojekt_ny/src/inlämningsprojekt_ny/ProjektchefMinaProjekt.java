@@ -102,21 +102,25 @@ public class ProjektchefMinaProjekt extends javax.swing.JFrame {
 
         redigeraProjektButton.setBackground(new java.awt.Color(204, 204, 204));
         redigeraProjektButton.setText("Redigera");
+        redigeraProjektButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                redigeraProjektButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(stängFönsterButton)
-                .addGap(276, 276, 276)
-                .addComponent(etikettRubrikLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 331, Short.MAX_VALUE)
-                .addComponent(redigeraProjektButton)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(stängFönsterButton)
+                        .addGap(276, 276, 276)
+                        .addComponent(etikettRubrikLabel)
+                        .addGap(69, 69, 69)
+                        .addComponent(redigeraProjektButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(433, 433, 433)
                         .addComponent(lPartnerLabel))
@@ -125,7 +129,7 @@ public class ProjektchefMinaProjekt extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE)
                             .addComponent(jScrollPane1))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(141, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,17 +137,17 @@ public class ProjektchefMinaProjekt extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
-                        .addComponent(etikettRubrikLabel))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(etikettRubrikLabel)
+                            .addComponent(redigeraProjektButton)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(stängFönsterButton)
-                            .addComponent(redigeraProjektButton))))
+                        .addComponent(stängFönsterButton)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lPartnerLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
@@ -155,6 +159,12 @@ public class ProjektchefMinaProjekt extends javax.swing.JFrame {
        new ProjektchefMeny(idb, inloggadAnvandare, aid).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_stängFönsterButtonActionPerformed
+
+    private void redigeraProjektButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redigeraProjektButtonActionPerformed
+        // TODO add your handling code here:
+        new ProjektchefRedigeraProjekt(idb, inloggadAnvandare, aid).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_redigeraProjektButtonActionPerformed
 
     /**
      * @param args the command line arguments
