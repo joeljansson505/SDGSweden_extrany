@@ -4,6 +4,7 @@ package inlämningsprojekt_ny;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 /**
  *
@@ -52,6 +53,9 @@ public class AdminTeknologiskInnovationavd extends javax.swing.JFrame {
         sokProjektTekField = new javax.swing.JTextField();
         sokProjektTekField2 = new javax.swing.JTextField();
         sokProjektDatumTekButton = new javax.swing.JButton();
+        andraNamnTekField = new javax.swing.JTextField();
+        raderaTekButton = new javax.swing.JButton();
+        laggTillTekButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -147,6 +151,26 @@ public class AdminTeknologiskInnovationavd extends javax.swing.JFrame {
             }
         });
 
+        andraNamnTekField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                andraNamnTekFieldActionPerformed(evt);
+            }
+        });
+
+        raderaTekButton.setText("Radera");
+        raderaTekButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                raderaTekButtonActionPerformed(evt);
+            }
+        });
+
+        laggTillTekButton.setText("Lägg till");
+        laggTillTekButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                laggTillTekButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -197,7 +221,15 @@ public class AdminTeknologiskInnovationavd extends javax.swing.JFrame {
                                 .addGap(26, 26, 26))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(andraNamnTekField)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(raderaTekButton)
+                                            .addComponent(laggTillTekButton))
+                                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(18, 18, 18)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(15, 15, 15))))
         );
@@ -231,9 +263,16 @@ public class AdminTeknologiskInnovationavd extends javax.swing.JFrame {
                     .addComponent(TekAvdPersonalButton)
                     .addComponent(TekAvdProjektButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                        .addComponent(jScrollPane3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(andraNamnTekField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(raderaTekButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(laggTillTekButton)))
                 .addContainerGap())
         );
 
@@ -458,6 +497,81 @@ public class AdminTeknologiskInnovationavd extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_sokProjektTekField2ActionPerformed
 
+    private void andraNamnTekFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andraNamnTekFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_andraNamnTekFieldActionPerformed
+
+    private void raderaTekButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_raderaTekButtonActionPerformed
+        // TODO add your handling code here:
+                String namn = andraNamnTekField.getText().trim();
+        
+        if(namn.isEmpty() || !namn.contains(" ")){
+            JOptionPane.showMessageDialog(null, "Skriv för- och efternamn.");
+            return;
+        }
+        
+        String fornamn = namn.substring(0, namn.indexOf(" "));
+        String efternamn = namn.substring(namn.indexOf(" ") + 1);
+        
+        try{
+            String sqlAid = "SELECT aid FROM anstalld WHERE fornamn = '" + fornamn.replace("'", "''") + "' AND efternamn = '" + efternamn.replace("'", "''") + "'";
+            String aid = idb.fetchSingle(sqlAid);
+            
+            if(aid == null){
+                JOptionPane.showMessageDialog(null, "Personen finns inte:" + namn);
+                return;
+            }
+            
+            String deleteAnsProj = "DELETE FROM ans_proj WHERE aid = " + aid;
+            idb.delete(deleteAnsProj);
+            
+            String deletePerson = "DELETE FROM ans_proj WHERE aid = " + aid;
+            idb.delete(deletePerson);
+            
+            JOptionPane.showMessageDialog(null, "Personen raderades: " + namn);
+            
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Fel vid radering: " + e.getMessage());
+        }
+    }//GEN-LAST:event_raderaTekButtonActionPerformed
+
+    private void laggTillTekButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laggTillTekButtonActionPerformed
+        // TODO add your handling code here:
+                String namn = andraNamnTekField.getText().trim();
+        
+        if(namn.isEmpty() || !namn.contains(" ")){
+            JOptionPane.showMessageDialog(null, "Skriv för- och efternamn.");
+            return;
+        }
+        
+        String fornamn = namn.substring(0, namn.indexOf(" "));
+        String efternamn = namn.substring(namn.indexOf(" ") + 1);
+        
+        try{
+            java.util.Random rand = new java.util.Random();
+            int aid;
+            
+            for(int i = 0; i < 10; i++){
+            aid = rand.nextInt(100000);
+            String checkSql = "SELECT aid FROM anstalld WHERE aid = " + aid;
+            if(idb.fetchSingle(checkSql) == null){
+            String sql = "INSERT INTO anstalld (aid, fornamn, efternamn, epost, telefon, adress, avdelning, losenord, anstallningsdatum) VALUES (" +
+                   aid + ", " +
+                   "'" + fornamn.replace("'", "''") + "', " +
+                   "'" + efternamn.replace("'", "''") + "', " +
+                   "'default@example.com', '-', '-', 1, 'default1234', '2024-01-01')";
+
+            
+            idb.insert(sql);
+            JOptionPane.showMessageDialog(null, "Person tillagd: " + namn);
+            return;
+            }
+          }
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Fel vid tillägg: " + e.getMessage());
+        }
+    }//GEN-LAST:event_laggTillTekButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -501,12 +615,15 @@ public class AdminTeknologiskInnovationavd extends javax.swing.JFrame {
     private javax.swing.JTextArea TekAvdProjektField;
     private javax.swing.JButton TekAvdTillbakaButton;
     private javax.swing.JToggleButton aAvdTekInnovationButton;
+    private javax.swing.JTextField andraNamnTekField;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JButton laggTillTekButton;
     private javax.swing.JToggleButton pAvdTekInnovationButton;
     private javax.swing.JToggleButton plaAvdTekInnovationButton;
+    private javax.swing.JButton raderaTekButton;
     private javax.swing.JTextField sokHandlaggarTekField;
     private javax.swing.JButton sokHandlaggareTekButton;
     private javax.swing.JButton sokProjektDatumTekButton;

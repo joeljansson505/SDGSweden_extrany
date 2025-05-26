@@ -4,6 +4,7 @@ package inlämningsprojekt_ny;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 
 /**
@@ -53,6 +54,9 @@ public class AdminSamhallutvecklingAvd extends javax.swing.JFrame {
         sokProjektSamField = new javax.swing.JTextField();
         sokProjektSamField2 = new javax.swing.JTextField();
         sokProjektSamDatumButton = new javax.swing.JButton();
+        andraNamnSamhallField = new javax.swing.JTextField();
+        raderaSamhallButton = new javax.swing.JButton();
+        laggTillSamhallButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -149,6 +153,26 @@ public class AdminSamhallutvecklingAvd extends javax.swing.JFrame {
             }
         });
 
+        andraNamnSamhallField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                andraNamnSamhallFieldActionPerformed(evt);
+            }
+        });
+
+        raderaSamhallButton.setText("Radera");
+        raderaSamhallButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                raderaSamhallButtonActionPerformed(evt);
+            }
+        });
+
+        laggTillSamhallButton.setText("Lägg till");
+        laggTillSamhallButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                laggTillSamhallButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -157,11 +181,16 @@ public class AdminSamhallutvecklingAvd extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(andraNamnSamhallField, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(raderaSamhallButton)
+                            .addComponent(laggTillSamhallButton)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(45, 45, 45)
                         .addComponent(samhallutvecklingAvdPersonalButton)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(samhallutvecklingAvdProjektButton)
@@ -231,7 +260,13 @@ public class AdminSamhallutvecklingAvd extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(andraNamnSamhallField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(raderaSamhallButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(laggTillSamhallButton)))
                 .addGap(24, 24, 24))
         );
 
@@ -462,6 +497,81 @@ public class AdminSamhallutvecklingAvd extends javax.swing.JFrame {
     }                                   
     }//GEN-LAST:event_sokHandlaggareSamButtonActionPerformed
 
+    private void raderaSamhallButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_raderaSamhallButtonActionPerformed
+        // TODO add your handling code here:
+                String namn = andraNamnSamhallField.getText().trim();
+        
+        if(namn.isEmpty() || !namn.contains(" ")){
+            JOptionPane.showMessageDialog(null, "Skriv för- och efternamn.");
+            return;
+        }
+        
+        String fornamn = namn.substring(0, namn.indexOf(" "));
+        String efternamn = namn.substring(namn.indexOf(" ") + 1);
+        
+        try{
+            String sqlAid = "SELECT aid FROM anstalld WHERE fornamn = '" + fornamn.replace("'", "''") + "' AND efternamn = '" + efternamn.replace("'", "''") + "'";
+            String aid = idb.fetchSingle(sqlAid);
+            
+            if(aid == null){
+                JOptionPane.showMessageDialog(null, "Personen finns inte:" + namn);
+                return;
+            }
+            
+            String deleteAnsProj = "DELETE FROM ans_proj WHERE aid = " + aid;
+            idb.delete(deleteAnsProj);
+            
+            String deletePerson = "DELETE FROM ans_proj WHERE aid = " + aid;
+            idb.delete(deletePerson);
+            
+            JOptionPane.showMessageDialog(null, "Personen raderades: " + namn);
+            
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Fel vid radering: " + e.getMessage());
+        }
+    }//GEN-LAST:event_raderaSamhallButtonActionPerformed
+
+    private void laggTillSamhallButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laggTillSamhallButtonActionPerformed
+        // TODO add your handling code here:
+                String namn = andraNamnSamhallField.getText().trim();
+        
+        if(namn.isEmpty() || !namn.contains(" ")){
+            JOptionPane.showMessageDialog(null, "Skriv för- och efternamn.");
+            return;
+        }
+        
+        String fornamn = namn.substring(0, namn.indexOf(" "));
+        String efternamn = namn.substring(namn.indexOf(" ") + 1);
+        
+        try{
+            java.util.Random rand = new java.util.Random();
+            int aid;
+            
+            for(int i = 0; i < 10; i++){
+            aid = rand.nextInt(100000);
+            String checkSql = "SELECT aid FROM anstalld WHERE aid = " + aid;
+            if(idb.fetchSingle(checkSql) == null){
+            String sql = "INSERT INTO anstalld (aid, fornamn, efternamn, epost, telefon, adress, avdelning, losenord, anstallningsdatum) VALUES (" +
+                   aid + ", " +
+                   "'" + fornamn.replace("'", "''") + "', " +
+                   "'" + efternamn.replace("'", "''") + "', " +
+                   "'default@example.com', '-', '-', 1, 'default1234', '2024-01-01')";
+
+            
+            idb.insert(sql);
+            JOptionPane.showMessageDialog(null, "Person tillagd: " + namn);
+            return;
+            }
+          }
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Fel vid tillägg: " + e.getMessage());
+        }
+    }//GEN-LAST:event_laggTillSamhallButtonActionPerformed
+
+    private void andraNamnSamhallFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andraNamnSamhallFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_andraNamnSamhallFieldActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -500,11 +610,14 @@ public class AdminSamhallutvecklingAvd extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton aAvdSamhallutvecklingButton;
+    private javax.swing.JTextField andraNamnSamhallField;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton laggTillSamhallButton;
     private javax.swing.JToggleButton pAvdSamhallutvecklingButton;
     private javax.swing.JToggleButton plaAvdSamhallutvecklingButton;
+    private javax.swing.JButton raderaSamhallButton;
     private javax.swing.JButton samhallutvAvdTillbakaButton;
     private javax.swing.JButton samhallutvecklingAvdPersonalButton;
     private javax.swing.JTextArea samhallutvecklingAvdPersonalField;
