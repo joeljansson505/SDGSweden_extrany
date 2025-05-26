@@ -9,7 +9,7 @@ import oru.inf.InfDB;
  *
  * @author paulu
  */
-public class TeknologiskInnovationavd extends javax.swing.JFrame {
+public class ProjektchefTeknologiskInnovationavd extends javax.swing.JFrame {
 
     private InfDB idb;
     private String InloggadAnvandare;
@@ -17,7 +17,7 @@ public class TeknologiskInnovationavd extends javax.swing.JFrame {
     /**
      * Creates new form TeknologiskInnovationavd
      */
-    public TeknologiskInnovationavd(InfDB idb, String InloggadAnvandare, int aid) {
+    public ProjektchefTeknologiskInnovationavd(InfDB idb, String InloggadAnvandare, int aid) {
         this.idb = idb;
         this.InloggadAnvandare = InloggadAnvandare;
         this.aid = aid;
@@ -243,7 +243,7 @@ public class TeknologiskInnovationavd extends javax.swing.JFrame {
 
     private void TekAvdTillbakaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TekAvdTillbakaButtonActionPerformed
         // TODO add your handling code here:
-        new Avdelning(idb, InloggadAnvandare, aid).setVisible(true);
+        new ProjektchefAvdelning(idb, InloggadAnvandare, aid).setVisible(true);
         this.dispose();        
     }//GEN-LAST:event_TekAvdTillbakaButtonActionPerformed
 
@@ -521,14 +521,15 @@ public class TeknologiskInnovationavd extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TeknologiskInnovationavd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProjektchefTeknologiskInnovationavd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TeknologiskInnovationavd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProjektchefTeknologiskInnovationavd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TeknologiskInnovationavd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProjektchefTeknologiskInnovationavd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TeknologiskInnovationavd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProjektchefTeknologiskInnovationavd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

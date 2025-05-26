@@ -9,7 +9,7 @@ import oru.inf.InfDB;
  *
  * @author paulu
  */
-public class TeknologiskInnovationavd extends javax.swing.JFrame {
+public class AdminTeknologiskInnovationavd extends javax.swing.JFrame {
 
     private InfDB idb;
     private String InloggadAnvandare;
@@ -17,7 +17,7 @@ public class TeknologiskInnovationavd extends javax.swing.JFrame {
     /**
      * Creates new form TeknologiskInnovationavd
      */
-    public TeknologiskInnovationavd(InfDB idb, String InloggadAnvandare, int aid) {
+    public AdminTeknologiskInnovationavd(InfDB idb, String InloggadAnvandare, int aid) {
         this.idb = idb;
         this.InloggadAnvandare = InloggadAnvandare;
         this.aid = aid;
@@ -178,24 +178,23 @@ public class TeknologiskInnovationavd extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(sokHandlaggareTekButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(sokProjektDatumTekButton)
-                                .addContainerGap())))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(sokProjektTekLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(sokProjektTekLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(sokProjektTekField2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(sokProjektTekField, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(111, 111, 111))
+                                        .addComponent(sokProjektTekLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(sokProjektTekField, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(sokProjektTekLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(sokProjektTekField2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addComponent(sokProjektDatumTekButton)
+                                .addGap(26, 26, 26))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -212,8 +211,8 @@ public class TeknologiskInnovationavd extends javax.swing.JFrame {
                     .addComponent(pAvdTekInnovationButton)
                     .addComponent(aAvdTekInnovationButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(sokProjektTekLabel)
                             .addComponent(sokProjektTekField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -222,12 +221,12 @@ public class TeknologiskInnovationavd extends javax.swing.JFrame {
                             .addComponent(sokProjektTekLabel2)
                             .addComponent(sokProjektTekField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(14, 14, 14))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(sokHandlaggarTekField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(sokHandlaggareTekButton))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(sokProjektDatumTekButton)
-                        .addGap(30, 30, 30)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(sokHandlaggarTekField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sokHandlaggareTekButton))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TekAvdPersonalButton)
                     .addComponent(TekAvdProjektButton))
@@ -453,51 +452,6 @@ public class TeknologiskInnovationavd extends javax.swing.JFrame {
 
     private void sokProjektDatumTekButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokProjektDatumTekButtonActionPerformed
         // TODO add your handling code here:
-        String franDatum = sokProjektTekField.getText().trim();
-    String tillDatum = sokProjektTekField2.getText().trim();
-
-    if (franDatum.isEmpty() || tillDatum.isEmpty()) {
-        TekAvdProjektField.setText("Ange både från- och till-datum.");
-        return;
-    }
-
-    try {
-        java.sql.Date franDate = java.sql.Date.valueOf(franDatum);
-        java.sql.Date tillDate = java.sql.Date.valueOf(tillDatum);
-
-        String sql = "SELECT DISTINCT p.projektnamn, p.startdatum, p.slutdatum, p.beskrivning " +
-                     "FROM projekt p " +
-                     "JOIN proj_hallbarhet ph ON p.pid = ph.pid " +
-                     "JOIN avd_hallbarhet ah ON ph.hid = ah.hid " +
-                     "JOIN avdelning a ON ah.avdid = a.avdid " +
-                     "WHERE a.namn = 'Avdelning för Teknologisk Innovation och Entreprenörskap' " +
-                     "AND p.status = 'Pågående' " +
-                     "AND p.startdatum <= '" + tillDatum + "' " +
-                     "AND p.slutdatum >= '" + franDatum + "'";
-
-        System.out.println("SQL-fråga: " + sql);
-
-        var resultat = idb.fetchRows(sql);
-
-        if (resultat != null && !resultat.isEmpty()) {
-            StringBuilder sb = new StringBuilder();
-            for (var rad : resultat) {
-                sb.append("Projektnamn: ").append(rad.get("projektnamn")).append("\n")
-                  .append("Startdatum: ").append(rad.get("startdatum")).append("\n")
-                  .append("Slutdatum: ").append(rad.get("slutdatum")).append("\n")
-                  .append("Beskrivning: ").append(rad.get("beskrivning")).append("\n")
-                  .append("--------------------------\n");
-            }
-            TekAvdProjektField.setText(sb.toString());
-        } else {
-            TekAvdProjektField.setText("Inga aktiva projekt hittades mellan datumen.");
-        }
-
-    } catch (IllegalArgumentException e) {
-        TekAvdProjektField.setText("Fel format på datum. Använd YYYY-MM-DD.");
-    } catch (Exception e) {
-        TekAvdProjektField.setText("Fel vid sökning: " + e.getMessage());
-    }
     }//GEN-LAST:event_sokProjektDatumTekButtonActionPerformed
 
     private void sokProjektTekField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokProjektTekField2ActionPerformed
@@ -521,14 +475,15 @@ public class TeknologiskInnovationavd extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TeknologiskInnovationavd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminTeknologiskInnovationavd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TeknologiskInnovationavd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminTeknologiskInnovationavd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TeknologiskInnovationavd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminTeknologiskInnovationavd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TeknologiskInnovationavd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminTeknologiskInnovationavd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

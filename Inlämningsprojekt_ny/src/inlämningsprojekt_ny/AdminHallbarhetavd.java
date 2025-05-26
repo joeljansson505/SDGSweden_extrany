@@ -11,7 +11,7 @@ import oru.inf.InfDB;
  *
  * @author joelj
  */
-public class Hallbarhetavd extends javax.swing.JFrame {
+public class AdminHallbarhetavd extends javax.swing.JFrame {
     
     private InfDB idb;
     private String inloggadAnvandare;
@@ -20,7 +20,7 @@ public class Hallbarhetavd extends javax.swing.JFrame {
     /**
      * Creates new form Hallbarhetavd
      */
-    public Hallbarhetavd(InfDB idb, String inloggadAnvandare, int aid) {
+    public AdminHallbarhetavd(InfDB idb, String inloggadAnvandare, int aid) {
         this.idb = idb;
         this.inloggadAnvandare = inloggadAnvandare;
         this.aid = aid;
@@ -165,25 +165,25 @@ public class Hallbarhetavd extends javax.swing.JFrame {
                         .addComponent(sokHandlaggarField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(sokHandlaggareButton)
+                        .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(32, 32, 32)
+                                .addGap(3, 3, 3)
                                 .addComponent(sokProjektLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(sokProjektField2))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
+                                .addGap(18, 18, 18)
+                                .addComponent(sokProjektField2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(sokProjektLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(sokProjektField)))
-                        .addGap(12, 12, 12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(sokProjektField, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
                         .addComponent(sokProjektDatumButton)
-                        .addContainerGap())
+                        .addGap(0, 27, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(HallbarhetavdTillbakaButton))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(plaAvdHallbarhetButton)
@@ -211,9 +211,9 @@ public class Hallbarhetavd extends javax.swing.JFrame {
                     .addComponent(pAvdHallbarhetButton)
                     .addComponent(aAvdHallbarhetButton)
                     .addComponent(plaAvdHallbarhetButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(sokProjektField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(sokProjektLabel))
@@ -224,11 +224,11 @@ public class Hallbarhetavd extends javax.swing.JFrame {
                                 .addComponent(sokHandlaggareButton))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(sokProjektField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(sokProjektLabel2))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(sokProjektDatumButton)))
-                .addGap(18, 18, 18)
+                                .addComponent(sokProjektLabel2)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(sokProjektDatumButton)
+                        .addGap(20, 20, 20)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(hallbarhetAvdPersonalButton)
                     .addComponent(hallbarhetAvdProjektButton))
@@ -451,51 +451,6 @@ public class Hallbarhetavd extends javax.swing.JFrame {
 
     private void sokProjektDatumButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokProjektDatumButtonActionPerformed
         // TODO add your handling code here:
-         String franDatum = sokProjektField.getText().trim();
-    String tillDatum = sokProjektField2.getText().trim();
-
-    if (franDatum.isEmpty() || tillDatum.isEmpty()) {
-        hallbarhetAvdProjektField.setText("Ange både från- och till-datum.");
-        return;
-    }
-
-    try {
-        java.sql.Date franDate = java.sql.Date.valueOf(franDatum);
-        java.sql.Date tillDate = java.sql.Date.valueOf(tillDatum);
-
-        String sql = "SELECT DISTINCT p.projektnamn, p.startdatum, p.slutdatum, p.beskrivning " +
-                     "FROM projekt p " +
-                     "JOIN proj_hallbarhet ph ON p.pid = ph.pid " +
-                     "JOIN avd_hallbarhet ah ON ph.hid = ah.hid " +
-                     "JOIN avdelning a ON ah.avdid = a.avdid " +
-                     "WHERE a.namn = 'Avdelning för Hållbar Energi och Klimatförändringar' " +
-                     "AND p.status = 'Pågående' " +
-                     "AND p.startdatum <= '" + tillDatum + "' " +
-                     "AND p.slutdatum >= '" + franDatum + "'";
-
-        System.out.println("SQL-fråga: " + sql);
-
-        var resultat = idb.fetchRows(sql);
-
-        if (resultat != null && !resultat.isEmpty()) {
-            StringBuilder sb = new StringBuilder();
-            for (var rad : resultat) {
-                sb.append("Projektnamn: ").append(rad.get("projektnamn")).append("\n")
-                  .append("Startdatum: ").append(rad.get("startdatum")).append("\n")
-                  .append("Slutdatum: ").append(rad.get("slutdatum")).append("\n")
-                  .append("Beskrivning: ").append(rad.get("beskrivning")).append("\n")
-                  .append("--------------------------\n");
-            }
-            hallbarhetAvdProjektField.setText(sb.toString());
-        } else {
-            hallbarhetAvdProjektField.setText("Inga aktiva projekt hittades mellan datumen.");
-        }
-
-    } catch (IllegalArgumentException e) {
-        hallbarhetAvdProjektField.setText("Fel format på datum. Använd YYYY-MM-DD.");
-    } catch (Exception e) {
-        hallbarhetAvdProjektField.setText("Fel vid sökning: " + e.getMessage());
-    }
     }//GEN-LAST:event_sokProjektDatumButtonActionPerformed
 
     private void sokHandlaggarFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokHandlaggarFieldActionPerformed
@@ -527,14 +482,15 @@ public class Hallbarhetavd extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Hallbarhetavd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminHallbarhetavd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Hallbarhetavd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminHallbarhetavd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Hallbarhetavd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminHallbarhetavd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Hallbarhetavd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminHallbarhetavd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
