@@ -549,14 +549,25 @@ public class AdminHallbarhetavd extends javax.swing.JFrame {
         String efternamn = namn.substring(namn.indexOf(" ") + 1);
         
         try{
-            String sql = "INSERT INTO anstalld (fornamn, efternamn, epost, telefon, adress, avdelning) VALUES (" +
-                    "'" + fornamn.replace("'", "''") + "', " +
-                    "'" + efternamn.replace("'", "''") + "'," +
-                    "'default@example.com', '-', '-', 'Handläggare', 1)";
+            java.util.Random rand = new java.util.Random();
+            int aid;
+            
+            for(int i = 0; i < 10; i++){
+            aid = rand.nextInt(100000);
+            String checkSql = "SELECT aid FROM anstalld WHERE aid = " + aid;
+            if(idb.fetchSingle(checkSql) == null){
+            String sql = "INSERT INTO anstalld (aid, fornamn, efternamn, epost, telefon, adress, avdelning, losenord, anstallningsdatum) VALUES (" +
+                   aid + ", " +
+                   "'" + fornamn.replace("'", "''") + "', " +
+                   "'" + efternamn.replace("'", "''") + "', " +
+                   "'default@example.com', '-', '-', 1, 'default1234', '2024-01-01')";
+
             
             idb.insert(sql);
             JOptionPane.showMessageDialog(null, "Person tillagd: " + namn);
-            
+            return;
+            }
+          }
         }catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Fel vid tillägg: " + e.getMessage());
         }
