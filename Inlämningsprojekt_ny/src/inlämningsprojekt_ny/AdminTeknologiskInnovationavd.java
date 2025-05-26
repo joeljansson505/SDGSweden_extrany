@@ -242,7 +242,7 @@ public class AdminTeknologiskInnovationavd extends javax.swing.JFrame {
 
     private void TekAvdTillbakaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TekAvdTillbakaButtonActionPerformed
         // TODO add your handling code here:
-        new Avdelning(idb, InloggadAnvandare, aid).setVisible(true);
+        new AdminAvdelning(idb, InloggadAnvandare, aid).setVisible(true);
         this.dispose();        
     }//GEN-LAST:event_TekAvdTillbakaButtonActionPerformed
 

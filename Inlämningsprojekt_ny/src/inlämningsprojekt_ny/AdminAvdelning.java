@@ -116,7 +116,7 @@ public class AdminAvdelning extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void avdButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avdButton1ActionPerformed
-      new Hallbarhetavd(idb, inloggadAnvandare,aid).setVisible(true);
+      new AdminHallbarhetavd(idb, inloggadAnvandare,aid).setVisible(true);
       this.dispose();
       
     }//GEN-LAST:event_avdButton1ActionPerformed
@@ -129,13 +129,13 @@ public class AdminAvdelning extends javax.swing.JFrame {
 
     private void avdbutton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avdbutton2ActionPerformed
         // TODO add your handling code here:
-        new SamhallutvecklingAvd(idb, inloggadAnvandare, aid).setVisible(true);
+        new AdminSamhallutvecklingAvd(idb, inloggadAnvandare, aid).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_avdbutton2ActionPerformed
 
     private void avdButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avdButton3ActionPerformed
         // TODO add your handling code here:
-        new TeknologiskInnovationavd(idb, inloggadAnvandare, aid).setVisible(true);
+        new AdminTeknologiskInnovationavd(idb, inloggadAnvandare, aid).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_avdButton3ActionPerformed
 
