@@ -42,7 +42,7 @@
               <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
               <Component id="laggTillButton" min="-2" pref="127" max="-2" attributes="0"/>
               <EmptySpace pref="410" max="32767" attributes="0"/>
-              <Component id="AndraButton" min="-2" pref="137" max="-2" attributes="0"/>
+              <Component id="SparaButton" min="-2" pref="137" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="224" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -60,7 +60,7 @@
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="laggTillButton" alignment="3" min="-2" pref="58" max="-2" attributes="0"/>
-                  <Component id="AndraButton" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
+                  <Component id="SparaButton" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="43" max="32767" attributes="0"/>
           </Group>
@@ -123,10 +123,13 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="laggTillButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="AndraButton">
+    <Component class="javax.swing.JButton" name="SparaButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Spara &#xe4;ndring"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SparaButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

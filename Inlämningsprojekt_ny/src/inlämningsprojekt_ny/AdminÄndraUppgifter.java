@@ -44,7 +44,7 @@ public class AdminÄndraUppgifter extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TableInfoUppgifter = new javax.swing.JTable();
         laggTillButton = new javax.swing.JButton();
-        AndraButton = new javax.swing.JButton();
+        SparaButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,7 +82,12 @@ public class AdminÄndraUppgifter extends javax.swing.JFrame {
             }
         });
 
-        AndraButton.setText("Spara ändring");
+        SparaButton.setText("Spara ändring");
+        SparaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SparaButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,7 +108,7 @@ public class AdminÄndraUppgifter extends javax.swing.JFrame {
                 .addGap(156, 156, 156)
                 .addComponent(laggTillButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 410, Short.MAX_VALUE)
-                .addComponent(AndraButton, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SparaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(224, 224, 224))
         );
         layout.setVerticalGroup(
@@ -118,7 +123,7 @@ public class AdminÄndraUppgifter extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(laggTillButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AndraButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SparaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
 
@@ -139,10 +144,11 @@ public class AdminÄndraUppgifter extends javax.swing.JFrame {
         try {
             switch (selected) {
                 case "Avdelning":
-                    model.setColumnIdentifiers(new String[] { "Namn", "Adress", "Epost", "Telefon", "Stad", "Chef", "Beskrivning" });
-                    var rows1 = idb.fetchRows("SELECT namn, adress, epost, telefon, stad, chef, beskrivning FROM avdelning");
+                    model.setColumnIdentifiers(new String[] { "ID", "Namn", "Adress", "Epost", "Telefon", "Stad", "Chef", "Beskrivning" });
+                    var rows1 = idb.fetchRows("SELECT avdid, namn, adress, epost, telefon, stad, chef, beskrivning FROM avdelning");
                     for (var rad : rows1) {
                         model.addRow(new Object[] {
+                            rad.get("avdid"),
                             rad.get("namn"),
                             rad.get("adress"),
                             rad.get("epost"),
@@ -156,6 +162,9 @@ public class AdminÄndraUppgifter extends javax.swing.JFrame {
             }
             
             TableInfoUppgifter.setModel(model);
+            TableInfoUppgifter.getColumnModel().getColumn(0).setMinWidth(0);
+            TableInfoUppgifter.getColumnModel().getColumn(0).setMaxWidth(0);
+            TableInfoUppgifter.getColumnModel().getColumn(0).setWidth(0);
 } catch (Exception e) {
     javax.swing.JOptionPane.showMessageDialog(this, "Fel vid hämtning: " + e.getMessage());
         }
@@ -168,9 +177,12 @@ public class AdminÄndraUppgifter extends javax.swing.JFrame {
             String adress = JOptionPane.showInputDialog(this, "Ange adress");
             String epost = JOptionPane.showInputDialog(this, "Ange Epost");
             String telefon = JOptionPane.showInputDialog(this, "Ange telefon");
+            String stad = JOptionPane.showInputDialog(this, "Ange stad");
+            String chef = JOptionPane.showInputDialog(this, "Ange chef");
+            String beskrivning = JOptionPane.showInputDialog(this, "beskrivning");
             
-            String sql = "INSERT INTO avdelning (namn, adress, epost, telefon) VALUES ('" 
-                    + namn + "', '" + adress + "', '" + epost + "', '" + telefon + "')";
+            String sql = "INSERT INTO avdelning (namn, adress, epost, telefon, stad, chef, beskrivning) VALUES ('" 
+                    + namn + "', '" + adress + "', '" + epost + "', '" + telefon + "', '" + stad + "', '" + chef + "', '" + beskrivning + "')";
             
             idb.insert(sql);
             JOptionPane.showMessageDialog(this, "Information tillagd!");
@@ -180,6 +192,50 @@ public class AdminÄndraUppgifter extends javax.swing.JFrame {
 } catch (Exception e) {
         }
     }//GEN-LAST:event_laggTillButtonActionPerformed
+
+    private void SparaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SparaButtonActionPerformed
+        // TODO add your handling code here:
+        if (TableInfoUppgifter.isEditing()); {
+            TableInfoUppgifter.getCellEditor().stopCellEditing();
+            
+    }
+        int rad = TableInfoUppgifter.getSelectedRow();
+        
+        if (rad == -1) {
+            JOptionPane.showMessageDialog(this, "Välj en rad att spara.");
+            return;
+        
+        }
+        
+        try {
+            String id = TableInfoUppgifter.getValueAt(rad, 0).toString();
+            String namn = TableInfoUppgifter.getValueAt(rad, 1).toString();
+            String adress = TableInfoUppgifter.getValueAt(rad, 2).toString();
+            String epost = TableInfoUppgifter.getValueAt(rad, 3).toString();
+            String telefon = TableInfoUppgifter.getValueAt(rad, 4).toString();
+            String stad = TableInfoUppgifter.getValueAt(rad, 5).toString();
+            String chef = TableInfoUppgifter.getValueAt(rad, 6).toString();
+            String beskrivning = TableInfoUppgifter.getValueAt(rad, 7).toString();
+            
+            namn = namn.replace("'", "''");
+            adress = adress.replace("'", "''");
+            epost = epost.replace("'", "''");
+            telefon = telefon.replace("'", "''");
+            stad = stad.replace("'", "''");
+            chef = chef.replace("'", "''");
+            beskrivning = beskrivning.replace("'", "''");
+            
+            String sql = "UPDATE avdelning SET namn='" + namn + "', adress='" + adress + "', epost='" + epost + "', telefon='" + telefon + 
+                    "',stad='" + stad + "', chef='" + chef + "', beskrivning='" + beskrivning + "' WHERE avdid=" + id;
+            idb.update(sql);
+            JOptionPane.showMessageDialog(this, "Uppgifter sparade!");
+            AndraUppgifterComboBoxActionPerformed(null);
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Fel vid Uppdatering: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_SparaButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -218,8 +274,8 @@ public class AdminÄndraUppgifter extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AdminUppgifterTillbakaButton;
-    private javax.swing.JButton AndraButton;
     private javax.swing.JComboBox<String> AndraUppgifterComboBox;
+    private javax.swing.JButton SparaButton;
     private javax.swing.JTable TableInfoUppgifter;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton laggTillButton;
