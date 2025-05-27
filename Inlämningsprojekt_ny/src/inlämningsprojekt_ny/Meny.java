@@ -28,6 +28,23 @@ private int aid;
         initComponents();
         inloggadAnvandareLabel.setText(inloggadAnvandare);
         //hej
+        getContentPane().setBackground(new java.awt.Color(30, 30, 30));
+        
+        huvudmenyLabel.setForeground(new java.awt.Color(0, 255, 0));
+        inloggadAnvandareLabel.setForeground(new java.awt.Color(0, 255, 0));
+        
+        javax.swing.JButton[] knappar = {
+            minaProjektButton, avdelningButton, hallbarhetsmalenButton,
+            minProfilButton, loggaUtButton
+        };
+        for(javax.swing.JButton knapp : knappar){
+            knapp.setBackground(new java.awt.Color(0, 0, 0));
+            knapp.setForeground(new java.awt.Color(255, 255, 255));
+            knapp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+            knapp.setFocusPainted(false);
+            knapp.setOpaque(true);
+            knapp.setContentAreaFilled(true);
+        }
         }catch (Exception e) {
             e.printStackTrace();
         }
