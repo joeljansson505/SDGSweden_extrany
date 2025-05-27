@@ -224,25 +224,7 @@ public class AdminÄndraUppgifter extends javax.swing.JFrame {
 
     private void laggTillButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laggTillButtonActionPerformed
         // TODO add your handling code here:
-        try {
-            String namn = JOptionPane.showInputDialog(this, "Ange avdelningens namn:");
-            String adress = JOptionPane.showInputDialog(this, "Ange adress");
-            String epost = JOptionPane.showInputDialog(this, "Ange Epost");
-            String telefon = JOptionPane.showInputDialog(this, "Ange telefon");
-            String stad = JOptionPane.showInputDialog(this, "Ange stad");
-            String chef = JOptionPane.showInputDialog(this, "Ange chef");
-            String beskrivning = JOptionPane.showInputDialog(this, "beskrivning");
-            
-            String sql = "INSERT INTO avdelning (namn, adress, epost, telefon, stad, chef, beskrivning) VALUES ('" 
-                    + namn + "', '" + adress + "', '" + epost + "', '" + telefon + "', '" + stad + "', '" + chef + "', '" + beskrivning + "')";
-            
-            idb.insert(sql);
-            JOptionPane.showMessageDialog(this, "Information tillagd!");
-            
-            AndraUppgifterComboBoxActionPerformed(null);
-            
-} catch (Exception e) {
-        }
+        new AdminLäggTillTaBort(idb, inloggadAnvandare, aid).setVisible(true);
     }//GEN-LAST:event_laggTillButtonActionPerformed
 
     private void SparaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SparaButtonActionPerformed
