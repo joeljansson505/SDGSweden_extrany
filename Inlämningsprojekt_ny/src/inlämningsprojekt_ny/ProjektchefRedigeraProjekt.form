@@ -55,24 +55,31 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="beskrivningProjektField" min="-2" pref="317" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                              <Component id="partnerRedigeraLabel" min="-2" pref="142" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="felmeddelandepcLabel" min="-2" pref="80" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="handläggareRedigeraField" min="-2" pref="142" max="-2" attributes="0"/>
-                          </Group>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="139" max="-2" attributes="0"/>
-                      <Component id="projektchefTillbakaButton" min="-2" pref="117" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="sparaAndringarRedigeraProjektButton" min="-2" pref="115" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="jScrollPane2" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="139" max="-2" attributes="0"/>
+                              <Component id="projektchefTillbakaButton" min="-2" pref="117" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                              <Component id="sparaAndringarRedigeraProjektButton" min="-2" pref="115" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="felmeddelandepcLabel" min="-2" pref="80" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jScrollPane1" min="-2" pref="265" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="47" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
@@ -111,12 +118,15 @@
                       </Group>
                       <EmptySpace pref="41" max="32767" attributes="0"/>
                       <Component id="partnersRedigeraProjektLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="partnerRedigeraLabel" min="-2" pref="124" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace min="17" pref="17" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                               <Component id="felmeddelandepcLabel" min="-2" pref="84" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                              <Component id="jScrollPane2" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -124,10 +134,10 @@
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Component id="handläggareRedigeraProjektLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="handläggareRedigeraField" min="-2" pref="121" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="108" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace min="25" pref="25" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="projektchefTillbakaButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="sparaAndringarRedigeraProjektButton" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -225,26 +235,10 @@
         <Property name="text" type="java.lang.String" value="Partners:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="partnerRedigeraLabel">
-      <Properties>
-        <Property name="columns" type="int" value="20"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="partnerRedigeraLabelActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JLabel" name="handl&#xe4;ggareRedigeraProjektLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Handl&#xe4;ggare:"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="handl&#xe4;ggareRedigeraField">
-      <Properties>
-        <Property name="columns" type="int" value="20"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="handl&#xe4;ggareRedigeraFieldActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="sparaAndringarRedigeraProjektButton">
       <Properties>
@@ -256,5 +250,35 @@
     </Component>
     <Component class="javax.swing.JLabel" name="felmeddelandepcLabel">
     </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextArea" name="handl&#xe4;ggareRedigeraArea">
+          <Properties>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="rows" type="int" value="5"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextArea" name="partnerRedigeraArea">
+          <Properties>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="rows" type="int" value="5"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
   </SubComponents>
 </Form>

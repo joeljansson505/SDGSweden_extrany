@@ -48,11 +48,13 @@ public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
         beskrivningRedigeraProjektLabel = new javax.swing.JLabel();
         beskrivningProjektField = new javax.swing.JTextField();
         partnersRedigeraProjektLabel = new javax.swing.JLabel();
-        partnerRedigeraLabel = new javax.swing.JTextField();
         handläggareRedigeraProjektLabel = new javax.swing.JLabel();
-        handläggareRedigeraField = new javax.swing.JTextField();
         sparaAndringarRedigeraProjektButton = new javax.swing.JButton();
         felmeddelandepcLabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        handläggareRedigeraArea = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        partnerRedigeraArea = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -110,21 +112,7 @@ public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
 
         partnersRedigeraProjektLabel.setText("Partners:");
 
-        partnerRedigeraLabel.setColumns(20);
-        partnerRedigeraLabel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                partnerRedigeraLabelActionPerformed(evt);
-            }
-        });
-
         handläggareRedigeraProjektLabel.setText("Handläggare:");
-
-        handläggareRedigeraField.setColumns(20);
-        handläggareRedigeraField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                handläggareRedigeraFieldActionPerformed(evt);
-            }
-        });
 
         sparaAndringarRedigeraProjektButton.setText("Spara");
         sparaAndringarRedigeraProjektButton.addActionListener(new java.awt.event.ActionListener() {
@@ -132,6 +120,14 @@ public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
                 sparaAndringarRedigeraProjektButtonActionPerformed(evt);
             }
         });
+
+        handläggareRedigeraArea.setColumns(20);
+        handläggareRedigeraArea.setRows(5);
+        jScrollPane1.setViewportView(handläggareRedigeraArea);
+
+        partnerRedigeraArea.setColumns(20);
+        partnerRedigeraArea.setRows(5);
+        jScrollPane2.setViewportView(partnerRedigeraArea);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -162,20 +158,23 @@ public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(beskrivningRedigeraProjektLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(beskrivningProjektField, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(beskrivningProjektField, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane2)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(139, 139, 139)
+                                .addComponent(projektchefTillbakaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addComponent(partnerRedigeraLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(35, 35, 35)
+                                .addComponent(sparaAndringarRedigeraProjektButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(felmeddelandepcLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(handläggareRedigeraField, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(139, 139, 139)
-                        .addComponent(projektchefTillbakaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(sparaAndringarRedigeraProjektButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(47, Short.MAX_VALUE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(115, 115, 115)
                 .addComponent(partnersRedigeraProjektLabel)
@@ -207,18 +206,20 @@ public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
                             .addComponent(beskrivningProjektField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                         .addComponent(partnersRedigeraProjektLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(partnerRedigeraLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(felmeddelandepcLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(23, 23, 23)
+                                .addComponent(felmeddelandepcLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addComponent(jScrollPane2))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(handläggareRedigeraProjektLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(handläggareRedigeraField, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(projektchefTillbakaButton)
                     .addComponent(sparaAndringarRedigeraProjektButton))
@@ -251,20 +252,20 @@ public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
         if (partnerResultat != null && !partnerResultat.isEmpty()) {
             // Sätt ihop alla namn i en sträng
             String partnerText = String.join(", ", partnerResultat);
-            partnerRedigeraLabel.setText(partnerText);
+            partnerRedigeraArea.setText(partnerText);
         }
 
         // Handläggare: hämta alla handläggare kopplade till projektet
-        String handlaggareSql = "SELECT fornamn + efternamn " +
+        String handlaggareSql = "SELECT fornamn, efternamn " +
                         "FROM anstalld " +
                         "JOIN ans_proj ON anstalld.aid = ans_proj.aid " +
                         "WHERE ans_proj.pid = " + pid + ";";
-        var handlaggareResultat = idb.fetchColumn(handlaggareSql);
-
-        if (handlaggareResultat != null && !handlaggareResultat.isEmpty()) {
-            String handlaggareText = String.join(", ", handlaggareResultat);
-            handläggareRedigeraField.setText(handlaggareText);
-        }
+        var handlaggareResultat = idb.fetchRows(handlaggareSql);
+for (var rad : handlaggareResultat) {
+    String fornamn = rad.get("fornamn");
+    String efternamn = rad.get("efternamn");
+    System.out.println(fornamn + " " + efternamn);
+}
 
     } catch (InfException e) {
         javax.swing.JOptionPane.showMessageDialog(this, "Kunde inte hämta projektinformation: " + e.getMessage());
@@ -362,33 +363,6 @@ public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_beskrivningProjektFieldActionPerformed
 
-    private void partnerRedigeraLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_partnerRedigeraLabelActionPerformed
-        // TODO add your handling code here:
-    String projektnamn = redigerProjektField.getText().trim();
-    String nyPartner = partnerRedigeraLabel.getText().trim();
-
-    // Validera att partnerfältet inte är tomt
-    if (!Validering.faltInteTomt(nyPartner)) {
-        felmeddelandepcLabel.setText("Partnerfältet får inte vara tomt");
-        felmeddelandepcLabel.setVisible(true);
-        return;
-    }
-
-    try {
-        String sql = "UPDATE projekt SET partner = '" + nyPartner + "' WHERE projektnamn = '" + projektnamn + "'";
-        idb.update(sql);
-        felmeddelandepcLabel.setText("Partner uppdaterad till: " + nyPartner);
-        felmeddelandepcLabel.setVisible(true);
-    } catch (Exception e) {
-        felmeddelandepcLabel.setText("Fel vid uppdatering: " + e.getMessage());
-        felmeddelandepcLabel.setVisible(true);
-    }
-    }//GEN-LAST:event_partnerRedigeraLabelActionPerformed
-
-    private void handläggareRedigeraFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_handläggareRedigeraFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_handläggareRedigeraFieldActionPerformed
-
     private void sparaAndringarRedigeraProjektButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sparaAndringarRedigeraProjektButtonActionPerformed
         // TODO add your handling code here:
           try {
@@ -400,8 +374,8 @@ public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
         String startdatum = startdatumRedigeraProjektField.getText().trim();
         String slutdatum = slutdatumRedigeraProjektField.getText().trim();
         String beskrivning = beskrivningProjektField.getText().trim();
-        String partnerNamn = partnerRedigeraLabel.getText().trim();
-        String handlaggare = handläggareRedigeraField.getText().trim();
+        String partnerNamn = partnerRedigeraArea.getText().trim();
+        String handlaggare = handläggareRedigeraArea.getText().trim();
 
         // Validera
         if (projektnamn.isEmpty()) {
@@ -491,9 +465,11 @@ public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
     private javax.swing.JTextField beskrivningProjektField;
     private javax.swing.JLabel beskrivningRedigeraProjektLabel;
     private javax.swing.JLabel felmeddelandepcLabel;
-    private javax.swing.JTextField handläggareRedigeraField;
+    private javax.swing.JTextArea handläggareRedigeraArea;
     private javax.swing.JLabel handläggareRedigeraProjektLabel;
-    private javax.swing.JTextField partnerRedigeraLabel;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea partnerRedigeraArea;
     private javax.swing.JLabel partnersRedigeraProjektLabel;
     private javax.swing.JButton projektchefTillbakaButton;
     private javax.swing.JTextField redigerProjektField;
