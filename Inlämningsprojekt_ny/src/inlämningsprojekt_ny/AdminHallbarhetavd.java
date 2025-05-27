@@ -538,7 +538,7 @@ public class AdminHallbarhetavd extends javax.swing.JFrame {
 
     private void laggTillButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laggTillButtonActionPerformed
         // TODO add your handling code here:
-        String namn = namnField.getText().trim();
+                String namn = namnField.getText().trim();
         
         if(namn.isEmpty() || !namn.contains(" ")){
             JOptionPane.showMessageDialog(null, "Skriv för- och efternamn.");
@@ -552,6 +552,8 @@ public class AdminHallbarhetavd extends javax.swing.JFrame {
             java.util.Random rand = new java.util.Random();
             int aid;
             
+            String losenord = generateRandomPassword(11);
+            
             for(int i = 0; i < 10; i++){
             aid = rand.nextInt(100000);
             String checkSql = "SELECT aid FROM anstalld WHERE aid = " + aid;
@@ -560,11 +562,11 @@ public class AdminHallbarhetavd extends javax.swing.JFrame {
                    aid + ", " +
                    "'" + fornamn.replace("'", "''") + "', " +
                    "'" + efternamn.replace("'", "''") + "', " +
-                   "'default@example.com', '-', '-', 1, 'default1234', '2024-01-01')";
+                   "'default@example.com', '-', '-', 1, '" + losenord + "', '2024-01-01')";
 
             
             idb.insert(sql);
-            JOptionPane.showMessageDialog(null, "Person tillagd: " + namn);
+            JOptionPane.showMessageDialog(null, "Person tillagd: " + namn + "\nLösenord: " + losenord);
             return;
             }
           }
@@ -574,6 +576,16 @@ public class AdminHallbarhetavd extends javax.swing.JFrame {
  
     }//GEN-LAST:event_laggTillButtonActionPerformed
 
+        private String generateRandomPassword(int lenght){
+        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        StringBuilder password = new StringBuilder();
+        java.util.Random rnd = new java.util.Random();
+        for (int i = 0; i < lenght; i++){
+        password.append(chars.charAt(rnd.nextInt(chars.length())));                  // NY KOD
+        }
+        return password.toString();
+    }
+        
     private void namnFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namnFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_namnFieldActionPerformed
