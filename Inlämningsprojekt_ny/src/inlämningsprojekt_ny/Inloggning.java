@@ -22,6 +22,30 @@ public class Inloggning extends javax.swing.JFrame {
     public Inloggning(InfDB idb) {
         this.idb= idb;
         initComponents();
+        
+        getContentPane().setBackground(new java.awt.Color(34, 40, 49));
+        
+        epostLabel.setForeground(new java.awt.Color(238, 238, 238));
+            losenordLabel.setForeground(new java.awt.Color(238, 238, 238));
+    felmeddelandeLabel.setForeground(new java.awt.Color(255, 0, 51));
+
+    logInKnapp.setBackground(new java.awt.Color(50, 205, 50)); 
+    logInKnapp.setForeground(new java.awt.Color(0, 0, 0)); 
+    logInKnapp.setFocusPainted(false);
+    logInKnapp.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 14));
+    logInKnapp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+
+    // Fälten
+    epostField.setBackground(new java.awt.Color(57, 62, 70));
+    epostField.setForeground(new java.awt.Color(255, 255, 255));
+    epostField.setCaretColor(new java.awt.Color(255, 255, 255));
+    epostField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+
+    losenordField.setBackground(new java.awt.Color(57, 62, 70));
+    losenordField.setForeground(new java.awt.Color(255, 255, 255));
+    losenordField.setCaretColor(new java.awt.Color(255, 255, 255));
+    losenordField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+    
         felmeddelandeLabel.setVisible(false);
 
         
@@ -162,23 +186,20 @@ public class Inloggning extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(losenordLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(losenordField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(86, 86, 86)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(felmeddelandeLabel))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(epostLabel)
-                                .addGap(18, 18, 18)
-                                .addComponent(epostField, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(epostLabel)
+                        .addGap(21, 21, 21)
+                        .addComponent(epostField, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(147, 147, 147)
-                        .addComponent(logInKnapp)))
+                        .addComponent(logInKnapp))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(losenordLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(felmeddelandeLabel)
+                            .addComponent(losenordField, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(96, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -192,9 +213,9 @@ public class Inloggning extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(losenordLabel)
                     .addComponent(losenordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(felmeddelandeLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(logInKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(111, Short.MAX_VALUE))
         );
