@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 /**
  *
  * @author svanteskold
@@ -21,6 +22,12 @@ public class Inloggning extends javax.swing.JFrame {
      */
     public Inloggning(InfDB idb) {
         this.idb= idb;
+        
+        try{
+            UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         initComponents();
         
         getContentPane().setBackground(new java.awt.Color(34, 40, 49));
