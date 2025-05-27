@@ -180,13 +180,13 @@ private int aid;
 
     private void minaProjektButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minaProjektButtonActionPerformed
         // TODO add your handling code here:
-        new MinaProjekt(idb, inloggadAnvandare, aid).setVisible(true);
+        new AdminMinaProjekt(idb, inloggadAnvandare, aid).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_minaProjektButtonActionPerformed
 
     private void hallbarhetsmalenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hallbarhetsmalenButtonActionPerformed
         // TODO add your handling code here:
-        new Hallbarhetsmal(idb, inloggadAnvandare, aid).setVisible(true);
+        new AdminHallbarhetsmal(idb, inloggadAnvandare, aid).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_hallbarhetsmalenButtonActionPerformed
 
@@ -204,7 +204,7 @@ private int aid;
           int aid = Integer.parseInt(userId);
           System.out.println("Öppnar Personuppgifter med aid: " + aid);
           
-        new Personuppgifter(idb, aid, inloggadAnvandare).setVisible(true);
+        new AdminPersonuppgifter(idb, aid, inloggadAnvandare).setVisible(true);
         this.dispose();
     } catch (InfException ex) {
         Logger.getLogger(AdminMeny.class.getName()).log(Level.SEVERE, null, ex);
