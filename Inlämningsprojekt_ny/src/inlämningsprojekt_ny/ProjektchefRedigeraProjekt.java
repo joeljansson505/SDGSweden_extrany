@@ -14,14 +14,17 @@ public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
     private InfDB idb;
     private String inloggadAnvandare;
     private int aid;
+    private String pid;
     /**
      * Creates new form ProjektchefRedigeraProjekt
      */
-    public ProjektchefRedigeraProjekt(InfDB idb, String inloggadAnvandare, int aid) {
+    public ProjektchefRedigeraProjekt(InfDB idb, String inloggadAnvandare, int aid, String pid) {
        this.idb = idb;
        this.inloggadAnvandare = inloggadAnvandare;
        this.aid = aid;
+       this.pid=pid;
         initComponents();
+        fyllProjektInformation();
     }
 
     /**
@@ -49,6 +52,7 @@ public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
         handläggareRedigeraProjektLabel = new javax.swing.JLabel();
         handläggareRedigeraField = new javax.swing.JTextField();
         sparaAndringarRedigeraProjektButton = new javax.swing.JButton();
+        felmeddelandepcLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -161,19 +165,19 @@ public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
                                 .addComponent(beskrivningProjektField, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(36, 36, 36)
-                                .addComponent(partnerRedigeraLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(partnerRedigeraLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(felmeddelandepcLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(handläggareRedigeraField, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(139, 139, 139)
                         .addComponent(projektchefTillbakaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35)
                         .addComponent(sparaAndringarRedigeraProjektButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(47, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(handläggareRedigeraField, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(78, 78, 78))
             .addGroup(layout.createSequentialGroup()
-                .addGap(116, 116, 116)
+                .addGap(115, 115, 115)
                 .addComponent(partnersRedigeraProjektLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(handläggareRedigeraProjektLabel)
@@ -186,7 +190,6 @@ public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(redigeraProjektLabel)
                     .addComponent(redigerProjektField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -202,10 +205,14 @@ public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(beskrivningRedigeraProjektLabel)
                             .addComponent(beskrivningProjektField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                         .addComponent(partnersRedigeraProjektLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(partnerRedigeraLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(partnerRedigeraLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(felmeddelandepcLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(handläggareRedigeraProjektLabel)
@@ -221,9 +228,52 @@ public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void fyllProjektInformation() {
+    try {
+        // Projektdata
+        String sql = "SELECT * FROM projekt WHERE pid = " + pid + ";";
+        var projektData = idb.fetchRow(sql);
+
+        if (projektData != null) {
+            redigerProjektField.setText(projektData.get("projektnamn"));
+            startdatumRedigeraProjektField.setText(projektData.get("startdatum"));
+            slutdatumRedigeraProjektField.setText(projektData.get("slutdatum"));
+            satusRedigeraMinaProjektComboBox.setSelectedItem(projektData.get("status"));
+            beskrivningProjektField.setText(projektData.get("beskrivning"));
+        }
+
+        // Partner: hämta alla partners för projektet
+        String partnerSql = "SELECT namn FROM partner " +
+                            "JOIN projekt_partner ON partner.pid = projekt_partner.partner_pid " +
+                            "WHERE projekt_partner.pid = " + pid + ";";
+        var partnerResultat = idb.fetchColumn(partnerSql);
+
+        if (partnerResultat != null && !partnerResultat.isEmpty()) {
+            // Sätt ihop alla namn i en sträng
+            String partnerText = String.join(", ", partnerResultat);
+            partnerRedigeraLabel.setText(partnerText);
+        }
+
+        // Handläggare: hämta alla handläggare kopplade till projektet
+        String handlaggareSql = "SELECT fornamn + efternamn " +
+                        "FROM anstalld " +
+                        "JOIN ans_proj ON anstalld.aid = ans_proj.aid " +
+                        "WHERE ans_proj.pid = " + pid + ";";
+        var handlaggareResultat = idb.fetchColumn(handlaggareSql);
+
+        if (handlaggareResultat != null && !handlaggareResultat.isEmpty()) {
+            String handlaggareText = String.join(", ", handlaggareResultat);
+            handläggareRedigeraField.setText(handlaggareText);
+        }
+
+    } catch (InfException e) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Kunde inte hämta projektinformation: " + e.getMessage());
+    }
+    }
+    
     private void projektchefTillbakaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projektchefTillbakaButtonActionPerformed
         // TODO add your handling code here:
-        new ProjektchefMinaProjekt(idb, inloggadAnvandare, aid).setVisible(true);
+        new ProjektchefMinaProjekt(idb, inloggadAnvandare, aid, pid).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_projektchefTillbakaButtonActionPerformed
 
@@ -250,14 +300,22 @@ public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
 
     private void startdatumRedigeraProjektFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startdatumRedigeraProjektFieldActionPerformed
         // TODO add your handling code here:
-        String nyttStartdatum = startdatumRedigeraProjektField.getText().trim();
+       String nyttStartdatum = startdatumRedigeraProjektField.getText().trim();
 
-    System.out.println("Startdatum: " + nyttStartdatum);
+    if (!Validering.kollaDatum(nyttStartdatum)) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Startdatum måste vara i formatet YYYY-MM-DD.");
+        return;
+    }
 
-    if (!nyttStartdatum.matches("\\d{4}-\\d{2}-\\d{2}")) {
-        System.out.println("Fel format! Använd formatet YYYY-MM-DD");
-        
-        javax.swing.JOptionPane.showMessageDialog(this, "Startdatum måste ha formatet YYYY-MM-DD");
+    try {
+        String projektnamn = redigerProjektField.getText().trim(); 
+
+        String sql = "UPDATE projekt SET startdatum = '" + nyttStartdatum + "' WHERE projektnamn = '" + projektnamn + "'";
+        idb.update(sql);
+
+        javax.swing.JOptionPane.showMessageDialog(this, "Startdatum uppdaterat till: " + nyttStartdatum);
+    } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Fel vid uppdatering: " + e.getMessage());
     }
 
     }//GEN-LAST:event_startdatumRedigeraProjektFieldActionPerformed
@@ -266,15 +324,17 @@ public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
         // TODO add your handling code here:
         String nyttSlutdatum = slutdatumRedigeraProjektField.getText().trim();
 
-    if (!nyttSlutdatum.matches("\\d{4}-\\d{2}-\\d{2}")) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Ange slutdatum i formatet YYYY-MM-DD.");
+    if (!Validering.kollaDatum(nyttSlutdatum)) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Slutdatum måste vara i formatet YYYY-MM-DD.");
         return;
     }
 
     try {
         String projektnamn = redigerProjektField.getText().trim(); 
+
         String sql = "UPDATE projekt SET slutdatum = '" + nyttSlutdatum + "' WHERE projektnamn = '" + projektnamn + "'";
         idb.update(sql);
+
         javax.swing.JOptionPane.showMessageDialog(this, "Slutdatum uppdaterat till: " + nyttSlutdatum);
     } catch (Exception e) {
         javax.swing.JOptionPane.showMessageDialog(this, "Fel vid uppdatering: " + e.getMessage());
@@ -283,10 +343,46 @@ public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
 
     private void beskrivningProjektFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beskrivningProjektFieldActionPerformed
         // TODO add your handling code here:
+        String nyBeskrivning = beskrivningProjektField.getText().trim();
+
+    if (!Validering.faltInteTomt(nyBeskrivning)) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Beskrivningen får inte vara tom.");
+        return;
+    }
+
+    try {
+        String projektnamn = redigerProjektField.getText().trim(); 
+
+        String sql = "UPDATE projekt SET beskrivning = '" + nyBeskrivning + "' WHERE projektnamn = '" + projektnamn + "'";
+        idb.update(sql);
+
+        javax.swing.JOptionPane.showMessageDialog(this, "Beskrivning uppdaterad!");
+    } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Fel vid uppdatering: " + e.getMessage());
+    }
     }//GEN-LAST:event_beskrivningProjektFieldActionPerformed
 
     private void partnerRedigeraLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_partnerRedigeraLabelActionPerformed
         // TODO add your handling code here:
+    String projektnamn = redigerProjektField.getText().trim();
+    String nyPartner = partnerRedigeraLabel.getText().trim();
+
+    // Validera att partnerfältet inte är tomt
+    if (!Validering.faltInteTomt(nyPartner)) {
+        felmeddelandepcLabel.setText("Partnerfältet får inte vara tomt");
+        felmeddelandepcLabel.setVisible(true);
+        return;
+    }
+
+    try {
+        String sql = "UPDATE projekt SET partner = '" + nyPartner + "' WHERE projektnamn = '" + projektnamn + "'";
+        idb.update(sql);
+        felmeddelandepcLabel.setText("Partner uppdaterad till: " + nyPartner);
+        felmeddelandepcLabel.setVisible(true);
+    } catch (Exception e) {
+        felmeddelandepcLabel.setText("Fel vid uppdatering: " + e.getMessage());
+        felmeddelandepcLabel.setVisible(true);
+    }
     }//GEN-LAST:event_partnerRedigeraLabelActionPerformed
 
     private void handläggareRedigeraFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_handläggareRedigeraFieldActionPerformed
@@ -394,6 +490,7 @@ public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField beskrivningProjektField;
     private javax.swing.JLabel beskrivningRedigeraProjektLabel;
+    private javax.swing.JLabel felmeddelandepcLabel;
     private javax.swing.JTextField handläggareRedigeraField;
     private javax.swing.JLabel handläggareRedigeraProjektLabel;
     private javax.swing.JTextField partnerRedigeraLabel;
