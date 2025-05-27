@@ -228,82 +228,91 @@ public class Inloggning extends javax.swing.JFrame {
     }//GEN-LAST:event_epostFieldActionPerformed
 
     private void logInKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInKnappActionPerformed
-    String epost=epostField.getText();
-        String losen=losenordField.getText();
-        
-        if (!Validering.faltInteTomt(epost)) {
-            felmeddelandeLabel.setText ("Eposten får inte vara tom");
-            felmeddelandeLabel.setVisible(true);
+    // Hämta användarens inmatade epost och lösenord
+    String epost = epostField.getText();
+    String losen = losenordField.getText();
+
+    // Kontrollera att e-postfältet inte är tomt
+    if (!Validering.faltInteTomt(epost)) {
+        felmeddelandeLabel.setText("Eposten får inte vara tom");
+        felmeddelandeLabel.setVisible(true);
+        return; // Avbryt inloggning om fältet är tomt
+    }
+
+    // Kontrollera att lösenordsfältet inte är tomt
+    if (!Validering.faltInteTomt(losen)) {
+        felmeddelandeLabel.setText("Lösenord får inte vara tomt");
+        felmeddelandeLabel.setVisible(true);
+        return;
+    }
+
+    // Kontrollera att e-posten är i korrekt format (ex: namn@mail.com)
+    if (!Validering.arMailKorrekt(epost)) {
+        felmeddelandeLabel.setText("Eposten måste vara korrekt");
+        felmeddelandeLabel.setVisible(true);
+        return;
+    }
+
+    // Kontrollera att lösenordet uppfyller kraven (ex: längd, tecken etc.)
+    if (!Validering.losenordKrav(losen)) {
+        felmeddelandeLabel.setText("Lösenordet uppfyller inte kraven");
+        felmeddelandeLabel.setVisible(true);
+        return;
+    }
+
+    // Kontrollera mot databasen om användarnamn och lösenord är korrekta
+    if (!Validering.arAnvandarnamnOchLosenordKorrekt(epost, losen, idb)) {
+        felmeddelandeLabel.setText("Fel epost eller lösenord");
+        felmeddelandeLabel.setVisible(true);
+        return;
+    }
+
+    try {
+        // Försök logga in som admin (behörighetsnivå 1 eller 2)
+        String fragaAdmin = "SELECT anstalld.aid, epost, losenord, admin.behorighetsniva FROM anstalld "
+                + "JOIN admin ON anstalld.aid = admin.aid "
+                + "WHERE epost = '" + epost + "' AND losenord = '" + losen + "' AND (admin.behorighetsniva = 1 or admin.behorighetsniva = 2);";
+        var databassvarAdmin = idb.fetchRow(fragaAdmin);
+        felmeddelandeLabel.setVisible(false); // Dölj felmeddelande
+
+        // Om vi hittar admin-användare, öppna adminmeny
+        if (databassvarAdmin != null && databassvarAdmin.get("aid") != null) {
+            int aid = Integer.parseInt(databassvarAdmin.get("aid"));
+            new AdminMeny(idb, epost, aid).setVisible(true); // Starta adminmeny
+            this.dispose(); // Stäng inloggningsfönstret
             return;
         }
-        
-        if (!Validering.faltInteTomt(losen)) {
-            felmeddelandeLabel.setText("Lösenord får inte vara tom");
-            felmeddelandeLabel.setVisible(true);
+
+        // Om inte admin: försök logga in som projektchef
+        String fragaProjektchef = "SELECT anstalld.epost, anstalld.losenord, anstalld.aid FROM anstalld "
+                + "JOIN projekt ON anstalld.aid = projekt.projektchef WHERE anstalld.epost = '" + epost + "' AND anstalld.losenord = '" + losen + "';";
+        var databassvarProjektchef = idb.fetchRow(fragaProjektchef);
+
+        if (databassvarProjektchef != null && databassvarProjektchef.get("aid") != null) {
+            int aid = Integer.parseInt(databassvarProjektchef.get("aid"));
+            new ProjektchefMeny(idb, epost, aid).setVisible(true); // Starta projektchefmeny
+            this.dispose();
             return;
         }
-        
-        if (!Validering.arMailKorrekt(epost)) {
-            felmeddelandeLabel.setText("Eposten måste vara korrekt");
-            felmeddelandeLabel.setVisible(true);
+
+        // Om inte projektchef: försök logga in som vanlig handläggare
+        String fragaHandlaggare = "SELECT epost, losenord, aid FROM anstalld WHERE epost = '" + epost + "' and losenord = '" + losen + "';";
+        var databassvarHandlaggare = idb.fetchRow(fragaHandlaggare);
+
+        if (databassvarHandlaggare != null && databassvarHandlaggare.get("aid") != null) {
+            int aid = Integer.parseInt(databassvarHandlaggare.get("aid"));
+            new Meny(idb, epost, aid).setVisible(true); // Starta meny för handläggare
+            this.dispose();
             return;
         }
+
+        // Om ingen roll hittas – visa fel
+        felmeddelandeLabel.setText("Fel lösenord eller epost!");
         
-        if (!Validering.losenordKrav(losen)) {
-            felmeddelandeLabel.setText("Lösenordet uppfyller inte kraven");
-            felmeddelandeLabel.setVisible(true);
-            return;
-        }
-        
-        
-        if (!Validering.arAnvandarnamnOchLosenordKorrekt(epost, losen, idb)) {
-            felmeddelandeLabel.setText("Fel epost eller lösenord");
-            felmeddelandeLabel.setVisible(true);
-            return;
-        }
-        
-        
-        try {
-           String fragaAdmin = "SELECT anstalld.aid, epost, losenord, admin.behorighetsniva FROM anstalld "
-                   + "JOIN admin ON anstalld.aid = admin.aid "
-                   + "WHERE epost = '" + epost + "' AND losenord = '" + losen + "' AND (admin.behorighetsniva = 1 or admin.behorighetsniva = 2);";
-           var databassvarAdmin = idb.fetchRow(fragaAdmin);
-           felmeddelandeLabel.setVisible(false);
-           
-           if (databassvarAdmin != null && databassvarAdmin.get("aid") !=null) {
-               int aid = Integer.parseInt(databassvarAdmin.get("aid"));
-               new AdminMeny(idb, epost, aid).setVisible(true);
-               this.dispose();
-               return;
-           }
-           
-           String fragaProjektchef = "SELECT anstalld.epost, anstalld.losenord, anstalld.aid FROM anstalld "
-                   + "JOIN projekt ON anstalld.aid = projekt.projektchef WHERE anstalld.epost = '" + epost + "' AND anstalld.losenord = '" + losen + "';";
-           
-           var databassvarProjektchef = idb.fetchRow(fragaProjektchef);
-           if (databassvarProjektchef != null && databassvarProjektchef.get("aid") !=null) {
-               int aid = Integer.parseInt(databassvarProjektchef.get("aid"));
-               new ProjektchefMeny(idb, epost, aid).setVisible(true);
-               this.dispose();
-               return;
-           }
-  
-           
-           String fragaHandlaggare = "SELECT epost, losenord, aid FROM anstalld WHERE epost = '" + epost + "' and losenord = '" + losen + "';";
-           var databassvarHandlaggare = idb.fetchRow(fragaHandlaggare);
-           
-           if (databassvarHandlaggare !=null && databassvarHandlaggare.get("aid") != null) {
-               int aid = Integer.parseInt(databassvarHandlaggare.get("aid"));
-               new Meny(idb, epost, aid).setVisible(true);
-               this.dispose();
-               return;
-           }
-          
-               felmeddelandeLabel.setText("Fel lösenord eller epost!");
-           
-        } catch (InfException e) {
-            System.out.println(e.getMessage());
-        }
+    } catch (InfException e) {
+        // Om något går fel med databasen – skriv ut felmeddelande i konsolen
+        System.out.println(e.getMessage());
+    }
                   
     }//GEN-LAST:event_logInKnappActionPerformed
 
