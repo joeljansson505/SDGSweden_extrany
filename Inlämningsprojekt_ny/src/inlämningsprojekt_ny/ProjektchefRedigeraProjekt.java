@@ -243,29 +243,39 @@ public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
             beskrivningProjektField.setText(projektData.get("beskrivning"));
         }
 
-        // Partner: hämta alla partners för projektet
+        // Partnerdata
         String partnerSql = "SELECT namn FROM partner " +
                             "JOIN projekt_partner ON partner.pid = projekt_partner.partner_pid " +
                             "WHERE projekt_partner.pid = " + pid + ";";
         var partnerResultat = idb.fetchColumn(partnerSql);
 
         if (partnerResultat != null && !partnerResultat.isEmpty()) {
-            // Sätt ihop alla namn i en sträng
             String partnerText = String.join(", ", partnerResultat);
             partnerRedigeraArea.setText(partnerText);
         }
 
-        // Handläggare: hämta alla handläggare kopplade till projektet
+        // Handläggardata
         String handlaggareSql = "SELECT fornamn, efternamn " +
-                        "FROM anstalld " +
-                        "JOIN ans_proj ON anstalld.aid = ans_proj.aid " +
-                        "WHERE ans_proj.pid = " + pid + ";";
+                                "FROM anstalld " +
+                                "JOIN ans_proj ON anstalld.aid = ans_proj.aid " +
+                                "WHERE ans_proj.pid = " + pid + ";";
         var handlaggareResultat = idb.fetchRows(handlaggareSql);
-for (var rad : handlaggareResultat) {
-    String fornamn = rad.get("fornamn");
-    String efternamn = rad.get("efternamn");
-    System.out.println(fornamn + " " + efternamn);
-}
+
+        if (handlaggareResultat != null && !handlaggareResultat.isEmpty()) {
+            StringBuilder handlaggareNamn = new StringBuilder();
+
+            for (var rad : handlaggareResultat) {
+                String fornamn = rad.get("fornamn");
+                String efternamn = rad.get("efternamn");
+                handlaggareNamn.append(fornamn).append(" ").append(efternamn).append(", ");
+            }
+
+            if (handlaggareNamn.length() > 2) {
+                handlaggareNamn.setLength(handlaggareNamn.length() - 2);
+            }
+
+            handläggareRedigeraArea.setText(handlaggareNamn.toString());
+        }
 
     } catch (InfException e) {
         javax.swing.JOptionPane.showMessageDialog(this, "Kunde inte hämta projektinformation: " + e.getMessage());
