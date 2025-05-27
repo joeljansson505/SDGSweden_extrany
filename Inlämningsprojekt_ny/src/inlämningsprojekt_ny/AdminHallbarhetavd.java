@@ -58,9 +58,9 @@ public class AdminHallbarhetavd extends javax.swing.JFrame {
         sokProjektLabel = new javax.swing.JLabel();
         sokProjektLabel2 = new javax.swing.JLabel();
         sokProjektDatumButton = new javax.swing.JButton();
-        laggTillButton = new javax.swing.JButton();
-        raderaButton = new javax.swing.JButton();
-        namnField = new javax.swing.JTextField();
+        laggTillHallAdminButton = new javax.swing.JButton();
+        raderaHallAdminButton = new javax.swing.JButton();
+        namnHallAdminField = new javax.swing.JTextField();
 
         jTextField1.setText("jTextField1");
 
@@ -158,23 +158,23 @@ public class AdminHallbarhetavd extends javax.swing.JFrame {
             }
         });
 
-        laggTillButton.setText("Lägg till");
-        laggTillButton.addActionListener(new java.awt.event.ActionListener() {
+        laggTillHallAdminButton.setText("Lägg till");
+        laggTillHallAdminButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                laggTillButtonActionPerformed(evt);
+                laggTillHallAdminButtonActionPerformed(evt);
             }
         });
 
-        raderaButton.setText("Radera");
-        raderaButton.addActionListener(new java.awt.event.ActionListener() {
+        raderaHallAdminButton.setText("Radera");
+        raderaHallAdminButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                raderaButtonActionPerformed(evt);
+                raderaHallAdminButtonActionPerformed(evt);
             }
         });
 
-        namnField.addActionListener(new java.awt.event.ActionListener() {
+        namnHallAdminField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                namnFieldActionPerformed(evt);
+                namnHallAdminFieldActionPerformed(evt);
             }
         });
 
@@ -223,9 +223,9 @@ public class AdminHallbarhetavd extends javax.swing.JFrame {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(raderaButton)
-                                    .addComponent(laggTillButton)
-                                    .addComponent(namnField, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(raderaHallAdminButton)
+                                    .addComponent(laggTillHallAdminButton)
+                                    .addComponent(namnHallAdminField, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(53, 53, 53)
@@ -269,11 +269,11 @@ public class AdminHallbarhetavd extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(namnField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(namnHallAdminField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(raderaButton)
+                                .addComponent(raderaHallAdminButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(laggTillButton)))
+                                .addComponent(laggTillHallAdminButton)))
                         .addContainerGap())))
         );
 
@@ -502,9 +502,9 @@ public class AdminHallbarhetavd extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_sokProjektField2ActionPerformed
 
-    private void raderaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_raderaButtonActionPerformed
+    private void raderaHallAdminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_raderaHallAdminButtonActionPerformed
         // TODO add your handling code here:
-        String namn = namnField.getText().trim();
+        String namn = namnHallAdminField.getText().trim();
         
         if(namn.isEmpty() || !namn.contains(" ")){
             JOptionPane.showMessageDialog(null, "Skriv för- och efternamn.");
@@ -534,11 +534,11 @@ public class AdminHallbarhetavd extends javax.swing.JFrame {
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, "Fel vid radering: " + e.getMessage());
         }
-    }//GEN-LAST:event_raderaButtonActionPerformed
+    }//GEN-LAST:event_raderaHallAdminButtonActionPerformed
 
-    private void laggTillButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laggTillButtonActionPerformed
+    private void laggTillHallAdminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laggTillHallAdminButtonActionPerformed
         // TODO add your handling code here:
-        String namn = namnField.getText().trim();
+                String namn = namnHallAdminField.getText().trim();
         
         if(namn.isEmpty() || !namn.contains(" ")){
             JOptionPane.showMessageDialog(null, "Skriv för- och efternamn.");
@@ -552,6 +552,8 @@ public class AdminHallbarhetavd extends javax.swing.JFrame {
             java.util.Random rand = new java.util.Random();
             int aid;
             
+            String losenord = generateRandomPassword(11);
+            
             for(int i = 0; i < 10; i++){
             aid = rand.nextInt(100000);
             String checkSql = "SELECT aid FROM anstalld WHERE aid = " + aid;
@@ -560,11 +562,11 @@ public class AdminHallbarhetavd extends javax.swing.JFrame {
                    aid + ", " +
                    "'" + fornamn.replace("'", "''") + "', " +
                    "'" + efternamn.replace("'", "''") + "', " +
-                   "'default@example.com', '-', '-', 1, 'default1234', '2024-01-01')";
+                   "'default@example.com', '-', '-', 1, '" + losenord + "', '2024-01-01')";
 
             
             idb.insert(sql);
-            JOptionPane.showMessageDialog(null, "Person tillagd: " + namn);
+            JOptionPane.showMessageDialog(null, "Person tillagd: " + namn + "\nLösenord: " + losenord);
             return;
             }
           }
@@ -572,11 +574,21 @@ public class AdminHallbarhetavd extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Fel vid tillägg: " + e.getMessage());
         }
  
-    }//GEN-LAST:event_laggTillButtonActionPerformed
+    }//GEN-LAST:event_laggTillHallAdminButtonActionPerformed
 
-    private void namnFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namnFieldActionPerformed
+        private String generateRandomPassword(int lenght){
+        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        StringBuilder password = new StringBuilder();
+        java.util.Random rnd = new java.util.Random();
+        for (int i = 0; i < lenght; i++){
+        password.append(chars.charAt(rnd.nextInt(chars.length())));                  // NY KOD
+        }
+        return password.toString();
+    }
+        
+    private void namnHallAdminFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namnHallAdminFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_namnFieldActionPerformed
+    }//GEN-LAST:event_namnHallAdminFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -625,11 +637,11 @@ public class AdminHallbarhetavd extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JButton laggTillButton;
-    private javax.swing.JTextField namnField;
+    private javax.swing.JButton laggTillHallAdminButton;
+    private javax.swing.JTextField namnHallAdminField;
     private javax.swing.JToggleButton pAvdHallbarhetButton;
     private javax.swing.JToggleButton plaAvdHallbarhetButton;
-    private javax.swing.JButton raderaButton;
+    private javax.swing.JButton raderaHallAdminButton;
     private javax.swing.JTextField sokHandlaggarField;
     private javax.swing.JButton sokHandlaggareButton;
     private javax.swing.JButton sokProjektDatumButton;

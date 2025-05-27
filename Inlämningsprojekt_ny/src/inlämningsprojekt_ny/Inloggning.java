@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 /**
  *
  * @author svanteskold
@@ -21,7 +22,37 @@ public class Inloggning extends javax.swing.JFrame {
      */
     public Inloggning(InfDB idb) {
         this.idb= idb;
+        
+        try{
+            UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         initComponents();
+        
+        getContentPane().setBackground(new java.awt.Color(34, 40, 49));
+        
+        epostLabel.setForeground(new java.awt.Color(238, 238, 238));
+            losenordLabel.setForeground(new java.awt.Color(238, 238, 238));
+    felmeddelandeLabel.setForeground(new java.awt.Color(255, 0, 51));
+
+    logInKnapp.setBackground(new java.awt.Color(50, 205, 50)); 
+    logInKnapp.setForeground(new java.awt.Color(0, 0, 0)); 
+    logInKnapp.setFocusPainted(false);
+    logInKnapp.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 14));
+    logInKnapp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+
+    // Fälten
+    epostField.setBackground(new java.awt.Color(57, 62, 70));
+    epostField.setForeground(new java.awt.Color(255, 255, 255));
+    epostField.setCaretColor(new java.awt.Color(255, 255, 255));
+    epostField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+
+    losenordField.setBackground(new java.awt.Color(57, 62, 70));
+    losenordField.setForeground(new java.awt.Color(255, 255, 255));
+    losenordField.setCaretColor(new java.awt.Color(255, 255, 255));
+    losenordField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+    
         felmeddelandeLabel.setVisible(false);
 
         
@@ -162,23 +193,20 @@ public class Inloggning extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(losenordLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(losenordField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(86, 86, 86)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(felmeddelandeLabel))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(epostLabel)
-                                .addGap(18, 18, 18)
-                                .addComponent(epostField, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(epostLabel)
+                        .addGap(21, 21, 21)
+                        .addComponent(epostField, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(147, 147, 147)
-                        .addComponent(logInKnapp)))
+                        .addComponent(logInKnapp))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(losenordLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(felmeddelandeLabel)
+                            .addComponent(losenordField, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(96, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -192,9 +220,9 @@ public class Inloggning extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(losenordLabel)
                     .addComponent(losenordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(felmeddelandeLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(logInKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(111, Short.MAX_VALUE))
         );
@@ -207,82 +235,91 @@ public class Inloggning extends javax.swing.JFrame {
     }//GEN-LAST:event_epostFieldActionPerformed
 
     private void logInKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInKnappActionPerformed
-    String epost=epostField.getText();
-        String losen=losenordField.getText();
-        
-        if (!Validering.faltInteTomt(epost)) {
-            felmeddelandeLabel.setText ("Eposten får inte vara tom");
-            felmeddelandeLabel.setVisible(true);
+    // Hämta användarens inmatade epost och lösenord
+    String epost = epostField.getText();
+    String losen = losenordField.getText();
+
+    // Kontrollera att e-postfältet inte är tomt
+    if (!Validering.faltInteTomt(epost)) {
+        felmeddelandeLabel.setText("Eposten får inte vara tom");
+        felmeddelandeLabel.setVisible(true);
+        return; // Avbryt inloggning om fältet är tomt
+    }
+
+    // Kontrollera att lösenordsfältet inte är tomt
+    if (!Validering.faltInteTomt(losen)) {
+        felmeddelandeLabel.setText("Lösenord får inte vara tomt");
+        felmeddelandeLabel.setVisible(true);
+        return;
+    }
+
+    // Kontrollera att e-posten är i korrekt format (ex: namn@mail.com)
+    if (!Validering.arMailKorrekt(epost)) {
+        felmeddelandeLabel.setText("Eposten måste vara korrekt");
+        felmeddelandeLabel.setVisible(true);
+        return;
+    }
+
+    // Kontrollera att lösenordet uppfyller kraven (ex: längd, tecken etc.)
+    if (!Validering.losenordKrav(losen)) {
+        felmeddelandeLabel.setText("Lösenordet uppfyller inte kraven");
+        felmeddelandeLabel.setVisible(true);
+        return;
+    }
+
+    // Kontrollera mot databasen om användarnamn och lösenord är korrekta
+    if (!Validering.arAnvandarnamnOchLosenordKorrekt(epost, losen, idb)) {
+        felmeddelandeLabel.setText("Fel epost eller lösenord");
+        felmeddelandeLabel.setVisible(true);
+        return;
+    }
+
+    try {
+        // Försök logga in som admin (behörighetsnivå 1 eller 2)
+        String fragaAdmin = "SELECT anstalld.aid, epost, losenord, admin.behorighetsniva FROM anstalld "
+                + "JOIN admin ON anstalld.aid = admin.aid "
+                + "WHERE epost = '" + epost + "' AND losenord = '" + losen + "' AND (admin.behorighetsniva = 1 or admin.behorighetsniva = 2);";
+        var databassvarAdmin = idb.fetchRow(fragaAdmin);
+        felmeddelandeLabel.setVisible(false); // Dölj felmeddelande
+
+        // Om vi hittar admin-användare, öppna adminmeny
+        if (databassvarAdmin != null && databassvarAdmin.get("aid") != null) {
+            int aid = Integer.parseInt(databassvarAdmin.get("aid"));
+            new AdminMeny(idb, epost, aid).setVisible(true); // Starta adminmeny
+            this.dispose(); // Stäng inloggningsfönstret
             return;
         }
-        
-        if (!Validering.faltInteTomt(losen)) {
-            felmeddelandeLabel.setText("Lösenord får inte vara tom");
-            felmeddelandeLabel.setVisible(true);
+
+        // Om inte admin: försök logga in som projektchef
+        String fragaProjektchef = "SELECT anstalld.epost, anstalld.losenord, anstalld.aid FROM anstalld "
+                + "JOIN projekt ON anstalld.aid = projekt.projektchef WHERE anstalld.epost = '" + epost + "' AND anstalld.losenord = '" + losen + "';";
+        var databassvarProjektchef = idb.fetchRow(fragaProjektchef);
+
+        if (databassvarProjektchef != null && databassvarProjektchef.get("aid") != null) {
+            int aid = Integer.parseInt(databassvarProjektchef.get("aid"));
+            new ProjektchefMeny(idb, epost, aid).setVisible(true); // Starta projektchefmeny
+            this.dispose();
             return;
         }
-        
-        if (!Validering.arMailKorrekt(epost)) {
-            felmeddelandeLabel.setText("Eposten måste vara korrekt");
-            felmeddelandeLabel.setVisible(true);
+
+        // Om inte projektchef: försök logga in som vanlig handläggare
+        String fragaHandlaggare = "SELECT epost, losenord, aid FROM anstalld WHERE epost = '" + epost + "' and losenord = '" + losen + "';";
+        var databassvarHandlaggare = idb.fetchRow(fragaHandlaggare);
+
+        if (databassvarHandlaggare != null && databassvarHandlaggare.get("aid") != null) {
+            int aid = Integer.parseInt(databassvarHandlaggare.get("aid"));
+            new Meny(idb, epost, aid).setVisible(true); // Starta meny för handläggare
+            this.dispose();
             return;
         }
+
+        // Om ingen roll hittas – visa fel
+        felmeddelandeLabel.setText("Fel lösenord eller epost!");
         
-        if (!Validering.losenordKrav(losen)) {
-            felmeddelandeLabel.setText("Lösenordet uppfyller inte kraven");
-            felmeddelandeLabel.setVisible(true);
-            return;
-        }
-        
-        
-        if (!Validering.arAnvandarnamnOchLosenordKorrekt(epost, losen, idb)) {
-            felmeddelandeLabel.setText("Fel epost eller lösenord");
-            felmeddelandeLabel.setVisible(true);
-            return;
-        }
-        
-        
-        try {
-           String fragaAdmin = "SELECT anstalld.aid, epost, losenord, admin.behorighetsniva FROM anstalld "
-                   + "JOIN admin ON anstalld.aid = admin.aid "
-                   + "WHERE epost = '" + epost + "' AND losenord = '" + losen + "' AND (admin.behorighetsniva = 1 or admin.behorighetsniva = 2);";
-           var databassvarAdmin = idb.fetchRow(fragaAdmin);
-           felmeddelandeLabel.setVisible(false);
-           
-           if (databassvarAdmin != null && databassvarAdmin.get("aid") !=null) {
-               int aid = Integer.parseInt(databassvarAdmin.get("aid"));
-               new AdminMeny(idb, epost, aid).setVisible(true);
-               this.dispose();
-               return;
-           }
-           
-           String fragaProjektchef = "SELECT anstalld.epost, anstalld.losenord, anstalld.aid FROM anstalld "
-                   + "JOIN projekt ON anstalld.aid = projekt.projektchef WHERE anstalld.epost = '" + epost + "' AND anstalld.losenord = '" + losen + "';";
-           
-           var databassvarProjektchef = idb.fetchRow(fragaProjektchef);
-           if (databassvarProjektchef != null && databassvarProjektchef.get("aid") !=null) {
-               int aid = Integer.parseInt(databassvarProjektchef.get("aid"));
-               new ProjektchefMeny(idb, epost, aid).setVisible(true);
-               this.dispose();
-               return;
-           }
-  
-           
-           String fragaHandlaggare = "SELECT epost, losenord, aid FROM anstalld WHERE epost = '" + epost + "' and losenord = '" + losen + "';";
-           var databassvarHandlaggare = idb.fetchRow(fragaHandlaggare);
-           
-           if (databassvarHandlaggare !=null && databassvarHandlaggare.get("aid") != null) {
-               int aid = Integer.parseInt(databassvarHandlaggare.get("aid"));
-               new Meny(idb, epost, aid).setVisible(true);
-               this.dispose();
-               return;
-           }
-          
-               felmeddelandeLabel.setText("Fel lösenord eller epost!");
-           
-        } catch (InfException e) {
-            System.out.println(e.getMessage());
-        }
+    } catch (InfException e) {
+        // Om något går fel med databasen – skriv ut felmeddelande i konsolen
+        System.out.println(e.getMessage());
+    }
                   
     }//GEN-LAST:event_logInKnappActionPerformed
 
