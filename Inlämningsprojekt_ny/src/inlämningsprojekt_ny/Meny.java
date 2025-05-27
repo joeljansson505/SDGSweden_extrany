@@ -54,7 +54,11 @@ private int aid;
         loggaUtButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(102, 102, 102));
+        setFocusTraversalPolicyProvider(true);
+        setFocusable(false);
 
+        inloggadAnvandareLabel.setBackground(new java.awt.Color(102, 102, 102));
         inloggadAnvandareLabel.setFont(new java.awt.Font(".AppleSystemUIFont", 0, 13)); // NOI18N
         inloggadAnvandareLabel.setText("Användare:");
 

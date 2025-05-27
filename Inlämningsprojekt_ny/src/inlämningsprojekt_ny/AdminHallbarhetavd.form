@@ -82,9 +82,9 @@
                               <Component id="jScrollPane1" min="-2" pref="159" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="raderaButton" min="-2" max="-2" attributes="0"/>
-                                  <Component id="laggTillButton" min="-2" max="-2" attributes="0"/>
-                                  <Component id="namnField" alignment="0" min="-2" pref="158" max="-2" attributes="0"/>
+                                  <Component id="raderaHallAdminButton" min="-2" max="-2" attributes="0"/>
+                                  <Component id="laggTillHallAdminButton" min="-2" max="-2" attributes="0"/>
+                                  <Component id="namnHallAdminField" alignment="0" min="-2" pref="158" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -145,11 +145,11 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jScrollPane1" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="namnField" min="-2" pref="28" max="-2" attributes="0"/>
+                              <Component id="namnHallAdminField" min="-2" pref="28" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="raderaButton" min="-2" max="-2" attributes="0"/>
+                              <Component id="raderaHallAdminButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="laggTillButton" min="-2" max="-2" attributes="0"/>
+                              <Component id="laggTillHallAdminButton" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -295,25 +295,25 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sokProjektDatumButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="laggTillButton">
+    <Component class="javax.swing.JButton" name="laggTillHallAdminButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="L&#xe4;gg till"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="laggTillButtonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="laggTillHallAdminButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="raderaButton">
+    <Component class="javax.swing.JButton" name="raderaHallAdminButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Radera"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="raderaButtonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="raderaHallAdminButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="namnField">
+    <Component class="javax.swing.JTextField" name="namnHallAdminField">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="namnFieldActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="namnHallAdminFieldActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

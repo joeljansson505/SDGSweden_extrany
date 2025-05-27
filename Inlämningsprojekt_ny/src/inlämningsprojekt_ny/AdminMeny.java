@@ -27,6 +27,27 @@ private int aid;
         try{
         initComponents();
         inloggadAnvandareLabel.setText(inloggadAnvandare);
+        
+        getContentPane().setBackground(new java.awt.Color(30, 30, 30));
+        
+        huvudmenyLabel.setForeground(new java.awt.Color(51, 153, 255));
+        inloggadAnvandareLabel.setForeground(new java.awt.Color(51, 153, 255));
+        
+        javax.swing.JButton[] knappar = {
+            minaProjektButton, avdelningButton, hallbarhetsmalenButton,
+            minProfilButton, loggaUtButton
+        };
+        for(javax.swing.JButton knapp : knappar){
+            knapp.setBackground(new java.awt.Color(0, 0, 0));
+            knapp.setForeground(new java.awt.Color(255, 255, 255));
+            knapp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+            knapp.setFocusPainted(false);
+            knapp.setOpaque(true);
+            knapp.setContentAreaFilled(true);
+        }
+        AdminMenyUppgifterButton.setBackground(new java.awt.Color(0, 0, 0));
+        AdminMenyUppgifterButton.setContentAreaFilled(true);
+        AdminMenyUppgifterButton.setOpaque(true);
         }catch (Exception e) {
             e.printStackTrace();
         }
@@ -54,11 +75,14 @@ private int aid;
         AdminMenyUppgifterButton = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(60, 60, 60));
 
         inloggadAnvandareLabel.setFont(new java.awt.Font(".AppleSystemUIFont", 0, 13)); // NOI18N
+        inloggadAnvandareLabel.setForeground(new java.awt.Color(255, 255, 255));
         inloggadAnvandareLabel.setText("Användare:");
 
         minaProjektButton.setFont(new java.awt.Font(".AppleSystemUIFont", 0, 13)); // NOI18N
+        minaProjektButton.setForeground(new java.awt.Color(255, 255, 255));
         minaProjektButton.setText("Mina Projekt");
         minaProjektButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,6 +91,7 @@ private int aid;
         });
 
         avdelningButton.setFont(new java.awt.Font(".AppleSystemUIFont", 0, 13)); // NOI18N
+        avdelningButton.setForeground(new java.awt.Color(255, 255, 255));
         avdelningButton.setText("Avdelning");
         avdelningButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,6 +100,7 @@ private int aid;
         });
 
         hallbarhetsmalenButton.setFont(new java.awt.Font(".AppleSystemUIFont", 0, 13)); // NOI18N
+        hallbarhetsmalenButton.setForeground(new java.awt.Color(255, 255, 255));
         hallbarhetsmalenButton.setText("Hållbarhetsmålen");
         hallbarhetsmalenButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,7 +108,9 @@ private int aid;
             }
         });
 
+        minProfilButton.setBackground(new java.awt.Color(102, 102, 102));
         minProfilButton.setFont(new java.awt.Font(".AppleSystemUIFont", 0, 13)); // NOI18N
+        minProfilButton.setForeground(new java.awt.Color(255, 255, 255));
         minProfilButton.setText("Min Profil");
         minProfilButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,9 +119,11 @@ private int aid;
         });
 
         huvudmenyLabel.setFont(new java.awt.Font(".AppleSystemUIFont", 1, 18)); // NOI18N
+        huvudmenyLabel.setForeground(new java.awt.Color(255, 255, 255));
         huvudmenyLabel.setText("Admin");
 
         loggaUtButton.setFont(new java.awt.Font(".AppleSystemUIFont", 0, 13)); // NOI18N
+        loggaUtButton.setForeground(new java.awt.Color(255, 255, 255));
         loggaUtButton.setText("Logga Ut");
         loggaUtButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,6 +131,7 @@ private int aid;
             }
         });
 
+        AdminMenyUppgifterButton.setForeground(new java.awt.Color(255, 255, 255));
         AdminMenyUppgifterButton.setText("Ändra Uppgifter");
         AdminMenyUppgifterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,48 +147,49 @@ private int aid;
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(minProfilButton, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 164, Short.MAX_VALUE)
-                                .addComponent(minaProjektButton, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(avdelningButton, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(hallbarhetsmalenButton)
-                            .addComponent(AdminMenyUppgifterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(44, 44, 44))
+                        .addComponent(loggaUtButton)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(minProfilButton, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(loggaUtButton)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(174, 174, 174)
                                 .addComponent(inloggadAnvandareLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(145, 145, 145)
-                                .addComponent(huvudmenyLabel)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(huvudmenyLabel)
+                                .addGap(223, 223, 223)
+                                .addComponent(AdminMenyUppgifterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(116, 116, 116)
+                .addComponent(minaProjektButton, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66)
+                .addComponent(avdelningButton, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59)
+                .addComponent(hallbarhetsmalenButton, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 130, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(huvudmenyLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(inloggadAnvandareLabel)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(minProfilButton)
+                            .addComponent(AdminMenyUppgifterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 61, Short.MAX_VALUE))
+                    .addComponent(huvudmenyLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(minProfilButton)
-                    .addComponent(AdminMenyUppgifterButton))
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(hallbarhetsmalenButton, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
-                    .addComponent(avdelningButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(minaProjektButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 268, Short.MAX_VALUE)
+                .addComponent(inloggadAnvandareLabel)
+                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(avdelningButton, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hallbarhetsmalenButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(minaProjektButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 200, Short.MAX_VALUE)
                 .addComponent(loggaUtButton)
                 .addGap(14, 14, 14))
         );
@@ -180,13 +212,13 @@ private int aid;
 
     private void minaProjektButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minaProjektButtonActionPerformed
         // TODO add your handling code here:
-        new MinaProjekt(idb, inloggadAnvandare, aid).setVisible(true);
+        new AdminMinaProjekt(idb, inloggadAnvandare, aid).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_minaProjektButtonActionPerformed
 
     private void hallbarhetsmalenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hallbarhetsmalenButtonActionPerformed
         // TODO add your handling code here:
-        new Hallbarhetsmal(idb, inloggadAnvandare, aid).setVisible(true);
+        new AdminHallbarhetsmal(idb, inloggadAnvandare, aid).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_hallbarhetsmalenButtonActionPerformed
 
@@ -204,7 +236,7 @@ private int aid;
           int aid = Integer.parseInt(userId);
           System.out.println("Öppnar Personuppgifter med aid: " + aid);
           
-        new Personuppgifter(idb, aid, inloggadAnvandare).setVisible(true);
+        new AdminPersonuppgifter(idb, aid, inloggadAnvandare).setVisible(true);
         this.dispose();
     } catch (InfException ex) {
         Logger.getLogger(AdminMeny.class.getName()).log(Level.SEVERE, null, ex);
