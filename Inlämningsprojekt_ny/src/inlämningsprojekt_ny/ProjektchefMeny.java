@@ -17,6 +17,7 @@ public class ProjektchefMeny extends javax.swing.JFrame {
 private InfDB idb;
 private String inloggadAnvandare;
 private int aid;
+private String pid;
     /**
      * Creates new form Meny
      */
@@ -24,6 +25,7 @@ private int aid;
       this.idb= idb;
         this.aid = aid;
         this.inloggadAnvandare = inloggadAnvandare;
+        this.pid = pid;
         try{
         initComponents();
         inloggadAnvandareLabel.setText(inloggadAnvandare);
@@ -194,7 +196,7 @@ private int aid;
 
     private void minaProjektButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minaProjektButtonActionPerformed
         // TODO add your handling code here:
-        new ProjektchefMinaProjekt(idb, inloggadAnvandare, aid).setVisible(true);
+        new ProjektchefMinaProjekt(idb, inloggadAnvandare, aid, pid).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_minaProjektButtonActionPerformed
 

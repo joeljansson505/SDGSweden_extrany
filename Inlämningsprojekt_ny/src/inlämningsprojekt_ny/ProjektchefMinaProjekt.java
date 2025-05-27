@@ -17,13 +17,15 @@ public class ProjektchefMinaProjekt extends javax.swing.JFrame {
     private InfDB idb;
     private String inloggadAnvandare;
     private int aid;
+    private String pid;
     /**
      * Creates new form NewJFrame
      */
-    public ProjektchefMinaProjekt(InfDB idb, String inloggadAnvandare, int aid) {
+    public ProjektchefMinaProjekt(InfDB idb, String inloggadAnvandare, int aid, String pid) {
        this.idb = idb;
        this.inloggadAnvandare = inloggadAnvandare;
        this.aid = aid;
+       this.pid = pid;
         initComponents();
         fyllProjektTabell();
         fyllPartnerTabell();
@@ -54,7 +56,7 @@ public class ProjektchefMinaProjekt extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         etikettRubrikLabel.setFont(new java.awt.Font(".AppleSystemUIFont", 1, 18)); // NOI18N
-        etikettRubrikLabel.setText("Mina tilldelade projekt");
+        etikettRubrikLabel.setText("Mina projekt som projektchef");
 
         tabellProjektTabel.setFont(new java.awt.Font(".AppleSystemUIFont", 0, 13)); // NOI18N
         tabellProjektTabel.setModel(new javax.swing.table.DefaultTableModel(
@@ -162,8 +164,19 @@ public class ProjektchefMinaProjekt extends javax.swing.JFrame {
 
     private void redigeraProjektButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redigeraProjektButtonActionPerformed
         // TODO add your handling code here:
-        new ProjektchefRedigeraProjekt(idb, inloggadAnvandare, aid).setVisible(true);
-        this.dispose();
+       int valdRad = tabellProjektTabel.getSelectedRow();
+
+    if (valdRad == -1) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Vänligen välj ett projekt att redigera.");
+        return;
+    }
+
+    String pid = tabellProjektTabel.getValueAt(valdRad, 0).toString();
+
+   
+    new ProjektchefRedigeraProjekt(idb, inloggadAnvandare, aid, pid).setVisible(true);
+    this.dispose();
+
     }//GEN-LAST:event_redigeraProjektButtonActionPerformed
 
     /**
@@ -188,20 +201,17 @@ public class ProjektchefMinaProjekt extends javax.swing.JFrame {
 }
 
 private void fyllProjektTabell() {
-    try {
-        String pid;
-        pid = idb.fetchSingle("Select pid from ans_proj where aid = "+ aid +";");
-        
-        String sql = "SELECT projektnamn, startdatum, slutdatum, status FROM Projekt where pid = " + pid + ";";
-        
+     try {
+        String sql = "SELECT pid, projektnamn, startdatum, slutdatum, status " +
+                     "FROM projekt WHERE projektchef = " + aid + ";";
 
         var resultat = idb.fetchRows(sql);
-
         var modell = (javax.swing.table.DefaultTableModel) tabellProjektTabel.getModel();
-        modell.setRowCount(0); // töm tabellen
+        modell.setRowCount(0); // Töm gamla rader
 
         for (var rad : resultat) {
             modell.addRow(new Object[] {
+                rad.get("pid"),
                 rad.get("projektnamn"),
                 rad.get("startdatum"),
                 rad.get("slutdatum"),
@@ -209,29 +219,23 @@ private void fyllProjektTabell() {
             });
         }
 
-        if (resultat.isEmpty()) {
-            System.out.println("Inga projekt hittades för handläggare med ID: " + aid);
-        }
-
     } catch (InfException e) {
         javax.swing.JOptionPane.showMessageDialog(this, "Kunde inte hämta projekt: " + e.getMessage());
-        e.printStackTrace();
     }
 }
 private void fyllPartnerTabell() {
-    try {
-        String sql = "SELECT partner.namn, partner.kontaktperson, partner.kontaktepost, partner.telefon, partner.adress, partner.branch, partner.stad " +
-             "FROM partner " +
-             "JOIN projekt_partner ON partner.pid = projekt_partner.partner_pid " +
-             "WHERE projekt_partner.pid IN (SELECT pid FROM ans_proj WHERE aid = " + aid + ");";
+        try {
+        String sql = "SELECT partner.namn, partner.kontaktperson, partner.kontaktepost, " +
+                     "partner.telefon, partner.adress, partner.branch, partner.stad " +
+                     "FROM partner " +
+                     "JOIN projekt_partner ON partner.pid = projekt_partner.partner_pid " +
+                     "WHERE projekt_partner.pid IN (SELECT pid FROM projekt WHERE projektchef = " + aid + ");";
 
         var resultat = idb.fetchRows(sql);
 
-        // Hämta modellen från partner-tabellen
         var modell = (javax.swing.table.DefaultTableModel) projektPartnerTabel.getModel();
         modell.setRowCount(0); // Töm gamla rader
 
-        // Lägg till varje partner som en ny rad
         for (var rad : resultat) {
             modell.addRow(new Object[] {
                 rad.get("namn"),
@@ -245,7 +249,7 @@ private void fyllPartnerTabell() {
         }
 
         if (resultat.isEmpty()) {
-            System.out.println("Inga partners kopplade till användare med ID: " + aid);
+            System.out.println("Inga partners kopplade till projektchefen med ID: " + aid);
         }
 
     } catch (InfException e) {
