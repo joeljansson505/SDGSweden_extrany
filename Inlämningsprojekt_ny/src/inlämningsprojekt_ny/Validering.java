@@ -7,6 +7,7 @@ package inlämningsprojekt_ny;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+import javax.swing.JTextField;
 
 /**
  *
@@ -35,6 +36,10 @@ public class Validering extends javax.swing.JFrame {
     public static boolean faltInteTomt(String input) {
         return input != null && !input.trim().isEmpty();
     }
+    
+    public static boolean faltInteTomtField(JTextField f) {
+    return f.getText() != null && !f.getText().trim().isEmpty();
+}
     
     public static boolean arAnvandarnamnOchLosenordKorrekt(String epost, String losen, InfDB idb) {
         try {
