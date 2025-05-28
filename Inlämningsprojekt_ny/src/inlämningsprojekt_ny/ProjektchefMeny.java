@@ -22,7 +22,7 @@ private String pid;
      * Creates new form Meny
      */
     public ProjektchefMeny(InfDB idb,String inloggadAnvandare, int aid) {
-      this.idb= idb;
+        this.idb= idb;    
         this.aid = aid;
         this.inloggadAnvandare = inloggadAnvandare;
         this.pid = pid;

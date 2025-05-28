@@ -12,14 +12,14 @@ import oru.inf.InfException;
  */
 public class ProjektchefStatistik extends javax.swing.JFrame {
     private InfDB idb;
-    private String InloggadAnvandare;
+    private String inloggadAnvandare;
     private int aid;
     /**
      * Creates new form ProjektchefStatistik
      */
     public ProjektchefStatistik(InfDB idb,String inloggadAnvandare, int aid) {
         this.idb = idb;
-        this.InloggadAnvandare = InloggadAnvandare;
+        this.inloggadAnvandare = inloggadAnvandare;
         this.aid = aid;
         initComponents();
         hamtaProjektKostnad();
@@ -119,7 +119,7 @@ public class ProjektchefStatistik extends javax.swing.JFrame {
 
     private void projektchefStatTillbakaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projektchefStatTillbakaButtonActionPerformed
         // TODO add your handling code here:
-        new ProjektchefMeny(idb, InloggadAnvandare, aid).setVisible(true);
+        new ProjektchefMeny(idb, inloggadAnvandare, aid).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_projektchefStatTillbakaButtonActionPerformed
 
