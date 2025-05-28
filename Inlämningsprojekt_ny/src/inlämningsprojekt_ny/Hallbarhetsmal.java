@@ -83,20 +83,20 @@ public class Hallbarhetsmal extends javax.swing.JFrame {
 
     private void hamtaHallbarhetsmal() {
     try {
-        String sql = "SELECT * FROM hallbarhetsmal ORDER BY hid";
+        String sql = "SELECT namn, beskrivning, malnummer, prioritet FROM hallbarhetsmal ORDER BY hid";
         var resultat = idb.fetchRows(sql);
 
         StringBuilder sb = new StringBuilder();
 
         for (var rad : resultat) {
-            String id = rad.get("hid");
+         
             String namn = rad.get("namn");
             String beskrivning = rad.get("beskrivning");
             String malnummer = rad.get("malnummer");
             String prioritet = rad.get("prioritet");
 
-            sb.append("hid: ").append(id)
-              .append(" | Mål ").append(malnummer)
+            
+              sb.append(" | Målnummer ").append(malnummer)
               .append(": ").append(namn).append("\n")
               .append("Prioritet: ").append(prioritet).append("\n")
               .append(beskrivning).append("\n\n");
