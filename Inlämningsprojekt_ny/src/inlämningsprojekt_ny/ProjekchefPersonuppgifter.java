@@ -27,14 +27,14 @@ public class ProjekchefPersonuppgifter extends javax.swing.JFrame {
         this.inloggadAnvandare = inloggadAnvandare;
         initComponents();
         personuppgifterLosenordKravLabel.setVisible(false);
-        visaPersonuppgifter();
+        visaProjektchefPersonuppgifter();
     }
 
     private ProjekchefPersonuppgifter() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
-    private void visaPersonuppgifter(){
+    private void visaProjektchefPersonuppgifter(){
         try{
             String sql  = "SELECT epost, telefon, adress, losenord FROM anstalld WHERE aid = " + aid;
             HashMap<String, String> data = idb.fetchRow(sql);

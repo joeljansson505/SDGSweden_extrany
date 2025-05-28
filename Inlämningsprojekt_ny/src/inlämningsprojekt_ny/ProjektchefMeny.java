@@ -22,7 +22,7 @@ private String pid;
      * Creates new form Meny
      */
     public ProjektchefMeny(InfDB idb,String inloggadAnvandare, int aid) {
-      this.idb= idb;
+        this.idb= idb;    
         this.aid = aid;
         this.inloggadAnvandare = inloggadAnvandare;
         this.pid = pid;
@@ -220,7 +220,7 @@ private String pid;
           int aid = Integer.parseInt(userId);
           System.out.println("Öppnar Personuppgifter med aid: " + aid);
           
-        new Personuppgifter(idb, aid, inloggadAnvandare).setVisible(true);
+        new ProjekchefPersonuppgifter(idb, aid, inloggadAnvandare).setVisible(true);
         this.dispose();
     } catch (InfException ex) {
         Logger.getLogger(ProjektchefMeny.class.getName()).log(Level.SEVERE, null, ex);
