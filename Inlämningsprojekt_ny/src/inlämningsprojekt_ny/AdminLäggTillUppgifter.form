@@ -25,8 +25,18 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="adminLaggTillUppgTillbakaButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="322" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                      <Component id="laggTillUppgTabbedPane" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="adminLaggTillUppgTillbakaButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="adminLaggTillUppgComboBox" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -34,8 +44,12 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="adminLaggTillUppgTillbakaButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="271" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="adminLaggTillUppgTillbakaButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="adminLaggTillUppgComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+              <Component id="laggTillUppgTabbedPane" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -49,5 +63,759 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adminLaggTillUppgTillbakaButtonActionPerformed"/>
       </Events>
     </Component>
+    <Component class="javax.swing.JComboBox" name="adminLaggTillUppgComboBox">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Avdelning"/>
+            <StringItem index="1" value="Projekt"/>
+            <StringItem index="2" value="Land"/>
+            <StringItem index="3" value="Partner"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adminLaggTillUppgComboBoxActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Container class="javax.swing.JTabbedPane" name="laggTillUppgTabbedPane">
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
+      <SubComponents>
+        <Container class="javax.swing.JPanel" name="landPanel">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Land">
+                <Property name="tabTitle" type="java.lang.String" value="Land"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="landSparaButton" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="landNamnLabel" max="32767" attributes="0"/>
+                                  <Component id="landSprakLabel" max="32767" attributes="0"/>
+                                  <Component id="landValutaLabel" max="32767" attributes="0"/>
+                                  <Component id="landTidszonLabel" max="32767" attributes="0"/>
+                                  <Component id="landPolitiskStrukturLabel" pref="118" max="32767" attributes="0"/>
+                                  <Component id="landEkonomiLabel" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="landNamnField" max="32767" attributes="0"/>
+                                  <Component id="landSprakField" max="32767" attributes="0"/>
+                                  <Component id="landValutaField" max="32767" attributes="0"/>
+                                  <Component id="landTidszonField" max="32767" attributes="0"/>
+                                  <Component id="landPolitiskStrukturField" max="32767" attributes="0"/>
+                                  <Component id="landEkonomiField" pref="152" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="375" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="landNamnLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="landNamnField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="landSprakLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="landSprakField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="landValutaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="landValutaField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="landTidszonLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="landTidszonField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="landPolitiskStrukturLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="landPolitiskStrukturField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="landEkonomiLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="landEkonomiField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="75" max="32767" attributes="0"/>
+                      <Component id="landSparaButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JButton" name="landSparaButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Spara"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="landSparaButtonActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="landNamnLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Namn:             *"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="landSprakLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Spr&#xe5;k:             *"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="landValutaLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Valuta:            *"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="landTidszonLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Tidszon:         *"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="landPolitiskStrukturLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Politisk Struktur: *"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="landEkonomiLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Ekonomi:       *"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="landNamnField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="landSprakField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="landValutaField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="landTidszonField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="landPolitiskStrukturField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="landEkonomiField">
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="partnerPanel">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Partner">
+                <Property name="tabTitle" type="java.lang.String" value="Partner"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="partnerSparaButton" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="partnerNamnLabel" max="32767" attributes="0"/>
+                          <Component id="partnerKontaktPersonLabel" alignment="0" max="32767" attributes="0"/>
+                          <Component id="partnerEpostLabel" alignment="0" max="32767" attributes="0"/>
+                          <Component id="partnerTelefonNummerLabel" pref="111" max="32767" attributes="0"/>
+                          <Component id="partnerAdressLabel" max="32767" attributes="0"/>
+                          <Component id="partnerBranchLabel" max="32767" attributes="0"/>
+                          <Component id="partnerStadLabel" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="partnerNamnField" pref="178" max="32767" attributes="0"/>
+                              <Component id="partnerKontaktPersonField" max="32767" attributes="0"/>
+                              <Component id="partnerEpostField" max="32767" attributes="0"/>
+                              <Component id="partnerTelefonNummerField" max="32767" attributes="0"/>
+                              <Component id="partnerAdressField" max="32767" attributes="0"/>
+                              <Component id="partnerBranchField" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="partnerStadComboBox" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="309" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="partnerNamnLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="partnerNamnField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="partnerKontaktPersonLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="partnerKontaktPersonField" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="partnerEpostLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="partnerEpostField" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="partnerTelefonNummerLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="partnerTelefonNummerField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="partnerAdressLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="partnerAdressField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="partnerBranchLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="partnerBranchField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="38" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="partnerStadLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="partnerStadComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                      <Component id="partnerSparaButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JButton" name="partnerSparaButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Spara"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="partnerSparaButtonActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="partnerNamnLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Namn:                   *"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="partnerKontaktPersonLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Kontaktperson:     *"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="partnerEpostLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Epost:                   *"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="partnerTelefonNummerLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Telefon nummer:  *"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="partnerAdressLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Adress:                 *"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="partnerBranchLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Branch:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="partnerStadLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Stad:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="partnerNamnField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="partnerKontaktPersonField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="partnerEpostField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="partnerTelefonNummerField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="partnerAdressField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="partnerBranchField">
+            </Component>
+            <Component class="javax.swing.JComboBox" name="partnerStadComboBox">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="0"/>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="projektPanel">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Projekt">
+                <Property name="tabTitle" type="java.lang.String" value="Projekt"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="projLandLabel" max="32767" attributes="0"/>
+                          <Component id="projProjektChefLabel" max="32767" attributes="0"/>
+                          <Component id="projStatusLabel" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="projSlutDatumLabel" max="32767" attributes="0"/>
+                                  <Component id="projStartDatumLabel" max="32767" attributes="0"/>
+                                  <Component id="projNamnLabel" alignment="0" pref="109" max="32767" attributes="0"/>
+                                  <Component id="projBeskrivningLabel" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="projKostnadLabel" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Component id="projPrioritetLabel" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="projLandComboBox" max="32767" attributes="0"/>
+                          <Component id="projProjektChefComboBox" max="32767" attributes="0"/>
+                          <Component id="projPrioritetComboBox" min="-2" max="-2" attributes="0"/>
+                          <Component id="projStatusComboBox" min="-2" max="-2" attributes="0"/>
+                          <Component id="projKostnadField" pref="171" max="32767" attributes="0"/>
+                          <Component id="projSlutDatumField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="projStartDatumField" max="32767" attributes="0"/>
+                          <Component id="projBeskrivningField" max="32767" attributes="0"/>
+                          <Component id="projNamnField" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="projValideringSlutDatumLabel" pref="83" max="32767" attributes="0"/>
+                          <Component id="projValideringStartDatumLabel" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="264" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="projSparaButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="projNamnLabel" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="projNamnField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="projBeskrivningLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="projBeskrivningField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="projStartDatumLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="projStartDatumField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="projValideringStartDatumLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="projSlutDatumLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="projSlutDatumField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="projValideringSlutDatumLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="projKostnadLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="projKostnadField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="projStatusLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="projStatusComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="projPrioritetLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="projPrioritetComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="projProjektChefLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="projProjektChefComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="projLandLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="projLandComboBox" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                      <Component id="projSparaButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="projNamnLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Projektnamn:        *"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="projBeskrivningLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="beskrivning:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="projStartDatumLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Startdatum:          *"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="projSlutDatumLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Slutdatum:           *"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="projKostnadLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Kostnad:              *"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="projStatusLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Status:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="projPrioritetLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Prioritet:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="projProjektChefLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Projektchef:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="projLandLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Land:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="projLandComboBox">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="0"/>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="projProjektChefComboBox">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="0"/>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="projPrioritetComboBox">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="3">
+                    <StringItem index="0" value="L&#xe5;g"/>
+                    <StringItem index="1" value="Medel"/>
+                    <StringItem index="2" value="H&#xf6;g"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="projStatusComboBox">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="3">
+                    <StringItem index="0" value="Planerad"/>
+                    <StringItem index="1" value="P&#xe5;g&#xe5;ende"/>
+                    <StringItem index="2" value="Avslutad"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JTextField" name="projKostnadField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="projSlutDatumField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="projStartDatumField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="projBeskrivningField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="projNamnField">
+            </Component>
+            <Component class="javax.swing.JButton" name="projSparaButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Spara"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="projSparaButtonActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="projValideringStartDatumLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="YYYY-MM-DD"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="projValideringSlutDatumLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="YYYY-MM-DD"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="avdPanel">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Avdelning">
+                <Property name="tabTitle" type="java.lang.String" value="Avdelning"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jLabel7" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLabel6" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLabel5" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="avdStadComboBox" min="-2" max="-2" attributes="0"/>
+                          <Component id="avdNamnField" max="32767" attributes="0"/>
+                          <Component id="avdAdressField" max="32767" attributes="0"/>
+                          <Component id="avdEpostField" max="32767" attributes="0"/>
+                          <Component id="avdTelefonField" max="32767" attributes="0"/>
+                          <Component id="avdChefComboBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="avdBeskrivningField" alignment="0" pref="163" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="233" max="32767" attributes="0"/>
+                      <Component id="avdSparaButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace pref="49" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel4" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                  <Component id="avdNamnField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel1" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                  <Component id="avdAdressField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel2" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                  <Component id="avdEpostField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel3" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                  <Component id="avdTelefonField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel6" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                  <Component id="avdStadComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel5" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                  <Component id="avdChefComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                                      <Component id="jLabel7" min="-2" pref="29" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="avdBeskrivningField" min="-2" pref="59" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="avdSparaButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JPanel" name="jPanel2">
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+            </Container>
+            <Component class="javax.swing.JLabel" name="jLabel1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Avdelnings adress:     *"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Avdelnings epost:      *"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Avdelnings telefon:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel4">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Avdelnings namn:      *"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel5">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Avdelnings chef:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel6">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Avdelnings stad:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel7">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Beskrivning av avdelning:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="avdNamnField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="avdAdressField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="avdEpostField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="avdTelefonField">
+            </Component>
+            <Component class="javax.swing.JComboBox" name="avdStadComboBox">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="0"/>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="avdChefComboBox">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="0"/>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JTextField" name="avdBeskrivningField">
+            </Component>
+            <Component class="javax.swing.JButton" name="avdSparaButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Spara"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="avdSparaButtonActionPerformed"/>
+              </Events>
+            </Component>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
   </SubComponents>
 </Form>
