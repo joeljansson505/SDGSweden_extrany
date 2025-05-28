@@ -293,42 +293,59 @@ public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
 
     private void redigerProjektFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redigerProjektFieldActionPerformed
         // TODO add your handling code here:
-        String nyttNamn = redigerProjektField.getText().trim();
+        // Hämta texten som användaren skrivit i fältet för projektnamn
+    // .trim() tar bort eventuella mellanslag i början och slutet av texten
+    String nyttNamn = redigerProjektField.getText().trim();
 
-      if (nyttNamn.isEmpty()) {
+    // Kontrollera om fältet är tomt
+    if (nyttNamn.isEmpty()) {
+        // Visa ett felmeddelande om användaren inte har skrivit något
         javax.swing.JOptionPane.showMessageDialog(this, "Du måste skriva ett projektnamn.");
     } else {
-        
+        // Om ett namn finns angivet, visa en bekräftelse på att det har registrerats (tillfälligt)
+        // Detta meddelande bekräftar alltså endast att texten har registrerats i fältet, 
+        // det sparas ännu inte till databasen här
         javax.swing.JOptionPane.showMessageDialog(this, "Projektnamn uppdaterat (tillfälligt): " + nyttNamn);
-        
-     
     }
     }//GEN-LAST:event_redigerProjektFieldActionPerformed
 
     private void satusRedigeraMinaProjektComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_satusRedigeraMinaProjektComboBoxActionPerformed
         // TODO add your handling code here:
-        String valdStatus = (String) satusRedigeraMinaProjektComboBox.getSelectedItem();
+        // Hämta det valda värdet från status-rullgardinsmenyn (ComboBoxen)
+    // Eftersom getSelectedItem() returnerar ett Object, typomvandlas det till en String
+    String valdStatus = (String) satusRedigeraMinaProjektComboBox.getSelectedItem();
 
+    // Skriv ut den valda statusen i konsolen (för felsökning eller kontroll)
+    // Detta används ofta vid testning för att verifiera att rätt värde valts
     System.out.println("Vald status: " + valdStatus);
     }//GEN-LAST:event_satusRedigeraMinaProjektComboBoxActionPerformed
 
     private void startdatumRedigeraProjektFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startdatumRedigeraProjektFieldActionPerformed
         // TODO add your handling code here:
-       String nyttStartdatum = startdatumRedigeraProjektField.getText().trim();
+       // Hämta det nya startdatumet som användaren skrivit in i textfältet, ta bort överflödiga mellanslag
+    String nyttStartdatum = startdatumRedigeraProjektField.getText().trim();
 
+    // Kontrollera att det nya datumet är i korrekt format (YYYY-MM-DD)
     if (!Validering.kollaDatum(nyttStartdatum)) {
+        // Om formatet är fel, visa ett felmeddelande till användaren
         javax.swing.JOptionPane.showMessageDialog(this, "Startdatum måste vara i formatet YYYY-MM-DD.");
-        return;
+        return; // Avsluta metoden så att inget felaktigt skickas till databasen
     }
 
     try {
+        // Hämta projektnamnet från fältet (används för att identifiera vilket projekt som ska uppdateras)
         String projektnamn = redigerProjektField.getText().trim(); 
 
+        // Skapa SQL-frågan som uppdaterar projektets startdatum i databasen
         String sql = "UPDATE projekt SET startdatum = '" + nyttStartdatum + "' WHERE projektnamn = '" + projektnamn + "'";
+
+        // Skicka frågan till databasen för att spara ändringen
         idb.update(sql);
 
+        // Bekräfta för användaren att startdatumet har uppdaterats
         javax.swing.JOptionPane.showMessageDialog(this, "Startdatum uppdaterat till: " + nyttStartdatum);
     } catch (Exception e) {
+        // Om något går fel under databasuppdateringen, visa ett felmeddelande med information om felet
         javax.swing.JOptionPane.showMessageDialog(this, "Fel vid uppdatering: " + e.getMessage());
     }
 
@@ -336,42 +353,56 @@ public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
 
     private void slutdatumRedigeraProjektFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_slutdatumRedigeraProjektFieldActionPerformed
         // TODO add your handling code here:
-        String nyttSlutdatum = slutdatumRedigeraProjektField.getText().trim();
+        // Hämta det nya slutdatumet från textrutan och ta bort överflödiga mellanslag i början/slutet
+    String nyttSlutdatum = slutdatumRedigeraProjektField.getText().trim();
 
+    // Validera att datumet är i korrekt format (YYYY-MM-DD)
     if (!Validering.kollaDatum(nyttSlutdatum)) {
+        // Visa felmeddelande om formatet är ogiltigt
         javax.swing.JOptionPane.showMessageDialog(this, "Slutdatum måste vara i formatet YYYY-MM-DD.");
-        return;
+        return; // Avsluta metoden om formatet inte stämmer
     }
 
     try {
+        // Hämta projektets namn från textrutan (används för att hitta rätt projekt i databasen)
         String projektnamn = redigerProjektField.getText().trim(); 
 
+        // Skapa en SQL-fråga för att uppdatera projektets slutdatum
         String sql = "UPDATE projekt SET slutdatum = '" + nyttSlutdatum + "' WHERE projektnamn = '" + projektnamn + "'";
+
+        // Skicka frågan till databasen och utför uppdateringen
         idb.update(sql);
 
+        // Visa bekräftelsemeddelande till användaren
         javax.swing.JOptionPane.showMessageDialog(this, "Slutdatum uppdaterat till: " + nyttSlutdatum);
     } catch (Exception e) {
+        // Om något går fel, visa ett felmeddelande med information om felet
         javax.swing.JOptionPane.showMessageDialog(this, "Fel vid uppdatering: " + e.getMessage());
     }
     }//GEN-LAST:event_slutdatumRedigeraProjektFieldActionPerformed
 
     private void beskrivningProjektFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beskrivningProjektFieldActionPerformed
         // TODO add your handling code here:
+        // Hämta det användaren har skrivit i beskrivningsfältet och ta bort eventuella mellanslag i början/slutet
         String nyBeskrivning = beskrivningProjektField.getText().trim();
-
+        
+        // Kontrollera att fältet inte är tomt med hjälp av en valideringsmetod
     if (!Validering.faltInteTomt(nyBeskrivning)) {
+        // Visa felmeddelande om fältet är tomt och avsluta metoden
         javax.swing.JOptionPane.showMessageDialog(this, "Beskrivningen får inte vara tom.");
         return;
     }
-
+        // Hämta projektets namn från ett annat fält i GUI:t (används för att hitta rätt projekt i databasen)
     try {
         String projektnamn = redigerProjektField.getText().trim(); 
-
+        // Skapa SQL-fråga som uppdaterar projektets beskrivning i databasen
         String sql = "UPDATE projekt SET beskrivning = '" + nyBeskrivning + "' WHERE projektnamn = '" + projektnamn + "'";
         idb.update(sql);
-
+        // Bekräftelse till användaren att beskrivningen sparades
         javax.swing.JOptionPane.showMessageDialog(this, "Beskrivning uppdaterad!");
-    } catch (Exception e) {
+    } 
+        // Felhantering: om något går fel visas ett felmeddelande
+    catch (Exception e) {
         javax.swing.JOptionPane.showMessageDialog(this, "Fel vid uppdatering: " + e.getMessage());
     }
     }//GEN-LAST:event_beskrivningProjektFieldActionPerformed
