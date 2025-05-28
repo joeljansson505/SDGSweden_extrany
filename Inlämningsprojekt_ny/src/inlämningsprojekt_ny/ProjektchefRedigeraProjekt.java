@@ -52,7 +52,7 @@ public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
         sparaAndringarRedigeraProjektButton = new javax.swing.JButton();
         felmeddelandepcLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        handläggareRedigeraArea = new javax.swing.JTextArea();
+        handlaggareRedigeraArea = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         partnerRedigeraArea = new javax.swing.JTextArea();
 
@@ -121,9 +121,9 @@ public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
             }
         });
 
-        handläggareRedigeraArea.setColumns(20);
-        handläggareRedigeraArea.setRows(5);
-        jScrollPane1.setViewportView(handläggareRedigeraArea);
+        handlaggareRedigeraArea.setColumns(20);
+        handlaggareRedigeraArea.setRows(5);
+        jScrollPane1.setViewportView(handlaggareRedigeraArea);
 
         partnerRedigeraArea.setColumns(20);
         partnerRedigeraArea.setRows(5);
@@ -274,7 +274,7 @@ public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
                 handlaggareNamn.setLength(handlaggareNamn.length() - 2);
             }
 
-            handläggareRedigeraArea.setText(handlaggareNamn.toString());
+            handlaggareRedigeraArea.setText(handlaggareNamn.toString());
         }
 
     } catch (InfException e) {
@@ -385,7 +385,7 @@ public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
         String slutdatum = slutdatumRedigeraProjektField.getText().trim();
         String beskrivning = beskrivningProjektField.getText().trim();
         String partnerNamn = partnerRedigeraArea.getText().trim();
-        String handlaggare = handläggareRedigeraArea.getText().trim();
+        String handlaggare = handlaggareRedigeraArea.getText().trim();
 
         // Validera
         if (projektnamn.isEmpty()) {
@@ -418,7 +418,7 @@ public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
 
             if (partnerPid != null) {
                 // Lägg in kopplingen om den inte redan finns
-                String check = idb.fetchSingle("SELECT * FROM projekt_partner WHERE pid = " + pid + " AND partner_pid = " + partnerPid);
+                String check = idb.fetchSingle("SELECT pid FROM projekt_partner WHERE pid = " + pid + " AND partner_pid = " + partnerPid);
                 if (check == null) {
                     String kopplaSql = "INSERT INTO projekt_partner (pid, partner_pid) VALUES (" + pid + ", " + partnerPid + ")";
                     idb.insert(kopplaSql);
@@ -427,6 +427,37 @@ public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
                 javax.swing.JOptionPane.showMessageDialog(this, "Partnern hittades inte i databasen.");
             }
         }
+ 
+
+if (!handlaggare.isEmpty()) {
+    String[] handlaggareArray = handlaggare.split(",");
+    for (String namn : handlaggareArray) {
+        namn = namn.trim();
+        String[] delar = namn.split(" ");
+        if (delar.length >= 2) {
+            String fornamn = delar[0];
+            String efternamn = delar[1];
+
+            try {
+                String handlaggarAid = idb.fetchSingle(
+                    "SELECT aid FROM anstalld WHERE fornamn = '" + fornamn + "' AND efternamn = '" + efternamn + "'"
+                );
+
+                if (handlaggarAid != null) {
+                    String check = idb.fetchSingle(
+                        "SELECT pid FROM ans_proj WHERE pid = " + pid + " AND aid = " + handlaggarAid
+                    );
+
+                    if (check == null) {
+                        idb.insert("INSERT INTO ans_proj (pid, aid) VALUES (" + pid + ", " + handlaggarAid + ")");
+                    }
+                }
+            } catch (InfException e) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Fel med handläggare '" + namn + "': " + e.getMessage());
+            }
+        }
+    }
+}
 
         // Visa klar
         javax.swing.JOptionPane.showMessageDialog(this, "Projektet uppdaterades!");
@@ -475,7 +506,7 @@ public class ProjektchefRedigeraProjekt extends javax.swing.JFrame {
     private javax.swing.JTextField beskrivningProjektField;
     private javax.swing.JLabel beskrivningRedigeraProjektLabel;
     private javax.swing.JLabel felmeddelandepcLabel;
-    private javax.swing.JTextArea handläggareRedigeraArea;
+    private javax.swing.JTextArea handlaggareRedigeraArea;
     private javax.swing.JLabel handläggareRedigeraProjektLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
