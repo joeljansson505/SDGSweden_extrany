@@ -224,7 +224,7 @@ public class AdminÄndraUppgifter extends javax.swing.JFrame {
 
     private void laggTillButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laggTillButtonActionPerformed
         // TODO add your handling code here:
-        new AdminLäggTillTaBort(idb, inloggadAnvandare, aid).setVisible(true);
+        new AdminLäggTillUppgifter(idb, inloggadAnvandare, aid).setVisible(true);
     }//GEN-LAST:event_laggTillButtonActionPerformed
 
     private void SparaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SparaButtonActionPerformed
