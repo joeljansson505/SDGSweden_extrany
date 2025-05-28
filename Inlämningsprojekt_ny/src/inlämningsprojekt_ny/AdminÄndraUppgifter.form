@@ -41,7 +41,9 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
               <Component id="laggTillButton" min="-2" pref="127" max="-2" attributes="0"/>
-              <EmptySpace pref="410" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              <Component id="raderaButton" min="-2" pref="127" max="-2" attributes="0"/>
+              <EmptySpace pref="249" max="32767" attributes="0"/>
               <Component id="SparaButton" min="-2" pref="137" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="224" max="-2" attributes="0"/>
           </Group>
@@ -61,6 +63,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="laggTillButton" alignment="3" min="-2" pref="58" max="-2" attributes="0"/>
                   <Component id="SparaButton" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
+                  <Component id="raderaButton" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="43" max="32767" attributes="0"/>
           </Group>
@@ -156,6 +159,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SparaButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="raderaButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Radera"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="raderaButtonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

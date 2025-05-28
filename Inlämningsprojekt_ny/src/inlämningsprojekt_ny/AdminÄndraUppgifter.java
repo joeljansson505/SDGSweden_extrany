@@ -4,7 +4,13 @@
  */
 package inlämningsprojekt_ny;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.DriverManager;
+
 import oru.inf.InfDB;
+import oru.inf.InfException;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 import java.util.List;
@@ -45,6 +51,7 @@ public class AdminÄndraUppgifter extends javax.swing.JFrame {
         TableInfoUppgifter = new javax.swing.JTable();
         laggTillButton = new javax.swing.JButton();
         SparaButton = new javax.swing.JButton();
+        raderaButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,6 +96,13 @@ public class AdminÄndraUppgifter extends javax.swing.JFrame {
             }
         });
 
+        raderaButton.setText("Radera");
+        raderaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                raderaButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -107,7 +121,9 @@ public class AdminÄndraUppgifter extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(156, 156, 156)
                 .addComponent(laggTillButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 410, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
+                .addComponent(raderaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 249, Short.MAX_VALUE)
                 .addComponent(SparaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(224, 224, 224))
         );
@@ -123,7 +139,8 @@ public class AdminÄndraUppgifter extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(laggTillButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SparaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SparaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(raderaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
 
@@ -376,6 +393,65 @@ public class AdminÄndraUppgifter extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_SparaButtonActionPerformed
 
+    private void raderaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_raderaButtonActionPerformed
+        // TODO add your handling code here:
+int rad = TableInfoUppgifter.getSelectedRow();
+if (rad == -1) {
+    JOptionPane.showMessageDialog(this, "Välj en rad att radera.");
+    return;
+}
+
+int confirm = JOptionPane.showConfirmDialog(this, "Är du säker på att du vill radera det valda projektet?", "Bekräfta radering", JOptionPane.YES_NO_OPTION);
+if (confirm != JOptionPane.YES_OPTION) {
+    return;
+}
+
+String selected = AndraUppgifterComboBox.getSelectedItem().toString();
+String id = TableInfoUppgifter.getValueAt(rad, 0).toString();
+
+try {
+    switch (selected) {
+        case "Avdelning":
+            // Sätt referenser i alla tabeller som har avdid till NULL först
+            idb.update("UPDATE avd_hallbarhet SET avdid = NULL WHERE avdid = " + id + ";");
+            idb.update("UPDATE anstallda SET avdid = NULL WHERE avdid = " + id + ";");
+
+            // Radera avdelningen
+            idb.delete("DELETE FROM avdelning WHERE avdid = " + id + ";");
+            break;
+
+        case "Projekt":
+            idb.delete("DELETE FROM proj_hallbarhet WHERE pid = " + id + ";");
+            idb.delete("DELETE FROM projekt_partner WHERE pid = " + id + ";");
+            idb.delete("DELETE FROM ans_proj WHERE pid = " + id + ";");
+            idb.delete("DELETE FROM projekt WHERE pid = " + id + ";");
+            break;
+
+        case "Land":
+            idb.update("UPDATE projekt SET land = NULL WHERE land = " + id + ";");
+            idb.update("UPDATE stad SET land = NULL WHERE land = " + id + ";");
+            idb.delete("DELETE FROM land WHERE lid = " + id + ";");
+            break;
+
+        case "Partner":
+            idb.delete("DELETE FROM projekt_partner WHERE partner_pid = " + id + ";");
+            idb.delete("DELETE FROM partner WHERE pid = " + id + ";");
+            break;
+
+        default:
+            JOptionPane.showMessageDialog(this, "Ogiltigt val.");
+            return;
+    }
+
+    JOptionPane.showMessageDialog(this, selected + " har raderats.");
+    AndraUppgifterComboBoxActionPerformed(null);
+
+} catch (InfException e) {
+    JOptionPane.showMessageDialog(this, "Fel vid radering: " + e.getMessage());
+    e.printStackTrace();
+}
+    }//GEN-LAST:event_raderaButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -418,5 +494,6 @@ public class AdminÄndraUppgifter extends javax.swing.JFrame {
     private javax.swing.JTable TableInfoUppgifter;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton laggTillButton;
+    private javax.swing.JButton raderaButton;
     // End of variables declaration//GEN-END:variables
 }
