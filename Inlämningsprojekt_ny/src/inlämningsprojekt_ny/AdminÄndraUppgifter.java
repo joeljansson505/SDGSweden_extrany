@@ -373,13 +373,13 @@ public class AdminÄndraUppgifter extends javax.swing.JFrame {
              stad = stad.replace("'", "''");
              
              String sql = "UPDATE partner SET " +
-                     "namn'" + namn + "'," + 
-                     "kontaktperson'" + kontaktperson + "'," + 
-                     "kontaktepost'" + kontaktepost + "'," + 
-                     "telefon'" + telefon + "'," + 
-                     "adress'" + adress + "'," + 
-                     "branch'" + branch + "'," + 
-                     "stad'" + stad + "'" + 
+                     "namn='" + namn + "'," + 
+                     "kontaktperson='" + kontaktperson + "'," + 
+                     "kontaktepost='" + kontaktepost + "'," + 
+                     "telefon='" + telefon + "'," + 
+                     "adress='" + adress + "'," + 
+                     "branch='" + branch + "'," + 
+                     "stad='" + stad + "'" + 
                      "WHERE pid =" + id;
              
              idb.update(sql);
