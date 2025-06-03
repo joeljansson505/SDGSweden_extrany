@@ -16,31 +16,49 @@ import javax.swing.JTextField;
 public class Validering extends javax.swing.JFrame {
 
     /**
-     * Creates new form Validering
+     * Validerar om en e-postadress är korrekt formaterad.
+     * Regexen kontrollerar att det finns ett användarnamn, ett @-tecken,
+     * och en domän med minst två bokstäver.
      */
     public static boolean arMailKorrekt(String epost) {
         String valideraEpost = "^[a-zA-Z0-9._+%-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"; 
         return epost != null && epost.matches(valideraEpost);
     }
-    
+    /**
+     * Kontrollerar att ett lösenord uppfyller grundläggande krav:
+     * - Endast bokstäver och siffror
+     * - Minst 11 tecken långt, max 99 tecken
+     */
     public static boolean losenordKrav(String losen) {
         String losenRegex = "^[a-zA-Z0-9]{11,99}$"; 
         return losen != null && losen.matches(losenRegex);
     }
-    
+    /**
+     * Kontrollerar att ett datum är i formatet YYYY-MM-DD
+     * (år-månad-dag) där månader är 01-12 och dagar 01-31.
+     */
     public static boolean kollaDatum(String datum) {
         String kollaDatumRegex = "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])$"; 
         return datum != null && datum.matches(kollaDatumRegex);
     }
-    
+    /**
+     * Kontrollerar att en textsträng inte är tom.
+     * Används för att säkerställa att användaren har skrivit något.
+     */
     public static boolean faltInteTomt(String input) {
         return input != null && !input.trim().isEmpty();
     }
-    
+    /**
+     * Variant av ovanstående metod men för JTextField.
+     * Returnerar true om textfältet inte är tomt.
+     */
     public static boolean faltInteTomtField(JTextField f) {
     return f.getText() != null && !f.getText().trim().isEmpty();
 }
-    
+    /**
+     * Kontrollerar om ett användarnamn (e-post) och lösenord matchar en post i databasen.
+     * Returnerar true om kombinationen finns i tabellen `anstalld`.
+     */
     public static boolean arAnvandarnamnOchLosenordKorrekt(String epost, String losen, InfDB idb) {
         try {
             String fraga = "SELECT epost FROM anstalld WHERE epost = '" + epost + "' AND losenord = '" + losen + "';";
@@ -52,12 +70,18 @@ public class Validering extends javax.swing.JFrame {
             return false;
         }
     }
-    
+    /**
+     * Validerar prioritet för ett projekt.
+     * Tillåter endast strängarna "låg" eller "Hög" som giltiga värden.
+     */
     public static boolean kollaPrioritet(String prioritet) {
         String kollaPrioritetRegex = "^(låg|Hög)$";
         return prioritet != null && prioritet.matches(kollaPrioritetRegex);
     }
-    
+    /**
+     * Validerar status för ett projekt.
+     * Tillåter endast "Planerat", "Pågående" eller "Avslutat".
+     */
     public static boolean kollaStatus(String status) {
         String kollaStatusRegex = "^(Planerat|Pågående|Avslutat)$";
         return status != null && status.matches(kollaStatusRegex);
