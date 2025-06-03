@@ -157,7 +157,7 @@ public class AdminÄndraUppgifter extends javax.swing.JFrame {
         // TODO add your handling code here:
         String selected = AndraUppgifterComboBox.getSelectedItem().toString();
         DefaultTableModel model = new DefaultTableModel();
-        
+        //case för att få rätt kolumnener i table
         try {
             switch (selected) {
                 case "Avdelning":
@@ -259,9 +259,9 @@ public class AdminÄndraUppgifter extends javax.swing.JFrame {
         }
         
         try {
-            String selected = AndraUppgifterComboBox.getSelectedItem().toString();
+            String selected = AndraUppgifterComboBox.getSelectedItem().toString(); //hämtar case via combobox
             
-         if (selected.equals("Avdelning")) {
+         if (selected.equals("Avdelning")) { //hämtar uppgifter för tabellen
             String id = TableInfoUppgifter.getValueAt(rad, 0).toString();
             String namn = TableInfoUppgifter.getValueAt(rad, 1).toString();
             String beskrivning = TableInfoUppgifter.getValueAt(rad, 2).toString();
@@ -270,7 +270,7 @@ public class AdminÄndraUppgifter extends javax.swing.JFrame {
             String telefon = TableInfoUppgifter.getValueAt(rad, 5).toString();
             String stad = TableInfoUppgifter.getValueAt(rad, 6).toString();
             String chef = TableInfoUppgifter.getValueAt(rad, 7).toString();
-            
+            //ersätter till två ''
             namn = namn.replace("'", "''");
             beskrivning = beskrivning.replace("'", "''");
             adress = adress.replace("'", "''");
@@ -278,7 +278,7 @@ public class AdminÄndraUppgifter extends javax.swing.JFrame {
             telefon = telefon.replace("'", "''");
             stad = stad.replace("'", "''");
             chef = chef.replace("'", "''");
-            
+            //sql fråga för att uppdatera uppgifterna
             String sql = "UPDATE avdelning SET " + 
                     "namn='" + namn + "'," + 
                      "beskrivning='" + beskrivning + "'," +
@@ -288,7 +288,7 @@ public class AdminÄndraUppgifter extends javax.swing.JFrame {
                      "stad='" + stad + "'," + 
                      "chef='" + chef + "' " +  
                      "WHERE avdid=" + id;
-            idb.update(sql);
+            idb.update(sql); //meddelande som visar att uppgifterna lyckades sparas
             JOptionPane.showMessageDialog(this, "Uppgifter sparade!");
             AndraUppgifterComboBoxActionPerformed(null);
          }
