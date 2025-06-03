@@ -405,7 +405,10 @@ public class ProjektchefHallbarhetavd extends javax.swing.JFrame {
             hallbarhetAvdProjektField.setText("Ogiltig status: " + status);
         }
     }//GEN-LAST:event_plaAvdHallbarhetButtonActionPerformed
-
+/**
+ * Söker efter handläggare i avdelningen "Hållbar Energi och Klimatförändringar"
+ * baserat på namn eller e-post. Visar träffar eller felmeddelande i textfältet.
+ */
     private void sokHandlaggareButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokHandlaggareButtonActionPerformed
         // TODO add your handling code here:
      String sokterm = sokHandlaggarField.getText().trim();
@@ -448,7 +451,11 @@ public class ProjektchefHallbarhetavd extends javax.swing.JFrame {
         hallbarhetPersonalField.setText("Fel vid sökning: " + e.getMessage());
     }
     }//GEN-LAST:event_sokHandlaggareButtonActionPerformed
-
+/**
+ * Söker och visar pågående projekt i avdelningen "Hållbar Energi och Klimatförändringar"
+ * som överlappar ett angivet datumintervall (YYYY-MM-DD).
+ * Visar projektnamn, datum och beskrivning, eller felmeddelande vid problem.
+ */
     private void sokProjektDatumButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokProjektDatumButtonActionPerformed
         // TODO add your handling code here:
          String franDatum = sokProjektField.getText().trim();
