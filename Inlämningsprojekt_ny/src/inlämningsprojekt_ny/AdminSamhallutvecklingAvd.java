@@ -509,26 +509,48 @@ public class AdminSamhallutvecklingAvd extends javax.swing.JFrame {
         String fornamn = namn.substring(0, namn.indexOf(" "));
         String efternamn = namn.substring(namn.indexOf(" ") + 1);
         
-        try{
-            String sqlAid = "SELECT aid FROM anstalld WHERE fornamn = '" + fornamn.replace("'", "''") + "' AND efternamn = '" + efternamn.replace("'", "''") + "'";
-            String aid = idb.fetchSingle(sqlAid);
-            
-            if(aid == null){
-                JOptionPane.showMessageDialog(null, "Personen finns inte:" + namn);
-                return;
-            }
-            
-            String deleteAnsProj = "DELETE FROM ans_proj WHERE aid = " + aid;
-            idb.delete(deleteAnsProj);
-            
-            String deletePerson = "DELETE FROM ans_proj WHERE aid = " + aid;
-            idb.delete(deletePerson);
-            
-            JOptionPane.showMessageDialog(null, "Personen raderades: " + namn);
-            
-        }catch (Exception e){
-            JOptionPane.showMessageDialog(null, "Fel vid radering: " + e.getMessage());
-        }
+try {
+    String sqlAid = "SELECT aid FROM anstalld WHERE fornamn = '" + fornamn.replace("'", "''") +
+                    "' AND efternamn = '" + efternamn.replace("'", "''") + "'";
+    String aid = idb.fetchSingle(sqlAid);
+
+    if (aid == null) {
+        JOptionPane.showMessageDialog(null, "Personen finns inte: " + namn);
+        return;
+    }
+
+    // Ta bort från projektchef om nödvändigt
+    String chefCheck = idb.fetchSingle("SELECT projektchef FROM projekt WHERE projektchef = " + aid);
+    if (chefCheck != null) {
+        idb.update("UPDATE projekt SET projektchef = NULL WHERE projektchef = " + aid);
+    }
+
+    // Ta bort från admin om personen är admin
+    String adminCheck = idb.fetchSingle("SELECT aid FROM admin WHERE aid = " + aid);
+    if (adminCheck != null) {
+        idb.delete("DELETE FROM admin WHERE aid = " + aid);
+    }
+
+    // Ta bort från handlaggare om personen är handläggare
+    String handlaggareCheck = idb.fetchSingle("SELECT aid FROM handlaggare WHERE aid = " + aid);
+    if (handlaggareCheck != null) {
+        idb.delete("DELETE FROM handlaggare WHERE aid = " + aid);
+    }
+
+    // Ta bort från projektkopplingar
+    String ansProjCheck = idb.fetchSingle("SELECT aid FROM ans_proj WHERE aid = " + aid);
+    if (ansProjCheck != null) {
+        idb.delete("DELETE FROM ans_proj WHERE aid = " + aid);
+    }
+
+    // Till sist, ta bort från anstalld
+    idb.delete("DELETE FROM anstalld WHERE aid = " + aid);
+
+    JOptionPane.showMessageDialog(null, "Personen raderades: " + namn);
+
+} catch (Exception e) {
+    JOptionPane.showMessageDialog(null, "Fel vid radering: " + e.getMessage());
+}
     }//GEN-LAST:event_raderaSamhallButtonActionPerformed
 
     private void laggTillSamhallButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laggTillSamhallButtonActionPerformed
