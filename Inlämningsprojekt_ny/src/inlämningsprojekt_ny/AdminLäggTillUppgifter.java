@@ -282,7 +282,7 @@ public class AdminLäggTillUppgifter extends javax.swing.JFrame {
 
         partnerAdressLabel.setText("Adress:                 *");
 
-        partnerBranchLabel.setText("Branch:");
+        partnerBranchLabel.setText("Branch:                 *");
 
         partnerStadLabel.setText("Stad:");
 
