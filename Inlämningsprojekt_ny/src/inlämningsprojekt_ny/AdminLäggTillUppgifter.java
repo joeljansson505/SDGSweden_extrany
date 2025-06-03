@@ -32,7 +32,7 @@ public class AdminLäggTillUppgifter extends javax.swing.JFrame {
         this.aid = aid;
         initComponents();
         
-        try {
+        try { //combobox som hämtar alla tillgängliga int värden i databasen för att undvika fel i sql frågan
             avdChefComboBox.removeAllItems();
             avdStadComboBox.removeAllItems();
             
@@ -78,7 +78,7 @@ public class AdminLäggTillUppgifter extends javax.swing.JFrame {
             
         }
         
-        laggTillUppgTabbedPane.setUI(new BasicTabbedPaneUI() {
+        laggTillUppgTabbedPane.setUI(new BasicTabbedPaneUI() { //gömmer alla tabs i table
             protected int calculateTabAreaHeight(int tabPlacement, int tabCount, int maxTabHeight) {
                 return 0;
             }
@@ -624,7 +624,7 @@ public class AdminLäggTillUppgifter extends javax.swing.JFrame {
 
     private void adminLaggTillUppgComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminLaggTillUppgComboBoxActionPerformed
         // TODO add your handling code here:
-        String val = (String) adminLaggTillUppgComboBox.getSelectedItem();
+        String val = (String) adminLaggTillUppgComboBox.getSelectedItem(); //combobox för att hitta de gömda tabsen
         switch (val) {
             case "Land":
                 laggTillUppgTabbedPane.setSelectedIndex(0);
@@ -643,7 +643,7 @@ public class AdminLäggTillUppgifter extends javax.swing.JFrame {
 
     private void avdSparaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avdSparaButtonActionPerformed
         // TODO add your handling code here:
-        try {
+        try { //hämtar det man skrivit i field
             String namn = avdNamnField.getText().trim();
             String adress = avdAdressField.getText().trim();
             String epost = avdEpostField.getText().trim();
@@ -652,7 +652,7 @@ public class AdminLäggTillUppgifter extends javax.swing.JFrame {
             String stadId = (String) avdStadComboBox.getSelectedItem();
             String beskrivning = avdBeskrivningField.getText().trim();
             
-            if (!Validering.faltInteTomt(namn)) {
+            if (!Validering.faltInteTomt(namn)) { //validering för att alla obligatoriska fält ska vara ifyllda
                 JOptionPane.showMessageDialog(this, "Avdelnings namn får inte vara tomt");
                 return;
             }
@@ -672,18 +672,18 @@ public class AdminLäggTillUppgifter extends javax.swing.JFrame {
                 return;
                 }
             
-            String maxID = idb.fetchSingle("SELECT MAX(avdid) FROM avdelning");
+            String maxID = idb.fetchSingle("SELECT MAX(avdid) FROM avdelning"); //hämtar max ID i databasen plussar på 1 för att skapa ett nytt ID
             int nyttID = (maxID != null) ? Integer.parseInt(maxID) + 1 : 1;
-            
+            //sql sats för att inserta nya värden
             String sql = "INSERT INTO avdelning (avdid, namn, adress, epost, telefon, stad, chef, beskrivning) " + 
                     "VALUES (" + nyttID + ", '" + namn + "', '" + adress + "', '" + epost + "', '" + 
                     telefon + "', " + stadId + ", " + chefId + ", '" + beskrivning + "')";
             
-            idb.insert(sql);
+            idb.insert(sql); //meddelande ifall det lyckats
             JOptionPane.showMessageDialog(this, "Avdelningen sparad!");
             
                     
-        } catch (Exception ex) {
+        } catch (Exception ex) { //meddelande ifall det misslyckas
             JOptionPane.showMessageDialog(this, "Fel vid sparning: " + ex.getMessage());
             ex.printStackTrace();
         }

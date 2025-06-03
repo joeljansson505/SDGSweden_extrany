@@ -275,7 +275,7 @@ public class Inloggning extends javax.swing.JFrame {
     }
 
     try {
-        // Försök logga in som admin (behörighetsnivå 1 eller 2)
+        // Försök logga in som admin
         String fragaAdmin = "SELECT anstalld.aid, epost, losenord, admin.behorighetsniva FROM anstalld "
                 + "JOIN admin ON anstalld.aid = admin.aid "
                 + "WHERE epost = '" + epost + "' AND losenord = '" + losen + "' AND (admin.behorighetsniva = 1 or admin.behorighetsniva = 2);";
