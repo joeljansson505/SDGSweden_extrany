@@ -409,7 +409,12 @@ public class SamhallutvecklingAvd extends javax.swing.JFrame {
     private void sokProjektSamField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokProjektSamField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_sokProjektSamField2ActionPerformed
-
+ /**
+ * Söker och visar alla pågående projekt i avdelningen "Avdelning för Samhällsutveckling och Utbildning"
+ * som överlappar ett angivet datumintervall (YYYY-MM-DD).
+ * Visar projektnamn, start-/slutdatum och beskrivning i ett textfält.
+ * Vid felaktigt datumformat eller databasfel visas ett felmeddelande.
+ */
     private void sokProjektSamDatumButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokProjektSamDatumButtonActionPerformed
         // TODO add your handling code here:
         String franDatum = sokProjektSamField.getText().trim();
