@@ -287,7 +287,9 @@ public class AdminHallbarhetavd extends javax.swing.JFrame {
     }//GEN-LAST:event_HallbarhetavdTillbakaButtonActionPerformed
 
     private void hallbarhetAvdPersonalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hallbarhetAvdPersonalButtonActionPerformed
-        // TODO add your handling code here:
+       // Denna kod hämtar och visar för och efternamn på alla anställda som tillhör avdelningen
+       //"Avdelning för Hållbar energi och klimatförändringar" eller visar ett felmeddelande om inga personer hittas.
+       
         try {
     String sql = "SELECT fornamn, efternamn FROM anstalld " + 
                  "JOIN avdelning ON anstalld.avdelning = avdelning.avdid " + 
@@ -320,7 +322,8 @@ public class AdminHallbarhetavd extends javax.swing.JFrame {
     }//GEN-LAST:event_hallbarhetAvdPersonalButtonActionPerformed
 
     private void hallbarhetAvdProjektButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hallbarhetAvdProjektButtonActionPerformed
-        // TODO add your handling code here:
+        // Denna kod hämtar och visar namnen på unika projekt som är kopplade till 
+        // "Avdelning för Hållbar Energi och Klimatförändringar", eller visar ett fel- eller tommeddelande om inga projekt hittas.
         try {
             String sql = "SELECT DISTINCT p.projektnamn FROM projekt p " + 
                     "JOIN proj_hallbarhet ph ON p.pid = ph.pid " + 
@@ -348,7 +351,9 @@ public class AdminHallbarhetavd extends javax.swing.JFrame {
     }//GEN-LAST:event_hallbarhetAvdProjektButtonActionPerformed
 
     private void pAvdHallbarhetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pAvdHallbarhetButtonActionPerformed
-        // TODO add your handling code here:
+        //Denna kod kontrollerar om statusen "Pågående" är giltig och visar sedan namnen på alla unika projekt
+        //med den statusen som är kopplade till "Avdelning för Hållbar Energi och Klimatförändringar",
+        //eller ett fel- eller tommeddelande om inga sådana projekt hittas.
         String status = "Pågående";
         
         if(Validering.kollaStatus(status)){
@@ -380,7 +385,9 @@ public class AdminHallbarhetavd extends javax.swing.JFrame {
     }//GEN-LAST:event_pAvdHallbarhetButtonActionPerformed
 
     private void aAvdHallbarhetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aAvdHallbarhetButtonActionPerformed
-        // TODO add your handling code here:
+        //Denna kod kontrollerar om statusen "Avslutat" är giltig och visar sedan namnen på alla unika projekt med
+        //den statusen som är kopplade till "Avdelning för Hållbar Energi och Klimatförändringar",
+        //eller ett fel- eller tommeddelande om inga sådana projekt hittas.
         String status = "Avslutat";
         
         if(Validering.kollaStatus(status)){
