@@ -419,7 +419,9 @@ public class AdminHallbarhetavd extends javax.swing.JFrame {
     }//GEN-LAST:event_aAvdHallbarhetButtonActionPerformed
 
     private void plaAvdHallbarhetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plaAvdHallbarhetButtonActionPerformed
-        // TODO add your handling code here:
+        // Denna kod kontrollerar om statusen "Planerat" är giltig och visar sedan namnen på alla unika projekt med
+        //den statusen som är kopplade till "Avdelning för Hållbar Energi och Klimatförändringar",
+        //eller visar ett fel- eller tommeddelande om inga sådana projekt hittas.
                 String status = "Planerat";
         
         if(Validering.kollaStatus(status)){
@@ -451,7 +453,8 @@ public class AdminHallbarhetavd extends javax.swing.JFrame {
     }//GEN-LAST:event_plaAvdHallbarhetButtonActionPerformed
 
     private void sokHandlaggareButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokHandlaggareButtonActionPerformed
-        // TODO add your handling code here:
+        // Denna kod söker efter handläggare i "Avdelning för Hållbar Energi och Klimatförändringar" baserat på
+        //användarens inmatade namn eller e-post, och visar deras kontaktuppgifter eller ett meddelande om ingen träff hittas.
      String sokterm = sokHandlaggarField.getText().trim();
 
     if (sokterm.isEmpty()) {
