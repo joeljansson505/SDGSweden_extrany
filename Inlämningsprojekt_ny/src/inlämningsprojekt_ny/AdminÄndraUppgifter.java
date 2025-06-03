@@ -264,23 +264,30 @@ public class AdminÄndraUppgifter extends javax.swing.JFrame {
          if (selected.equals("Avdelning")) {
             String id = TableInfoUppgifter.getValueAt(rad, 0).toString();
             String namn = TableInfoUppgifter.getValueAt(rad, 1).toString();
-            String adress = TableInfoUppgifter.getValueAt(rad, 2).toString();
-            String epost = TableInfoUppgifter.getValueAt(rad, 3).toString();
-            String telefon = TableInfoUppgifter.getValueAt(rad, 4).toString();
-            String stad = TableInfoUppgifter.getValueAt(rad, 5).toString();
-            String chef = TableInfoUppgifter.getValueAt(rad, 6).toString();
-            String beskrivning = TableInfoUppgifter.getValueAt(rad, 7).toString();
+            String beskrivning = TableInfoUppgifter.getValueAt(rad, 2).toString();
+            String adress = TableInfoUppgifter.getValueAt(rad, 3).toString();
+            String epost = TableInfoUppgifter.getValueAt(rad, 4).toString();
+            String telefon = TableInfoUppgifter.getValueAt(rad, 5).toString();
+            String stad = TableInfoUppgifter.getValueAt(rad, 6).toString();
+            String chef = TableInfoUppgifter.getValueAt(rad, 7).toString();
             
             namn = namn.replace("'", "''");
+            beskrivning = beskrivning.replace("'", "''");
             adress = adress.replace("'", "''");
             epost = epost.replace("'", "''");
             telefon = telefon.replace("'", "''");
             stad = stad.replace("'", "''");
             chef = chef.replace("'", "''");
-            beskrivning = beskrivning.replace("'", "''");
             
-            String sql = "UPDATE avdelning SET namn='" + namn + "', adress='" + adress + "', epost='" + epost + "', telefon='" + telefon + 
-                    "',stad='" + stad + "', chef='" + chef + "', beskrivning='" + beskrivning + "' WHERE avdid=" + id;
+            String sql = "UPDATE avdelning SET " + 
+                    "namn='" + namn + "'," + 
+                     "beskrivning='" + beskrivning + "'," +
+                     "adress='" + adress + "'," + 
+                     "epost='" + epost + "'," +
+                     "telefon='" + telefon + "'," + 
+                     "stad='" + stad + "'," + 
+                     "chef='" + chef + "' " +  
+                     "WHERE avdid=" + id;
             idb.update(sql);
             JOptionPane.showMessageDialog(this, "Uppgifter sparade!");
             AndraUppgifterComboBoxActionPerformed(null);
@@ -314,7 +321,7 @@ public class AdminÄndraUppgifter extends javax.swing.JFrame {
                      "status='" + status + "'," + 
                      "prioritet='" + prioritet + "'," + 
                      "projektchef='" + projektchef + "'," + 
-                     "land='" + land + "'" + 
+                     "land='" + land + "' " + 
                      "WHERE pid=" + id;
              
              idb.update(sql);
@@ -341,11 +348,11 @@ public class AdminÄndraUppgifter extends javax.swing.JFrame {
              
              String sql = "UPDATE land SET " + 
                      "namn='" + namn + "'," + 
-                     "sprak'" + sprak + "'," + 
-                     "valuta'" + valuta + "'," + 
-                     "tidszon'" + tidszon + "'," + 
-                     "politisk_struktur'" + politisk_struktur + "'," + 
-                     "ekonomi'" + ekonomi + "'" + 
+                     "sprak='" + sprak + "'," + 
+                     "valuta='" + valuta + "'," + 
+                     "tidszon='" + tidszon + "'," + 
+                     "politisk_struktur='" + politisk_struktur + "'," + 
+                     "ekonomi='" + ekonomi + "' " + 
                      "WHERE lid =" + id;
              
              idb.update(sql);
@@ -379,7 +386,7 @@ public class AdminÄndraUppgifter extends javax.swing.JFrame {
                      "telefon='" + telefon + "'," + 
                      "adress='" + adress + "'," + 
                      "branch='" + branch + "'," + 
-                     "stad='" + stad + "'" + 
+                     "stad='" + stad + "' " + 
                      "WHERE pid =" + id;
              
              idb.update(sql);
